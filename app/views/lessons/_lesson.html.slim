@@ -1,0 +1,20 @@
+/ br
+/ br
+/ .class_block
+/   .row-fluid
+/     .span3
+/       = image_tag lesson.pictures.first.image.url,:style=>"width:102%"
+/     .span5
+/       h3=lesson.name
+/       br
+/       b =lesson.description
+/   	  br
+/   	  b =lesson.neighbourhood 
+/     .span2
+/       =number_to_currency(lesson.price)
+/     .span2
+/       button.btn.btn-success type="button"  Book Now
+/       br
+/       br
+/       | people allowed :
+/       =lesson.maximum_people   

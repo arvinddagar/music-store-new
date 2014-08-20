@@ -1,0 +1,54 @@
+<% if current_student.nil? %>
+  <br>
+  <br>
+  <br>
+  <br>
+  <i style="margin-left: 4%;"> Please Login as Student </i>
+<% else %>
+  <%= render 'book_class_partial'%>
+  <br>
+  <br>
+  <table class="table table-hover ">
+    <tr>
+      <td>
+        Day
+      </td>
+      <td>
+        Start timing
+      </td>
+      <td>
+        End timing
+      </td>
+      <td>
+        Slots Left
+      </td>
+      <td>
+        Book
+      </td>
+    </tr>
+    <% @lesson.schedule.days.each do |lesson| %>
+      <tr>
+        <td rowspan="<%=lesson.timings.count %>" >
+          <%=lesson.name%>
+          <% lesson.timings.each do |time| %>
+            <td>
+              <%=time.start_time.strftime("%I:%M %p") %>
+            </td>
+            <td>
+              <%=time.end_time.strftime("%I:%M %p") %>
+            </td>
+            <td>
+              <%=@lesson.maximum_people %>
+            </td>
+            <td>
+              <%= link_to 'Book now',new_charge_path(:id=>params[:id],:schedule_id=> @lesson.schedule.id,:timing_id=>time.id)%>
+            </td>
+          </td>
+          </tr>
+          <% end %>
+    <% end %>
+  </table>
+  <br>
+  <br>
+  <br>
+<% end %>

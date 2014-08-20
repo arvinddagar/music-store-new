@@ -1,0 +1,257 @@
+.temp
+{
+
+  margin-top: 2%;
+margin-left: 0%;
+}
+
+
+.flash_message
+{
+  color: red;
+display: block;
+background-color: bisque;
+
+}
+
+.error{
+  color:red;
+  display: block;
+}
+
+.alert_messgae{
+  color:red;
+  display: block;
+}
+
+.button_profile
+{
+  margin-top: 3%;
+}
+.tutor_navbar_partial
+{
+margin-top: 7%;
+margin-left: 15%;
+}
+
+.tutor_dashboard
+{
+  margin-left: 4%;
+}
+
+
+.tutor_name
+
+{
+  color: #444;
+border-bottom: none;
+font-size: 1.8em;
+font-weight: 400;
+margin-bottom: 0px;
+margin-top: 10px;
+padding-bottom: 0px;
+}
+
+.teacher-schema .teacher-info{
+font-size: 16px;
+color: #000;
+}
+
+
+.teacher-profile-wrapper {
+    -webkit-box-shadow: #ccc 3px 3px 6px;
+    -moz-box-shadow: #ccc 3px 3px 6px;
+    box-shadow: #ccc 3px 3px 6px;
+    position: relative;
+    background: #fff;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+}
+.teacher-profile-wrapper .main-content {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.teacher-profile-wrapper a.price {
+    z-index: 10;
+}
+.teacher-profile-wrapper a.price:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.row_tutor {
+    width: 1000px;
+    max-width: 100%;
+    min-width: 768px;
+    margin: 0 auto;
+}
+
+.three, .row_tutor .three {
+    width: 25%}
+[class*="column"]+[class*="column"]:last-child {
+/*    float: right;*/
+}
+
+
+.column, .columns {
+    float: left;
+    min-height: 1px;
+    padding: 0 15px;
+    position: relative;
+}
+
+
+
+
+.teacher-photo {
+    -webkit-box-sizing: teacher-photo;
+    -moz-box-sizing: teacher-photo;
+    box-sizing: teacher-photo;
+    display: block;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #222;
+    text-align: center;
+    color: #666;
+}
+
+.teacher-profile {
+    margin-top: 0px;
+}
+
+.teacher-profile dd {
+    margin-bottom: 0em;
+    padding-bottom: 0em;
+    font-size: 0.9em;
+    color: #000;
+}
+.teacher-profile dt {
+    margin: 0.4em 0;
+    font-size: 1.4em;
+    font-weight: 300;
+    color: #7a7a7a;
+    padding-top: 0.3em;
+}
+
+
+/*---------------------*/
+
+
+.teacher-profile ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+.teacher-profile .contact-me {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.teacher-profile .tagline {
+    font-weight: 600;
+    color: #333;
+}
+.teacher-profile .review-count {
+    font-size: 12px;
+    color: #333;
+}
+.teacher-profile .teacher-overview {
+    padding: 0em 0px 0em 0px;
+    margin-bottom: 10px;
+    vertical-align: top;
+}
+
+
+.teacher-profile .teacher-overview h1 {
+    color: #444;
+    border-bottom: none;
+    font-size: 1.8em;
+    font-weight: 400;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    padding-bottom: 0px;
+}
+.teacher-profile .teacher-overview .timezone {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    display: inline-block;
+    width: auto;
+    padding: 8px;
+    margin-bottom: 0.5em;
+    font-size: 0.8em;
+    float: right;
+    color: #0082c8;
+    text-transform: uppercase;
+}
+
+
+.teacher-info dl {
+    font-size: 13px;
+}
+
+.teacher-info dt {
+margin: 0.4em 0;
+font-size: 1.4em;
+font-weight: 300;
+color: #7a7a7a;
+padding-top: 0.3em;
+}
+
+.teacher-info dd {
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.teacher-info .background-check {
+    display: block;
+    font-size: 0.8em;
+    margin: -5px 0px 15px 4px;
+    font-style: italic;
+    line-height: 1em;
+    color: #444;
+}
+
+.teacher-info .background-check .check {
+    color: #009b07;
+    font-family: "ModernPicto";
+    font-size: 1.4em;
+}
+
+
+.five, .row .five {
+    width: 41.66667%}
+
+.class_show_page
+{
+    margin-left: 5%;
+}
+
+
+.lesson_description_show
+{
+    margin-left: 2%;
+    font-family: "ModernPicto";
+    font-size: 1.2em;
+}
+
+.box
+{
+
+    border: solid;
+width: 52%;
+padding: 3%;
+border-radius: 20%;
+background-color: honeydew;
+}
+
+
+.schedule_day_show
+{
+    font-family: "ModernPicto";
+    font-size: 2.2em;
+    border:none;
+}

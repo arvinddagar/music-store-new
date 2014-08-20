@@ -1,0 +1,40 @@
+.ab style="margin-top :80px; margin-left:520px; "
+  = form_tag search_classes_path, :method => :get do
+    p
+      = text_field_tag :search, params[:search],:class=>"textbox_1"
+      = submit_tag "Search", :name => nil, :class=>"btn btn-info"
+
+
+/ = render @Lessons
+br
+br
+- if @lessons.empty?
+  center
+    h2 No Classes Available
+- else
+  - @lessons.each do |lesson|
+    .class_block
+      .row-fluid
+        .span3
+          -if lesson.pictures.first.present?
+            = image_tag lesson.pictures.first.image.url,:style=>"width:102%"
+          - else
+            = image_tag "no-image.png",:style=>"width:102%"
+        .span5
+          h3
+            =link_to lesson.name, lesson_path(lesson)
+          br
+          b =lesson.description
+      	  br
+      	  b =lesson.neighbourhood
+        .span2
+          =number_to_currency(lesson.price)
+        .span2
+          =link_to "book Now" ,book_class_path(lesson)
+          / button.btn.btn-success type="button"  Book Now
+          br
+          br
+          | people allowed :
+          =lesson.maximum_people
+br
+br

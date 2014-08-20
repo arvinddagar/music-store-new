@@ -1,0 +1,122 @@
+br
+br
+br
+br
+
+section
+  ul.breadcrumb.color_white
+    li
+      a href=""  Home
+      span.divider
+    li
+      a href=""  Search Results
+      span.divider
+    li.active
+      b Class Description
+
+.row-fluid.class_show_page
+  .span8
+    h2 =@lesson.name
+    b style="margin-left:3%"
+      |with
+      =@lesson.tutor.first_name.capitalize+" "+@lesson.tutor.last_name.capitalize
+    br
+    br
+    b
+      =@lesson.address
+    br
+    =@lesson.created_at.strftime("%d-%b-%y")
+    br
+    =@lesson.created_at.strftime("%H : %M")
+  .span2
+    br
+    b
+      =number_to_currency(@lesson.price)
+    br
+    =@lesson.created_at.strftime("%d-%b-%y")
+    br
+    =@lesson.created_at.strftime("%H : %M")
+    br
+    b
+  .span2
+    br
+    .box
+      | Book Now
+      br
+      br
+      =@lesson.maximum_people
+      | spots left
+
+hr
+.row-fluid.class_show_page
+  .span10
+    ul.nav.nav-pills
+      li.active
+        a.brand href=""  Class Description
+      li
+        a.brand href="" style="margin-left:1px;"  Instructor
+      li
+        a.brand href="" style="margin-left:1px;"  Reviews
+      li
+        a.brand href="" style="margin-left:1px;"  Map
+      li
+        a.brand href="" style="margin-left:1px;"  Pictures
+    br
+      b Class Description :
+      br
+        p align="justify"
+        .lesson_description_show
+          =@lesson.description
+        br
+        b
+         | Level: All
+         br
+         | Ages: All
+         br
+         | Avg Class Size :
+         =@lesson.maximum_people
+         br
+         | Attire: Comfortable
+         br
+  .span2
+     button.btn.btn-default type="button"  Invite a Friend
+     br
+     br
+     button.btn.btn-default type="button"  Like
+     br
+     br
+     button.btn.btn-default type="button"  Twitter
+hr
+.row-fluid.class_show_page
+  .span10
+    .ins_profile
+      b Instructor Profile :
+      .row-fluid
+        .span2
+          br
+          .teacher-photo
+            -if @lesson.tutor.image.present?
+              = image_tag @lesson.tutor.image.url,:style=>"width:102%"
+            - else
+              = image_tag "no-image.png",:style=>"width:102%"
+
+        .span10
+          p align="justify"
+            .lesson_description_show
+              =@lesson.tutor.description
+
+  .span2
+    = image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@lesson.latitude}%2C#{@lesson.longitude}"
+h2 My Reviews
+.class_tab.table-responsive
+  table.table cellpadding="0" cellspacing="0"
+    tr
+      th Member
+      th Comment
+      th Date
+    - if @reviews.any?
+      - @reviews.each do |review|
+        tr
+          td =review.user.student.first_name
+          td = review.comment
+          td = review.created_at

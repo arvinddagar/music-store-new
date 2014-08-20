@@ -1,0 +1,65 @@
+= render 'application/tutor_dashboard_partial'
+br
+br
+br
+.teacher-schema
+  .teacher-
+    .main-content
+      .row style=(" margin-left: 10%;")
+        .three.columns
+          .teacher-photo
+            - if @tutor.image_file_name?
+              = image_tag @tutor.image.url,:style=>"width:102%"
+            - else
+              = image_tag "no-image.png",:style=>"width:102%"
+          .teacher-info
+            dl
+              dt
+                | Instruments
+              dd
+                =@tutor.instruments
+              dt
+                | Skill Levels
+              dd
+                =@tutor.skills
+              dt
+                | Genres
+              dd
+                =@tutor.instruments
+              dt
+                | Lesson Duration
+              dd =@tutor.duration.to_s + "  hours"
+              dt
+                | Age Groups
+              dd
+                =@tutor.age_group.to_s + "+"
+        .five.columns
+          .teacher-info
+            .teacher-overview
+              h1 itemprop="name"
+                =@tutor.first_name.capitalize+"  "+@tutor.last_name.capitalize
+            dl
+              dt Description
+            .tagline itemprop="description"
+              =@tutor.description
+            dl
+              dt Teaching Philosophy
+              dd
+                p
+                  =@tutor.teaching_philosophy
+              dt Experience
+              dd
+                p
+                  =@tutor.experience
+            dl
+              dt Credentials
+              dd
+                p
+                  =@tutor.credentials_and_affiliations
+            dl
+              dt Address
+              dd
+                p
+                  =@tutor.address
+            dl
+              = image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@tutor.latitude}%2C#{@tutor.longitude}"

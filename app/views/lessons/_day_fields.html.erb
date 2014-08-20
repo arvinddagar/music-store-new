@@ -1,0 +1,17 @@
+<%= f.text_field :name,:readonly => true, :class => "schedule_day_show" %>
+<%= f.fields_for :timings %>
+<br>
+<div style=" margin-left: -67%; ">
+  <%= f.link_to_remove "Remove this Day" %>
+</div>
+<br>
+<br>
+<script type="text/javascript">
+document.getElementById("schedule_days_attributes_0_name").value = "Mon";
+document.getElementById("schedule_days_attributes_1_name").value = "Tues";
+document.getElementById("schedule_days_attributes_2_name").value = "Wed";
+document.getElementById("schedule_days_attributes_3_name").value = "Thur";
+document.getElementById("schedule_days_attributes_4_name").value = "Fri";
+document.getElementById("schedule_days_attributes_5_name").value = "Sat";
+document.getElementById("schedule_days_attributes_6_name").value = "Sun";
+</script>

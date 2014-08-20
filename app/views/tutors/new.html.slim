@@ -1,0 +1,94 @@
+.container
+  .signup style="margin-top:80px;"
+    h3 Signup as tutor
+    = form_for @tutor do |f|
+      - if @tutor.errors.any?
+        #has-error
+          h4
+            = pluralize(@tutor.errors.count, "error")
+            | &nbsp&nbspprohibited
+            | &nbsp&nbspthis form from being saved:
+          ul
+            - @tutor.errors.full_messages.each do |msg|
+              li= msg
+      = f.fields_for :user do |user|
+          = user.label :email
+          br/
+          = user.email_field :email, autofocus: true,:class=>"textbox_1"
+          br/
+          = user.label :password
+          br/
+          = user.password_field :password, autocomplete: "off",:class=>"textbox_1"
+          = user.hidden_field :user_type, :value => "true"
+          br/
+          = f.label 'First name'
+          br/
+          = f.text_field :first_name, autocomplete: "off",:class=>"textbox_1"
+          br
+          = f.label 'Last name'
+          br
+          = f.text_field :last_name, autocomplete: "off",:class=>"textbox_1"
+          br
+          uname style="display: none;"
+            = f.label 'username'
+            br
+            = f.text_field :user_name, autocomplete: "off",:class=>"textbox_1"
+            = f.hidden_field :user_name, :id=>"usname"
+            br
+          ab style="color:red;"
+          br
+          abc style="display: none;"
+            = f.label 'username'
+            br
+            = f.text_field :user_name, autocomplete: "off",:class=>"textbox_1"
+            br
+          #err-uname
+          = f.button class: "btn btn-success",:style=>"margin-top:20px; margin-bottom:20px;",:id=>"uniq"
+javascript:
+  $( "#tutor_last_name" ).blur(function() {
+  $.ajax('/check_username',{
+        type: 'get',
+        dataType: 'html',
+        data: {first_name: $("#tutor_first_name").val(),last_name: $("#tutor_last_name").val()},
+        success: function(data, textStatus, jqXHR)
+          {
+           if (data.search( '-done' ) >0){
+           alert("si");
+            $("uname").hide();
+           $("uname").show();
+          $("#tutor_user_name").val(data.replace("-done", ''));
+           $("#tutor_user_name").attr("disabled", 1);
+
+           }
+           else
+           {
+             $("uname").hide();
+           $("uname").show();
+           $("#tutor_user_name").attr("placeholder", data)
+
+           }
+
+           $("#usname").val(data);
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            alert(errorThrown);
+            $("#tutor_user_name").text(errorThrown); }
+
+        });
+
+  });
+  / $("#uniq" ).click(function() {
+  /   $.ajax('/check_unique_uname',{
+  /   type: 'get',
+  /       dataType: 'html',
+  /       data: {username: $("#user_name").val()},
+  /       success: function(data, textStatus, jqXHR)
+  /         {
+  /          $("#ab").text(data);
+  /         },
+  /         error: function (jqXHR, textStatus, errorThrown) {
+  /           $("#ab").text(errorThrown); }
+  /       });
+  /       });
+
+  / });

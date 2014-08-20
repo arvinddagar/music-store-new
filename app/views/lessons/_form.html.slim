@@ -1,0 +1,106 @@
+= render 'application/tutor_dashboard_partial'
+.container style="margin-top:60px;"
+  h2 style = "margin-left:400px" Create new class
+  br
+  .form-actions
+    = form_for @lesson, :html => { :id => "lesson_form" } do |f|
+      /= render 'shared/errors', object: f.object
+      .row
+        = f.label :name,"Class Name (Choose a catchy name for yourclass)",class: 'label_text'
+        br
+        = f.text_field :name,class: 'textbox_1'
+      br
+      br
+      .row
+        = f.label :description, "Class Description (Tell everyone what it’s all about!)",class: 'label_text'
+        br
+         = f.text_area :description , class: "textarea_1"
+      br
+      br
+      .row
+        = f.label :neighbourhood, class: "label_text"
+        br
+        = f.text_field :neighbourhood, class: "textbox_1"
+      br
+      br
+      .row
+        = f.label :address , class: "label_text"
+        br
+        = f.text_field :address,class: 'textbox_1',:style=>"margin-bottom:10px"
+      br
+      br
+      .row
+        label.label_text Type of Class
+        .row.temp
+          .select_3
+            - if @lesson.try(:category)
+              - child = Category.find(@lesson.try(:category))
+              = "#{child.parent.category_name} - #{@lesson.try(:category)}"
+          .select_3
+            = select("lessons", "category", category_list.collect{|p| [ p.category_name, p.id ] }, {include_blank: 'None'})
+          .select_3.temp
+            #subcategory
+      br
+      br
+      .row
+        = f.label :phone_number, 'Phone Number',class:"label_text"
+        br
+        = f.number_field :phone_no, class: "textbox_1"
+      br
+      br
+      .row
+        = f.label :amount, 'Price per Class',class:"label_text"
+        br
+        = f.number_field :price, class: "textbox_1"
+      br
+      br
+      .row
+        = f.label :duration, 'Duration (Minutes)', class: "label_text"
+        br
+        = f.number_field :duration,class: "textbox_1"
+      br
+      br
+      .row
+        = f.label :publish, 'Publish', class: "label_text"
+        br
+        = f.check_box :publish
+      br
+      br
+      .row
+        = f.label :allowed_people, "Maximum People per Class", class: "label_text"
+        br
+        = f.number_field :maximum_people, class:"textbox_1"
+        br
+      .row
+        - f.object.pictures.build if f.object.pictures.blank?
+        = f.fields_for :pictures do |pic|
+          br/
+          = pic.label :image
+          br/
+          = pic.file_field :image
+          - if !pic.object.id.blank?
+            = pic.hidden_field :id, :value => pic.object.id
+          br/
+      =f.hidden_field :tutor_id, :value => current_tutor.id
+      = f.submit 'Save', class: 'btn btn-success', :style=> "margin-bottom:20px;"
+javascript:
+  $( "#lessons_category" ).change(function() {
+    if ($('#lessons_category :selected').text() !== 'Others') {
+      $.ajax({
+        url: '/subcategory',
+        data: {
+          parent_id: this.value
+        },
+        type: 'get',
+        success: function(data) {
+          return $('#subcategory').html(data);
+        },
+        complete: function() {}
+      });
+    }
+    else
+    {
+      $('#subcategory').html("<label for='main_category'>Main Category</label><input id='main_category' name='category[category_name]' type='text'><label for='sub_category'>Sub Category</label><input id='sub_category' name='category[subcategory_name]' type='text'>");
+    }
+    return;
+  });

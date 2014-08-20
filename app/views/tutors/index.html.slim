@@ -1,0 +1,33 @@
+= render 'application/tutor_dashboard_partial'
+br
+br
+br
+.tutor_dashboard
+  h4
+    | Welcome
+
+    =" "+current_tutor.first_name.capitalize+"  "+current_tutor.last_name.capitalize
+  table.table
+    tr
+      th
+        | Active Classes
+      th
+        | Date
+      th
+        | time
+      th
+        | Location
+      th
+        | Edit
+    - @lessons.each do |lesson|
+      tr
+        td
+          =lesson.name
+        td
+          =lesson.created_at.strftime("%d-%b-%y")
+        td
+          =lesson.created_at.strftime("%H : %M")
+        td
+          =lesson.address
+        td
+          = link_to 'Edit', edit_lesson_path(lesson)

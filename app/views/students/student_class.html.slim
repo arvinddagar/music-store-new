@@ -1,0 +1,56 @@
+= render 'application/student_dashboard_partial'
+br
+br
+br
+.tutor_dashboard
+  h4
+    | Welcome
+
+    =" "+current_student.first_name.capitalize+"  "+current_student.last_name.capitalize
+  table.table
+    tr
+      th
+        | Active Classes
+      th
+        | Date
+      th
+        | time
+      th
+        | Location
+      th
+        |Cancel
+    - if @upcoming_reservations.present?
+      - @upcoming_reservations.each do |preservation|
+        tr
+          td =preservation.lesson.name
+          td =preservation.class_date
+          td =preservation.schedule.start_time
+          td =preservation.lesson.address
+  br
+  br
+  table.table
+    tr
+      th
+        | Past Classes
+      th
+        | Date
+      th
+        | time
+      th
+        | Location
+      th
+        | Reviews
+    - if @past_reservations.present?
+      - @past_reservations.each do |preservation|
+        tr
+          td =preservation.lesson.name
+          td =preservation.class_date
+          td =preservation.schedule.start_time
+          td =preservation.lesson.address
+          td
+            - if preservation.lesson.comments.count > 0
+              = preservation.lesson.comments.first.comment
+            - else
+              = form_for [preservation.lesson, preservation.lesson.comments.new]  do |f|
+                = f.text_area :comment
+                = f.submit 'Add Review', class: 'btn btn-primary'

@@ -1,0 +1,26 @@
+= render 'application/student_dashboard_partial'
+br
+br
+br
+.teacher-schema
+  .teacher-
+    .main-content
+      .row style=(" margin-left: 10%;")
+        .three.columns
+          .teacher-photo
+            - if @student.image_file_name?
+              = image_tag @student.image.url,:style=>"width:102%"
+            - else
+              b
+                | no image found
+          .teacher-info
+            dl
+              dt
+                | Address
+              dd
+                =@student.address
+        .five.columns
+          .teacher-
+            .teacher-overview
+              h1 itemprop="name"
+                =@student.first_name.capitalize+"  "+@student.last_name.capitalize
