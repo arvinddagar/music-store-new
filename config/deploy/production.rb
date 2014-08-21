@@ -8,7 +8,13 @@ set :stage, :production
 role :app, %w{deploy_music_store@107.170.119.90}
 role :web, %w{deploy_music_store@107.170.119.90}
 role :db,  %w{deploy_music_store@107.170.119.90}
-
+set :ssh_options, {
+    forward_agent: true,
+    auth_methods: %w(password),
+    password: 'music_007',
+    user: 'deploy_music_store',
+    port: 22
+}
 # Extended Server Syntax
 # ======================
 # This can be used to drop a more detailed server
