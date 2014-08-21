@@ -41,7 +41,7 @@ gem 'capistrano-rvm'
 # gem 'capistrano-rvm', github: "capistrano/rvm"
 
 group :development do
-  gem 'better_errors'
-  gem 'letter_opener'
-  gem 'jazz_hands'
+  # gem 'better_errors'
+  # gem 'letter_opener'
+  # gem 'jazz_hands'
 end
