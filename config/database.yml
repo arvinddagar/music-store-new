@@ -8,3 +8,15 @@ development: &default
   host: localhost
   username: postgres
   password: postgres
+
+
+production: &default
+  adapter: postgresql
+  database: music_development
+  encoding: utf8
+  min_messages: warning
+  pool: 2
+  timeout: 5000
+  host: localhost
+  username: postgres
+  password: postgres_music_12345

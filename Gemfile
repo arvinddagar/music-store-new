@@ -26,6 +26,20 @@ gem 'acts_as_commentable'
 gem 'nested_form'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
+gem 'capistrano', '~> 3.0'
+gem 'capistrano-rvm'
+
+# gem 'capistrano', '~> 3.1.0'
+# gem 'capistrano-bundler', '~> 1.1.2'
+# gem 'capistrano-rails', '~> 1.1.1'
+
+# # Add this if you're using rbenv
+# # gem 'capistrano-rbenv', github: "capistrano/rbenv"
+
+# # Add this if you're using rvm
+# gem 'capistrano-rvm', github: "capistrano/rvm"
+
 group :development do
   gem 'better_errors'
   gem 'letter_opener'
