@@ -1,3 +1,18 @@
+<br>
+<br>
+<br>
+<br>
+<section>
+  <ul class="breadcrumb">
+    <li>
+      <a href="">Music - Store</a>
+      <span class="divider">/</span>
+      <a href="">Search Page</a>
+    </li>
+    <li class="active">Booking</li>
+  </ul>
+</section>
+
 <% if current_student.nil? %>
   <br>
   <br>
@@ -5,49 +20,59 @@
   <br>
   <i style="margin-left: 4%;"> Please Login as Student </i>
 <% else %>
-  <%= render 'book_class_partial'%>
-  <br>
-  <br>
-  <table class="table table-hover ">
-    <tr>
-      <td>
-        Day
-      </td>
-      <td>
-        Start timing
-      </td>
-      <td>
-        End timing
-      </td>
-      <td>
-        Slots Left
-      </td>
-      <td>
-        Book
-      </td>
-    </tr>
-    <% @lesson.schedule.days.each do |lesson| %>
+  <% if !@lesson.schedule.nil? %>
+    <%= render 'book_class_partial'%>
+    <br>
+    <br>
+    <table class="table table-hover" style=" width: 63%; margin-left: 5%; ">
       <tr>
-        <td rowspan="<%=lesson.timings.count %>" >
-          <%=lesson.name%>
-          <% lesson.timings.each do |time| %>
-            <td>
-              <%=time.start_time.strftime("%I:%M %p") %>
+        <td>
+          Date
+        </td>
+        <td>
+          Start timing
+        </td>
+        <td>
+          End timing
+        </td>
+        <td>
+          Slots Left
+        </td>
+        <td>
+          Book
+        </td>
+      </tr>
+      <% binding.pry %>
+      <% @lesson.schedule.days.each do |lesson| %>
+        <tr>
+          <td rowspan="<%=lesson.timings.count %>" >
+            <%=lesson.date %>
+            <br>
+            <br>
+            <%=lesson.name %>
+            <% lesson.timings.each do |time| %>
+              <td>
+                <%=time.start_time.strftime("%I:%M %p").to_s %>
+              </td>
+              <td>
+                <%=time.end_time.strftime("%I:%M %p").to_s %>
+              </td>
+              <td>
+                <%=@lesson.maximum_people %>
+              </td>
+              <td>
+                <%= link_to 'Book now',new_charge_path(:id=>params[:id],:schedule_id=> @lesson.schedule.id,:timing_id=>time.id), :class => "btn btn-success"%>
+              </td>
             </td>
-            <td>
-              <%=time.end_time.strftime("%I:%M %p") %>
-            </td>
-            <td>
-              <%=@lesson.maximum_people %>
-            </td>
-            <td>
-              <%= link_to 'Book now',new_charge_path(:id=>params[:id],:schedule_id=> @lesson.schedule.id,:timing_id=>time.id)%>
-            </td>
-          </td>
-          </tr>
-          <% end %>
-    <% end %>
-  </table>
+            </tr>
+            <% end %>
+      <% end %>
+    </table>
+  <% else %>
+    <div style=" margin-left: 4%; ">
+      <b> currently schedule for class is not present <br> please come after some time <br> if you are tutor please schedule the class </b>
+    </div>
+  <% end %>
   <br>
   <br>
   <br>

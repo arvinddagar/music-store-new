@@ -1,5 +1,6 @@
 class LessonsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!,
+                only: [:new, :create,:edit,:update,:new_schedule,:create_schedule]
   def new
     @lesson = Lesson.new
     @lesson.pictures.build
@@ -20,15 +21,21 @@ class LessonsController < ApplicationController
     @lesson=Lesson.find(params[:id])
     if @lesson.update(update_lesson_params)
       flash[:info] = 'Class updated'
-      redirect_to tutors_path
+      redirect_to new_schedule_path(:lesson_id => @lesson)
     else
       flash[:info] = 'Some thing went wrong'
       redirect_to tutors_path
     end
   end
+  
   def show
     @lesson=Lesson.find(params[:id])
     @reviews=@lesson.comments
+  end
+  
+  def show_profile
+    @tutor=Tutor.find(params[:id])
+    @lessons=Tutor.find(params[:id]).lessons
   end
 
   def sub_category
@@ -71,7 +78,7 @@ class LessonsController < ApplicationController
    end
 
    def schedule_params
-    params.require(:schedule).permit(:lesson_id,days_attributes:[:id,:name,:schedule_id,:_destroy,timings_attributes: [:id,:day_id,:start_time, :end_time,:_destroy]])
+    params.require(:schedule).permit(:lesson_id,days_attributes:[:id,:name,:date,:schedule_id,:_destroy,timings_attributes: [:id,:day_id,:start_time, :end_time,:_destroy]])
    end
 
 

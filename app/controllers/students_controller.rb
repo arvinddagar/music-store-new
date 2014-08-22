@@ -16,7 +16,9 @@ class StudentsController < ApplicationController
     @student = Student.new
     @student.build_user
   end
+  
   def reservations
+    # binding.pry
     @reservations=current_student.reservations.all
   end
 

@@ -35,30 +35,23 @@
             = f.text_field :user_name, autocomplete: "off",:class=>"textbox_1"
             = f.hidden_field :user_name, :id=>"usname"
             br
-          ab style="color:red;"
-          br
-          abc style="display: none;"
-            = f.label 'username'
-            br
-            = f.text_field :user_name, autocomplete: "off",:class=>"textbox_1"
-            br
           #err-uname
+
           = f.button class: "btn btn-success",:style=>"margin-top:20px; margin-bottom:20px;",:id=>"uniq"
+
 javascript:
   $( "#tutor_last_name" ).blur(function() {
-  $.ajax('/check_username',{
-        type: 'get',
+   $.ajax('/check_username',{
+   type: 'get',
         dataType: 'html',
         data: {first_name: $("#tutor_first_name").val(),last_name: $("#tutor_last_name").val()},
         success: function(data, textStatus, jqXHR)
           {
            if (data.search( '-done' ) >0){
-           alert("si");
             $("uname").hide();
            $("uname").show();
           $("#tutor_user_name").val(data.replace("-done", ''));
            $("#tutor_user_name").attr("disabled", 1);
-
            }
            else
            {
@@ -73,22 +66,5 @@ javascript:
           error: function (jqXHR, textStatus, errorThrown) {
             alert(errorThrown);
             $("#tutor_user_name").text(errorThrown); }
-
-        });
-
+   });
   });
-  / $("#uniq" ).click(function() {
-  /   $.ajax('/check_unique_uname',{
-  /   type: 'get',
-  /       dataType: 'html',
-  /       data: {username: $("#user_name").val()},
-  /       success: function(data, textStatus, jqXHR)
-  /         {
-  /          $("#ab").text(data);
-  /         },
-  /         error: function (jqXHR, textStatus, errorThrown) {
-  /           $("#ab").text(errorThrown); }
-  /       });
-  /       });
-
-  / });

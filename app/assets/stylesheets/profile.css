@@ -251,7 +251,8 @@ background-color: honeydew;
 
 .schedule_day_show
 {
-    font-family: "ModernPicto";
-    font-size: 2.2em;
-    border:none;
+font-family: "ModernPicto";
+font-size: 14.2px;
+border: none;
+margin-left: -31%;
 }

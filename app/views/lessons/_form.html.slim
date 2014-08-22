@@ -32,6 +32,7 @@
       .row
         label.label_text Type of Class
         .row.temp
+          label.label_text  major category
           .select_3
             - if @lesson.try(:category)
               - child = Category.find(@lesson.try(:category))

@@ -1,0 +1,18 @@
+- if current_user.student?
+ = render 'application/student_dashboard_partial'
+- else
+  = render 'application/tutor_dashboard_partial'
+
+
+= content_tag_for(:pre, conversation.receipts_for(current_user)) do |receipt|
+  - message = receipt.message
+  / h3= message.subject
+  = message.body
+  br
+  | from
+  br
+  b
+    i
+      = message.sender.name
+.div_message_left style=("\n    margin-left: 10%;\n")
+  = render 'messages/form', conversation: conversation

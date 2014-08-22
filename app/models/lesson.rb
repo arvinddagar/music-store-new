@@ -1,5 +1,6 @@
 class Lesson < ActiveRecord::Base
   belongs_to :tutor
+  has_many :payments
   belongs_to :category
   has_many :pictures
   has_one :schedule

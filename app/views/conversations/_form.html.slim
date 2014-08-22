@@ -1,0 +1,12 @@
+= simple_form_for :conversation, url: :conversations do |f|
+  = f.hidden_field :recipients, value: @tutor.user.email
+  / = f.input :subject
+  = f.text_area :body, cols: 300, rows: 10, style: ('width: 75%;')
+  .form-actions
+    br
+    = f.submit 'Send Message', class: 'btn-primary'
+    br
+    br
+    = submit_tag 'Cancel', type: :reset, class: 'btn btn-danger'
+    br
+    br

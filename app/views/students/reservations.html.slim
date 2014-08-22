@@ -8,7 +8,7 @@
         table.table cellpadding="0" cellspacing="0"
           tr
             th
-            th Name
+            th Class Name
             th Time
             th Date
             th Reschedule
@@ -18,7 +18,7 @@
               tr
                 td
                 td = reservation.lesson.name
-                td = reservation.schedule.start_time
-                td = reservation.class_date
+                td = reservation.timing.start_time
+                td = reservation.timing.day.date
                 td = link_to "Reschedule"
                 td = reservation.lesson.tutor.first_name

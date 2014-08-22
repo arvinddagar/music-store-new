@@ -41,7 +41,7 @@ section
   .span2
     br
     .box
-      | Book Now
+      =link_to "book Now" ,book_class_path(:id)
       br
       br
       =@lesson.maximum_people
@@ -88,7 +88,7 @@ hr
      button.btn.btn-default type="button"  Twitter
 hr
 .row-fluid.class_show_page
-  .span10
+  .span6
     .ins_profile
       b Instructor Profile :
       .row-fluid
@@ -96,27 +96,16 @@ hr
           br
           .teacher-photo
             -if @lesson.tutor.image.present?
-              = image_tag @lesson.tutor.image.url,:style=>"width:102%"
+              /= image_tag @lesson.tutor.image.url,:style=>"width:102%"
+              = link_to image_tag("@lesson.tutor.image.url"),show_profile_path(:id=>@lesson.tutor)
             - else
-              = image_tag "no-image.png",:style=>"width:102%"
+              /= image_tag "no-image.png",:style=>"width:102%"
+              = link_to image_tag("no-image.png",:style=>"width:102%"),show_profile_path(:id=>@lesson.tutor)
 
         .span10
           p align="justify"
             .lesson_description_show
               =@lesson.tutor.description
 
-  .span2
+  .span6
     = image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@lesson.latitude}%2C#{@lesson.longitude}"
-h2 My Reviews
-.class_tab.table-responsive
-  table.table cellpadding="0" cellspacing="0"
-    tr
-      th Member
-      th Comment
-      th Date
-    - if @reviews.any?
-      - @reviews.each do |review|
-        tr
-          td =review.user.student.first_name
-          td = review.comment
-          td = review.created_at

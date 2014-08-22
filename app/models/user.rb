@@ -3,11 +3,24 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,:confirmable, :registerable,
 	         :recoverable, :rememberable, :trackable, :validatable,:omniauthable
-  acts_as_messageable
+
+
   # ASSOCIATIONS
   has_one :student, dependent: :destroy
   has_one :tutor, dependent: :destroy
   after_create :save_student
+ 
+  acts_as_messageable
+
+  def name
+    email
+  end
+
+  def mailboxer_email(object)
+    email
+  end
+
+  
   @@name = ""
   def type
     role.class.to_s.downcase.to_sym if role

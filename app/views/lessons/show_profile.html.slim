@@ -1,4 +1,3 @@
-= render 'application/tutor_dashboard_partial'
 br
 br
 br
@@ -39,6 +38,9 @@ br
               h1 itemprop="name"
                 =@tutor.first_name.capitalize+"  "+@tutor.last_name.capitalize
             dl
+              dt = link_to 'Ask a question', new_conversation_path(tutor: @tutor)
+             
+            dl
               dt Description
             .tagline itemprop="description"
               =@tutor.description
@@ -78,4 +80,4 @@ h2 My Reviews
             td = review.comment
             td = review.created_at
       - else
-        td style="font-size:-webkit-xxx-large;  float:right;" No reviews
+        td style="font-size:-webkit-xxx-large; float:right;" No reviews

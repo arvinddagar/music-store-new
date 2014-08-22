@@ -1,15 +1,11 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-
-
-
   protect_from_forgery with: :exception
   protect_from_forgery with: :exception
   helper_method :current_student,
                 :category_list,
                 :current_tutor
-
   def after_sign_in_path_for(resource)
     if resource.is_a?(User) && resource.type == :student && session[:return_to]
       session.delete(:return_to)
@@ -17,8 +13,6 @@ class ApplicationController < ActionController::Base
      students_url
     elsif resource.is_a?(User) && resource.type == :tutor
       tutors_url
-    elsif resource.is_a?(AdminUser)
-      admin_root_url
     else
       students_url
     end
@@ -50,10 +44,8 @@ class ApplicationController < ActionController::Base
   def current_tutor
     current_user && current_user.tutor
   end
+
   def category_list
     @categories ||= Category.main_categories
   end
-
-
-
 end

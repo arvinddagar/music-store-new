@@ -4,7 +4,7 @@ class TutorsController < ApplicationController
                      only: [:complete_registration, :complete]
   before_filter :authenticate_user!,
                 only: [:index, :update, :complete_registration]
-
+  respond_to :json
   def new
     @tutor = Tutor.new
     @tutor.build_user
@@ -45,6 +45,7 @@ class TutorsController < ApplicationController
 
   def show
     @tutor = current_tutor
+    @lessons=@tutor.lessons
   end
 
 
@@ -60,13 +61,14 @@ class TutorsController < ApplicationController
     end
   end
   def check_username
-    @username = "#{params[:first_name]}#{params[:last_name]}"
+
+    @username = "#{params[:first_name]}_#{params[:last_name]}"
     @validuname = Tutor.find_by(user_name: @username)
 
     if @validuname.present?
       respond_with("username not available please enter new")
     else
-      respond_with(@username+ "-done")
+      respond_with(@username)
     end
   end
   def check_unique_uname
@@ -85,7 +87,7 @@ class TutorsController < ApplicationController
   private
 
   def tutor_params
-    params.require(:tutor).permit( :first_name,:last_name, user_attributes: [:email, :password, :user_type ])
+    params.require(:tutor).permit( :user_name,:first_name,:last_name, user_attributes: [:email, :password, :user_type ])
   end
 
 

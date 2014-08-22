@@ -1,17 +1,61 @@
 <%= f.text_field :name,:readonly => true, :class => "schedule_day_show" %>
+<%= f.text_field :date,:readonly => true, :class => "schedule_day_show" %>
+
 <%= f.fields_for :timings %>
+
 <br>
 <div style=" margin-left: -67%; ">
   <%= f.link_to_remove "Remove this Day" %>
 </div>
 <br>
 <br>
+
 <script type="text/javascript">
-document.getElementById("schedule_days_attributes_0_name").value = "Mon";
-document.getElementById("schedule_days_attributes_1_name").value = "Tues";
-document.getElementById("schedule_days_attributes_2_name").value = "Wed";
-document.getElementById("schedule_days_attributes_3_name").value = "Thur";
-document.getElementById("schedule_days_attributes_4_name").value = "Fri";
-document.getElementById("schedule_days_attributes_5_name").value = "Sat";
-document.getElementById("schedule_days_attributes_6_name").value = "Sun";
+
+var today = new Date();
+today.setDate(today.getDate() + 1);
+
+document.getElementById("schedule_days_attributes_0_date").value = today
+document.getElementById("schedule_days_attributes_0_name").value = get_day_name (today)
+today.setDate(today.getDate() + 1);
+document.getElementById("schedule_days_attributes_1_date").value = today
+document.getElementById("schedule_days_attributes_1_name").value = get_day_name (today)
+today.setDate(today.getDate() + 1);
+document.getElementById("schedule_days_attributes_2_date").value = today
+document.getElementById("schedule_days_attributes_2_name").value = get_day_name (today)
+
+today.setDate(today.getDate() + 1);
+document.getElementById("schedule_days_attributes_3_date").value = today
+document.getElementById("schedule_days_attributes_3_name").value = get_day_name (today)
+
+today.setDate(today.getDate() + 1);
+document.getElementById("schedule_days_attributes_4_date").value = today
+document.getElementById("schedule_days_attributes_4_name").value = get_day_name (today)
+
+today.setDate(today.getDate() + 1);
+document.getElementById("schedule_days_attributes_5_date").value = today
+document.getElementById("schedule_days_attributes_5_name").value = get_day_name (today)
+
+today.setDate(today.getDate() + 1);
+document.getElementById("schedule_days_attributes_6_date").value = today
+document.getElementById("schedule_days_attributes_6_name").value = get_day_name (today)
+
+function get_day_name (today) {
+  var day_name=today.getDay()
+  if (day_name == 0)
+  	return 'Sunday'
+  else if (day_name == 1)
+    return 'Monday'
+  else if (day_name == 2)
+    return 'Tuesday'
+  else if (day_name == 3)
+    return 'Wednesday'
+  else if (day_name == 4)
+    return 'Thrusday'
+  else if (day_name == 5)
+    return 'Friday'
+  else
+  	return 'Saturday'
+}
+
 </script>

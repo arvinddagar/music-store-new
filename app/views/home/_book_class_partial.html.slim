@@ -1,19 +1,9 @@
-section
-  ul.breadcrumb.color_white
-    li
-      a href=""  Home
-      span.divider
-    li
-      a href=""  Search Results
-      span.divider
-    li.active
-      b Booking Class
 .row-fluid.class_show_page
   .span8
     h2 =@lesson.name
     b style="margin-left:3%"
-      |with
-      =@lesson.tutor.first_name.capitalize+" "+@lesson.tutor.last_name.capitalize
+      | with
+    =@lesson.tutor.first_name.capitalize+" "+@lesson.tutor.last_name.capitalize
     br
     br
     b
@@ -26,9 +16,3 @@ section
     br
     b
       =number_to_currency(@lesson.price)
-    br
-    =@lesson.created_at.strftime("%d-%b-%y")
-    br
-    =@lesson.created_at.strftime("%H : %M")
-    br
-    b

@@ -7,27 +7,38 @@ br
     | Welcome
 
     =" "+current_tutor.first_name.capitalize+"  "+current_tutor.last_name.capitalize
-  table.table
-    tr
-      th
-        | Active Classes
-      th
-        | Date
-      th
-        | time
-      th
-        | Location
-      th
-        | Edit
-    - @lessons.each do |lesson|
+  - if @lessons.empty?
+    h2
+      center  no classes present
+    br
+    br
+    br
+  - else
+    table.table
       tr
-        td
-          =lesson.name
-        td
-          =lesson.created_at.strftime("%d-%b-%y")
-        td
-          =lesson.created_at.strftime("%H : %M")
-        td
-          =lesson.address
-        td
-          = link_to 'Edit', edit_lesson_path(lesson)
+        th
+          | Active Classes
+        th
+          | Date
+        th
+          | time
+        th
+          | Location
+        th
+          | Edit Class
+        th
+          | Edit Schedule
+      - @lessons.each do |lesson|
+        tr
+          td
+            =lesson.name
+          td
+            =lesson.created_at.strftime("%d-%b-%y")
+          td
+            =lesson.created_at.strftime("%H : %M")
+          td
+            =lesson.address
+          td
+            = link_to 'Edit', edit_lesson_path(lesson)
+          td
+            = link_to 'Edit', edit_lesson_path(lesson)
