@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   resources :students
   resources :tutors
@@ -22,13 +20,21 @@ Rails.application.routes.draw do
   get 'subcategory', to: 'lessons#sub_category'
   get 'search_classes', to: 'home#class_search'
   get 'check_username' => "tutors#check_username"
-   get 'check_unique_uname' => "tutors#check_unique_uname"
-   get 'reservations' => 'students#reservations'
-   get 'student_class' => 'students#student_class'
-   match 'feedback_reminder' => 'tutors#feedback_reminder',via:[:get,:post]
-   get 'new_schedule' => 'lessons#new_schedule'
-   post 'create_schedule' => 'lessons#create_schedule'
-   authenticated :user do
+  get 'check_unique_uname' => "tutors#check_unique_uname"
+  get 'reservations' => 'students#reservations'
+  get 'student_class' => 'students#student_class'
+  match 'feedback_reminder' => 'tutors#feedback_reminder',via:[:get,:post]
+  get  'schedule/:id/edit' => 'lessons#edit_schedule', as: "edit_schedule"
+  get 'new_schedule' => 'lessons#new_schedule'
+  post 'create_schedule' => 'lessons#create_schedule'
+
+  # get "media/:id/edit" => "lessons#edit_schedule", as: "edit_media"
+
+
+  
+  get 'show_profile' =>'lessons#show_profile'
+  
+  authenticated :user do
     resources :conversations, only: [:index, :show, :new, :create, :send] do
       member do
         post :reply
@@ -37,4 +43,13 @@ Rails.application.routes.draw do
       end
     end
   end
+ 
+    resources :conversations, only: [:index, :show, :new, :create] do
+      member do
+        post :reply
+        post :trash
+        post :untrash
+      end
+    end
+
 end
