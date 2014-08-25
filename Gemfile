@@ -26,6 +26,7 @@ gem 'nested_form'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'mailboxer'
 gem 'haml-rails'
+gem 'debugger'
 gem 'simple_form'
 gem 'activeadmin', github: 'gregbell/active_admin'
 group :development do
