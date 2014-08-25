@@ -27,8 +27,7 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'mailboxer'
 gem 'haml-rails'
 gem 'simple_form'
-gem 'activeadmin', github: 'activeadmin'
-
+gem 'activeadmin', github: 'gregbell/active_admin'
 group :development do
   gem 'better_errors'
   gem 'letter_opener'
