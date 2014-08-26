@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     if resource.is_a?(User) && resource.type == :student && session[:return_to]
       session.delete(:return_to)
+    elsif resource.is_a?(AdminUser)
+      admin_root_url
     elsif resource.is_a?(User) && resource.type == :student
      students_url
     elsif resource.is_a?(User) && resource.type == :tutor

@@ -1,6 +1,5 @@
 class Student < ActiveRecord::Base
   belongs_to :user
-  has_many :payments
   accepts_nested_attributes_for :user
   has_attached_file :image
   has_many :reservations
