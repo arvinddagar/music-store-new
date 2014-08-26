@@ -46,7 +46,6 @@ ActiveAdmin.register Tutor do
       @tutor = Tutor.find(params[:id])
       if request.method=='POST'
       @tutor.update(:description=>params[:tutor][:description],:address=>params[:tutor][:address],:about_me=>params[:tutor][:about_me],:skills=>params[:tutor][:skills],:teaching_philosophy=>params[:tutor][:teaching_philosophy],:age_group=>params[:tutor][:age_group],:cre=>params[:tutor][:cre],:duration=>params[:tutor][:duration],:instruments=>params[:tutor][:instruments],:experience=>params[:tutor][:experience])
-      binding.pry
       redirect_to admin_tutors_url
     end
     end
