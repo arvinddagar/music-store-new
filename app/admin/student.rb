@@ -8,10 +8,17 @@ ActiveAdmin.register Student do
     end
     f.inputs do
       f.input :first_name
-      f.input :address
+      f.input :last_name
     end
     f.actions
   end
+  index do
+    column :user
+    column :first_name
+    column :last_name
+    actions
+  end
+
 
   member_action :change_password, method: :post do
     @student = Student.find(params[:id])
@@ -25,7 +32,7 @@ ActiveAdmin.register Student do
     def permitted_params
       params.permit :utf8, :_method, :_wysihtml5_mode,
                     :authenticity_token, :commit, :id,
-                    student: [:first_name, :user_id, :address, :email, user_attributes: [:id ,:password]]
+                    student: [:first_name,:last_name, :user_id, :email, user_attributes: [:id ,:password]]
     end
 
     def new
@@ -37,7 +44,7 @@ ActiveAdmin.register Student do
       student = User.find_or_create_by(email: params[:student][:email]) do |u|
         u.password = params[:student][:password]
       end
-      Student.find_or_create_by(first_name: params[:student][:first_name], address: params[:student][:address]) do |u|
+      Student.find_or_create_by(first_name: params[:student][:first_name], last_name: params[:student][:last_name]) do |u|
         u.user = student
       end
       redirect_to admin_students_url
@@ -48,8 +55,9 @@ ActiveAdmin.register Student do
       if params[:student][:user_attributes].present?
         if params[:student][:user_attributes][:id]
           user = User.find params[:student][:user_attributes][:id]
-          user.update_attribute('email', params[:student][:user_attributes][:email]) if params[:student][:user_attributes][:email].present?
-          user.update_attribute('password', params[:student][:user_attributes][:password]) && sign_in(current_admin_user, bypass: true) if params[:student][:user_attributes][:password].present?
+          #binding.pry
+          #user.update_attribute('email', params[:student][:user_attributes][:email]) if params[:student][:user_attributes][:email].present?
+          #user.update_attribute('password', params[:student][:user_attributes][:password]) && sign_in(current_admin_user, bypass: true) if params[:student][:user_attributes][:password].present?
         end
         render :edit, notice: 'Updated Successfully.'
       else

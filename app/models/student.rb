@@ -4,7 +4,7 @@ class Student < ActiveRecord::Base
   has_attached_file :image
   has_many :reservations
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
-
+  delegate :email, to: :user, allow_nil: true
    COMPLETE_ATTRIBUTES = [
     :address]
     def complete?

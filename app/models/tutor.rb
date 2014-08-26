@@ -17,6 +17,7 @@ class Tutor < ActiveRecord::Base
     validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
     geocoded_by :address
     after_validation :geocode
+    delegate :email, to: :user, allow_nil: true
   COMPLETE_ATTRIBUTES = [
     :description, :about_me, :duration, :skills , :teaching_philosophy , :cre , :age_group , :instruments ,:experience
   ]

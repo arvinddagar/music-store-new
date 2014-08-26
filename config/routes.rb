@@ -29,7 +29,8 @@ Rails.application.routes.draw do
   get  'schedule/:id/edit' => 'lessons#edit_schedule', as: "edit_schedule"
   get 'new_schedule' => 'lessons#new_schedule'
   post 'create_schedule' => 'lessons#create_schedule'
-
+  match 'complete_profile/:id' => 'admin/tutors#complete_profile',via:[:get,:post,:patch], as: :complete_profile
+  match 'complete_p' => 'admin/tutors#complete_p',via:[:get,:post,:patch]
   # get "media/:id/edit" => "lessons#edit_schedule", as: "edit_media"
 
 
