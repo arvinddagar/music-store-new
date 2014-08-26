@@ -39,7 +39,7 @@ br
                 =@tutor.first_name.capitalize+"  "+@tutor.last_name.capitalize
             dl
               dt = link_to 'Ask a question', new_conversation_path(tutor: @tutor)
-             
+
             dl
               dt Description
             .tagline itemprop="description"
@@ -57,7 +57,7 @@ br
               dt Credentials
               dd
                 p
-                  =@tutor.credentials_and_affiliations
+                  =@tutor.cre
             dl
               dt Address
               dd

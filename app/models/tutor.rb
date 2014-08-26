@@ -9,7 +9,7 @@ class Tutor < ActiveRecord::Base
     validates :duration, presence: true, :on => :update
     validates :skills, presence: true, :on => :update
     validates :teaching_philosophy, presence: true, :on => :update
-    validates :credentials_and_affiliations, presence: true, :on => :update
+    validates :cre, presence: true, :on => :update
     validates :age_group, presence: true, :on => :update
     validates :instruments, presence: true, :on => :update
     validates :experience, presence: true, :on => :update
@@ -18,7 +18,7 @@ class Tutor < ActiveRecord::Base
     geocoded_by :address
     after_validation :geocode
   COMPLETE_ATTRIBUTES = [
-    :description, :about_me, :duration, :skills , :teaching_philosophy , :credentials_and_affiliations , :age_group , :instruments ,:experience
+    :description, :about_me, :duration, :skills , :teaching_philosophy , :cre , :age_group , :instruments ,:experience
   ]
 
   def complete?

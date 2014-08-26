@@ -59,7 +59,7 @@ $(document).ready(function() {
                 required: true,
                 maxlength: 250
             },
-            "tutor[credentials_and_affiliations]": {
+            "tutor[cre]": {
                 required: true,
                 maxlength: 200
             },
@@ -187,7 +187,7 @@ $(document).ready(function() {
             "schedule[days_attributes][0][timings_attributes][0][end_time]": {
                 required: true
             },
-            
+
             "schedule[days_attributes][0][timings_attributes][1][start_time]": {
                 required: true
             },

@@ -92,7 +92,7 @@ class TutorsController < ApplicationController
 
 
   def tutor_update_params
-   params.require(:tutor).permit(:description, :about_me, :duration, :skills , :teaching_philosophy , :credentials_and_affiliations , :age_group , :instruments ,:experience,:image,:address, :latitude, :longitude)
+   params.require(:tutor).permit(:description, :about_me, :duration, :skills , :teaching_philosophy , :cre, :age_group , :instruments ,:experience,:image,:address, :latitude, :longitude)
  end
 
 end
