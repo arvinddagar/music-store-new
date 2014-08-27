@@ -26,16 +26,15 @@ Rails.application.routes.draw do
   get 'reservations' => 'students#reservations'
   get 'student_class' => 'students#student_class'
   match 'feedback_reminder' => 'tutors#feedback_reminder',via:[:get,:post]
-  get  'schedule/:id/edit' => 'lessons#edit_schedule', as: "edit_schedule"
+  get  'schedule/:lesson_id/edit' => 'lessons#edit_schedule', as: "edit_schedule"
+  patch 'schedule/:lesson_id' => 'lessons#update_schedule', as: "update_schedule"
   get 'new_schedule' => 'lessons#new_schedule'
   post 'create_schedule' => 'lessons#create_schedule'
   match 'complete_profile/:id' => 'admin/tutors#complete_profile',via:[:get,:post,:patch], as: :complete_profile
   match 'complete_p' => 'admin/tutors#complete_p',via:[:get,:post,:patch]
-  # get "media/:id/edit" => "lessons#edit_schedule", as: "edit_media"
 
 
-
-  get 'show_profile' =>'lessons#show_profile'
+    get 'show_profile' =>'lessons#show_profile'
 
   authenticated :user do
     resources :conversations, only: [:index, :show, :new, :create, :send] do
