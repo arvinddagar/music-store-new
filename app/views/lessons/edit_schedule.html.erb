@@ -1,0 +1,17 @@
+<%=render 'application/tutor_dashboard_partial' %>
+<br>
+<br>
+<div class="class_show_page">
+  <b><i> Create Schedule for Class </i></b>
+   <%= nested_form_for @new_schedule , url: update_schedule_path do |f| %>
+    <div class="row-fluid" style=" margin-left: 6%;font-size: 12px; ">
+      <%= f.fields_for :days %>
+    </div>
+    <%= f.hidden_field :lesson_id,:value=>params[:lesson_id]%>
+  <p>
+    <%= f.submit "Submit", class: 'btn btn-success' %>
+  </p>
+  <% end %>
+  <br>
+  <br>
+</div>
