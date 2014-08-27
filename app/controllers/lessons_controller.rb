@@ -14,11 +14,27 @@ class LessonsController < ApplicationController
   end
 
   def edit
-    @lesson=Lesson.find(params[:id])
+    @lesson=Lesson.find(params[:lesson_id])
   end
 
+  def edit_schedule
+  @new_schedule=Lesson.find(params[:lesson_id]).schedule
+  end
+
+  def  update_schedule
+    @new_schedule=Lesson.find(params[:lesson_id]).schedule
+    if @new_schedule.update_attributes(schedule_params)
+      flash[:info] = 'schedule updated'
+      redirect_to tutors_path
+    else
+      flash[:info] = 'Some thing went wrong'
+      redirect_to tutors_path
+    end
+ end
+
+
   def update
-    @lesson=Lesson.find(params[:id])
+    @lesson=Lesson.find(params[:lesson_id])
     if @lesson.update(update_lesson_params)
       flash[:info] = 'Class updated'
       redirect_to new_schedule_path(:lesson_id => @lesson)
@@ -27,6 +43,8 @@ class LessonsController < ApplicationController
       redirect_to tutors_path
     end
   end
+
+
   
   def show
     @lesson=Lesson.find(params[:id])
@@ -80,7 +98,4 @@ class LessonsController < ApplicationController
    def schedule_params
     params.require(:schedule).permit(:lesson_id,days_attributes:[:id,:name,:date,:schedule_id,:_destroy,timings_attributes: [:id,:day_id,:start_time, :end_time,:_destroy]])
    end
-
-
-
 end
