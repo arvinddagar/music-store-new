@@ -25,4 +25,4 @@ br
           td =preservation.timing.day.date
           td =preservation.timing.start_time.strftime("%I:%M %p").to_s
           td =preservation.lesson.address
-          td =link_to "Message trainer"
+          td =link_to "Message trainer",new_conversation_path(tutor:preservation.lesson.tutor)
