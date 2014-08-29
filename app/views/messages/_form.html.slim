@@ -1,7 +1,14 @@
+br
+br
 = simple_form_for :message, url: reply_conversation_path(conversation) do |f|
   / = f.input :subject
   = f.text_area :body, cols: 300, rows: 10, style: ('width: 75%;')
 
   .form-actions
-    = f.submit 'Send Message', class: 'btn-primary'
+    br
+    = f.submit 'Reply ', class: 'btn btn-success'
+    br
+    br
     = submit_tag 'Cancel', type: :reset, class: 'btn btn-danger'
+	br
+	br

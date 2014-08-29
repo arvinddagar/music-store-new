@@ -3,7 +3,8 @@
 - else
   = render 'application/tutor_dashboard_partial'
 
-
+br
+br
 = content_tag_for(:pre, conversation.receipts_for(current_user)) do |receipt|
   - message = receipt.message
   / h3= message.subject
@@ -13,6 +14,6 @@
   br
   b
     i
-      = message.sender.name
+      = User.find_by_email(message.sender.name).student.first_name.capitalize.to_s+" "+User.find_by_email(message.sender.name).student.last_name.capitalize.to_s
 .div_message_left style=("\n    margin-left: 10%;\n")
   = render 'messages/form', conversation: conversation
