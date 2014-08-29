@@ -1,0 +1,91 @@
+<%=  render 'application/tutor_dashboard_partial' %>
+
+<h2> Current Week </h2>
+<table class="table">
+  <tr>
+  	<th>
+  	 Date
+  	</th>
+	<th>
+  	 Day
+  	</th>
+  	<th>
+  	 Class Amount 
+  	</th>
+  	<th>
+  	 Commission 
+  	</th>
+  	<th>
+  	 Actual Amount 
+  	</th>
+  </tr>
+  <% @days_from_this_week.each do |lesson| %>
+    <tr>
+      <td>
+      	<%=lesson%>
+      </td>
+      <td>
+      	<%=lesson.strftime("%A")%>
+      </td>
+      <% @class_total =0 
+      	@class_commission=0
+      %>
+      <% arr= [] %>
+      <% @my_earnings.each do |my_earning| %>
+        <% if my_earning.reservation.timing.day.date == lesson %> 
+          <% arr.push(my_earning.amount.to_f) %>
+        <% end %>
+      <% end %>
+      
+      <% @class_total=arr.inject{|sum,x| sum + x } %>
+      <td><%=@class_total.to_f%></td>
+      
+      <% arr= [] %>
+      <% @my_earnings.each do |my_earning| %>
+        <% if my_earning.reservation.timing.day.date == lesson %> 
+          <% arr.push(my_earning.commission.to_f) %>
+        <% end %>
+      <% end %>
+      
+      <% @class_commission=arr.inject{|sum,x| sum + x } %>
+      <td><%=@class_commission.to_f%></td>
+      
+      <% arr_total = [] %>
+      <% arr_comm  = [] %>
+      <% @my_earnings.each do |my_earning| %>
+        <% if my_earning.reservation.timing.day.date == lesson %> 
+          <% arr_comm.push(my_earning.commission.to_f) %>
+          <% arr_total.push(my_earning.amount.to_f) %>
+        <% end %>
+      <% end %>
+      <td><%=arr_total.inject{|sum,x| sum + x }.to_f - arr_comm.inject{|sum,x| sum + x }.to_f %></td>
+    </tr>
+  <% end %>
+  <tr>
+  	  <th colspan=2>
+  	    <center><h2>Total</h2></center>
+  	  </th>
+  	  <% arr_total = [] %>
+      <% arr_comm  = [] %>
+      <% @my_earnings.each do |my_earning| %>
+          <% arr_comm.push(my_earning.commission.to_f) %>
+          <% arr_total.push(my_earning.amount.to_f) %>
+      <% end %>
+  	  <th>
+  	   <h2>
+  	     <%=arr_total.inject{|sum,x| sum + x }.to_f%>
+  	   </h2> 
+  	  </th>
+  	  <th>
+  	    <h2>
+  	       <%=arr_comm.inject{|sum,x| sum + x }.to_f%>
+  	     </h2> 
+  	  </th>
+  	  <th>
+  	  	<h2>
+  	      <%=arr_total.inject{|sum,x| sum + x }.to_f - arr_comm.inject{|sum,x| sum + x }.to_f %> 
+  	    </h2>
+  	  </th>
+    </tr>
+</table>
+  
