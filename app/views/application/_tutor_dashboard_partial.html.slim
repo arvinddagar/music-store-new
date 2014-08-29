@@ -1,6 +1,6 @@
 .tutor_navbar_partial
   .row-fluid
-    .span10
+    .span12
       ul.nav.nav-pills
         li.active
           = link_to 'Dashboard',tutors_path
@@ -16,5 +16,7 @@
           = link_to 'Settings', edit_user_registration_path
         li
           = link_to 'Create a New Class', new_lesson_path
-          li
+        li
           = link_to 'feedback reminder',feedback_reminder_path
+        li
+          = link_to 'My Earning',  my_earning_path

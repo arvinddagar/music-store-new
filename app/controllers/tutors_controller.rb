@@ -82,6 +82,12 @@ class TutorsController < ApplicationController
      end
   end
 
+  def my_earning
+    # binding.pry
+    today = Date.today # Today's date
+    @days_from_this_week = (today.at_beginning_of_week..today.at_end_of_week).map
+    @my_earnings =  Earning.where("tutor_id = #{current_tutor.id}")
+  end
 
 
   private

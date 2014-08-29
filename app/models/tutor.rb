@@ -14,6 +14,7 @@ class Tutor < ActiveRecord::Base
     validates :instruments, presence: true, :on => :update
     validates :experience, presence: true, :on => :update
     has_attached_file :image
+    has_many :earnings, :dependent => :destroy
     validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
     geocoded_by :address
     after_validation :geocode

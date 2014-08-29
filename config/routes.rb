@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get 'check_unique_uname' => "tutors#check_unique_uname"
   get 'reservations' => 'students#reservations'
   get 'student_class' => 'students#student_class'
+  get 'my_earning' => 'tutors#my_earning'
   match 'feedback_reminder' => 'tutors#feedback_reminder',via:[:get,:post]
   get  'schedule/:lesson_id/edit' => 'lessons#edit_schedule', as: "edit_schedule"
   patch 'schedule/:lesson_id' => 'lessons#update_schedule', as: "update_schedule"

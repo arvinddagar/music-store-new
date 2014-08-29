@@ -3,6 +3,7 @@ class Lesson < ActiveRecord::Base
   has_many :payments
   belongs_to :category
   has_many :pictures
+  accepts_nested_attributes_for :pictures,:allow_destroy => true
   has_one :schedule, :dependent => :destroy
   has_one :schedule
   has_many :reservations

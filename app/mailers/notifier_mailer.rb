@@ -1,3 +1,4 @@
+
 class NotifierMailer < ActionMailer::Base
  default :from => "tutor@music.com"
 
@@ -6,5 +7,11 @@ class NotifierMailer < ActionMailer::Base
   end
   def payment_confirmation(user)
     mail(:to => user.email, :subject => "payment confirmation")
+  end
+  def reservation_confirmation(user)
+    mail(:to => user.email, :subject => "payment confirmation")
+  end
+  def admin_confirmation(user)
+    mail(:to => user, :subject => "payment confirmation")
   end
 end
