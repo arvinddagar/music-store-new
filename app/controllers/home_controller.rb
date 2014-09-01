@@ -2,6 +2,7 @@ class HomeController < ApplicationController
   before_filter :authenticate_user!, only: [:book_class]
   
   def welcome
+    @featured_class = Lesson.where(:featured => true)
   end
   
   def class_search

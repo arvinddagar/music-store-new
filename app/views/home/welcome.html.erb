@@ -1,0 +1,73 @@
+/ .intro-header
+/   .container
+/     .row
+/       .col-lg-12
+/         .intro-message
+/           h3 Music store
+/           br
+/           br
+/           / button.btn.btn-large.btn-primary type="button"  click here to search classes
+/           / br
+/           / br
+/           =link_to "click here to list all classes",search_classes_path
+<br>
+<br>
+<div class="container">
+  <div id="myCarousel" class="carousel">
+    <div class="carousel-inner">
+      <div class="active item">
+        <%=image_tag("ruby1.jpg")%>
+        <div class="carousel-caption">
+        </div>
+      </div>
+      <div class="item">
+        <%=image_tag("ror.jpg")%>
+        <div class="carousel-caption">
+        </div>
+      </div>
+      <div class="item">
+        <%=image_tag("tror.jpg")%>
+        <div class="carousel-caption">
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+  </div>
+  <br>
+  <br>
+  
+  <div class="row-fluid">
+    <% if  !@featured_class.blank? %>
+      <% @featured_class.each do |object| %>
+        <div class="span4">
+          <% if object.pictures.first.present? %>
+            <%= image_tag object.pictures.first.image.url,:style=>"width:102%" %>
+          <% else %>
+            <%= image_tag "no-image.png",:style=>"width:102%" %>
+          <% end %>
+          <h4><%=link_to object.name, lesson_path(object)%></h4>
+          <p align="justify"><%=object.description%></p>  
+          <br>
+          <b>
+            <%= link_to object.tutor.first_name.capitalize+" "+object.tutor.last_name.capitalize,show_profile_path(:id=>object.tutor),:style=>"margin-left: 11%;" %>
+          </b>  
+        </div>
+      <% end %>
+    <% else %>
+      <h2> no featured class found </h2>
+    <% end %>
+  </div>
+  <br>
+  <br>  
+  <div class="row-fluid">
+    <div class="span12">
+      <center>
+        <%=link_to "click here to list all classes",search_classes_path, :class => "btn btn-primary btn-large" %>
+      </center>
+    </div>
+  </div>
+
+</div>
+<br>
+<br>
