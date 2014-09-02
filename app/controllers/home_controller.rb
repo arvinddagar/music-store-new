@@ -22,11 +22,7 @@ class HomeController < ApplicationController
     end
     
   end
-
   def book_class
     @lesson=Lesson.find(params[:id])
   end
-
-
-
 end
