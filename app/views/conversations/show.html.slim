@@ -14,6 +14,9 @@ br
   br
   b
     i
-      = User.find_by_email(message.sender.name).student.first_name.capitalize.to_s+" "+User.find_by_email(message.sender.name).student.last_name.capitalize.to_s
+      - if User.find_by_email(message.sender.name).student?
+        = User.find_by_email(message.sender.name).student.first_name.capitalize.to_s+" "+User.find_by_email(message.sender.name).student.last_name.capitalize.to_s
+      -elsif User.find_by_email(message.sender.name).tutor?
+        = User.find_by_email(message.sender.name).tutor.first_name.capitalize.to_s+" "+User.find_by_email(message.sender.name).tutor.last_name.capitalize.to_s
 .div_message_left style=("\n    margin-left: 10%;\n")
   = render 'messages/form', conversation: conversation
