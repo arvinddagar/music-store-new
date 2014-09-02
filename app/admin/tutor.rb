@@ -34,7 +34,7 @@ ActiveAdmin.register Tutor do
     def permitted_params
       params.permit :utf8, :_method, :_wysihtml5_mode,
                     :authenticity_token, :commit, :id,
-                    tutor: [:first_name,:last_name, :user_id, :email, user_attributes: [:id ,:password]]
+                    tutor: [:first_name,:last_name, :user_id, user_attributes: [:id ,:password, :email]]
     end
 
     def new
