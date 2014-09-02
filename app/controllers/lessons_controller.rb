@@ -31,9 +31,7 @@ class LessonsController < ApplicationController
       redirect_to tutors_path
     end
  end
-
-
-  def update
+ def update
     @lesson=Lesson.find(params[:lesson_id])
     if @lesson.update(update_lesson_params)
       flash[:info] = 'Class updated'
