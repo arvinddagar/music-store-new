@@ -6,15 +6,27 @@ class HomeController < ApplicationController
   end
   
   def class_search
-    if params[:search].present?
+    if params[:price_search].present? and params[:price_search] == "Low to High"
+      @lessons=Lesson.order(:price)
+      render @lessons, layout: false and return
+    elsif params[:price_search].present? and params[:price_search] == "High to Low"
+      @lessons = Lesson.order("price DESC").all
+      render @lessons, layout: false
+    elsif params[:neighbourhood].present?
+      @lessons = Lesson.where(neighbourhood: params[:neighbourhood])
+      render @lessons, layout: false
+    elsif params[:search].present?
   	  @lessons=Lesson.search(params[:search])
     else
       @lessons = Lesson.all
     end
+    
   end
 
   def book_class
     @lesson=Lesson.find(params[:id])
   end
+
+
 
 end

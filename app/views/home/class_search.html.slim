@@ -2,39 +2,86 @@
   = form_tag search_classes_path, :method => :get do
     p
       = text_field_tag :search, params[:search],:class=>"textbox_1"
+      br
+      br
       = submit_tag "Search", :name => nil, :class=>"btn btn-info"
+.search_by_neighbourhood style=("margin-left: 3%;")
+  br
+  |Sort by Amount
+  br
+  = select_tag(:price_search, options_for_select([' ','High to Low', 'Low to High']))
+br
+.search_by_neighbourhood style=("margin-left: 3%;")
+  br
+  |Search by Neighbourhood
+  br
+  =select_tag(:neighbourhood, options_for_select(Lesson.pluck(:neighbourhood).compact.reject(&:blank?)), include_blank: true)
+br
+.mid-search
+  .head-buttons
+    ul
+      - category_list.each do |category|
+        li
+          = link_to category.category_name, category_path(category)
+br
+br
+br
+#lesson
+  = render @lessons
+  / - if @lessons.empty?
+  /   center
+  /     h2 No Classes Available
+  / - else
+  /   - @lessons.each do |lesson|
+  /     .class_block
+  /       .row-fluid
+  /         .span3
+  /           -if lesson.pictures.first.present?
+  /             = image_tag lesson.pictures.first.image.url,:style=>"width:102%"
+  /           - else
+  /             = image_tag "no-image.png",:style=>"width:102%"
+  /         .span5
+  /           h3
+  /             =link_to lesson.name, lesson_path(lesson)
+  /           br
+  /           b =lesson.description
+  /           br 
+  /           b =lesson.neighbourhood
+  /         .span2
+  /           =number_to_currency(lesson.price)
+  /         .span2
+  /           =link_to "book Now" ,book_class_path(lesson)
+  /           / button.btn.btn-success type="button"  Book Now
+  /           br
+  /           br
+  /           | people allowed :
+  /           =lesson.maximum_people
+br
+br
 
-
-/ = render @Lessons
-br
-br
-- if @lessons.empty?
-  center
-    h2 No Classes Available
-- else
-  - @lessons.each do |lesson|
-    .class_block
-      .row-fluid
-        .span3
-          -if lesson.pictures.first.present?
-            = image_tag lesson.pictures.first.image.url,:style=>"width:102%"
-          - else
-            = image_tag "no-image.png",:style=>"width:102%"
-        .span5
-          h3
-            =link_to lesson.name, lesson_path(lesson)
-          br
-          b =lesson.description
-      	  br
-      	  b =lesson.neighbourhood
-        .span2
-          =number_to_currency(lesson.price)
-        .span2
-          =link_to "book Now" ,book_class_path(lesson)
-          / button.btn.btn-success type="button"  Book Now
-          br
-          br
-          | people allowed :
-          =lesson.maximum_people
-br
-br
+javascript:
+  $( "#neighbourhood" ).change(function() {
+    $.ajax({
+    url: 'ajaxsearch',
+    type: 'GET',
+    data: {neighbourhood:$("#neighbourhood").val()
+    },
+    success: function(data)
+    {
+      $('#lesson').html(data);
+    }
+    });
+  });
+  $( "#price_search" ).change(function() {
+    $.ajax({
+    url: 'ajaxsearch',
+    type: 'GET',
+    data: {price_search:$("#price_search").val()
+    },
+    success: function(data)
+    {
+      // alert(data)
+      $('#lesson').html(data);
+    }
+    });
+  });
