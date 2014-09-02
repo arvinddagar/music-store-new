@@ -8,7 +8,7 @@ class HomeController < ApplicationController
   def class_search
     if params[:price_search].present? and params[:price_search] == "Low to High"
       @lessons=Lesson.order(:price)
-      render @lessons, layout: false and return
+      render @lessons, layout: false
     elsif params[:price_search].present? and params[:price_search] == "High to Low"
       @lessons = Lesson.order("price DESC").all
       render @lessons, layout: false
