@@ -14,8 +14,20 @@ class LessonsController < ApplicationController
   end
 
   def edit
-    @lesson=Lesson.find(params[:lesson_id])
+    @lesson=Lesson.find(params[:id])
   end
+
+  def update
+    @lesson=Lesson.find(params[:id])
+    if @lesson.update(update_lesson_params)
+      flash[:info] = 'Class updated'
+      redirect_to tutors_path
+    else
+      flash[:info] = 'Some thing went wrong'
+      redirect_to tutors_path
+    end
+  end
+
 
   def edit_schedule
   @new_schedule=Lesson.find(params[:lesson_id]).schedule
@@ -31,16 +43,8 @@ class LessonsController < ApplicationController
       redirect_to tutors_path
     end
  end
- def update
-    @lesson=Lesson.find(params[:lesson_id])
-    if @lesson.update(update_lesson_params)
-      flash[:info] = 'Class updated'
-      redirect_to new_schedule_path(:lesson_id => @lesson)
-    else
-      flash[:info] = 'Some thing went wrong'
-      redirect_to tutors_path
-    end
-  end
+ 
+
 
 
   
@@ -68,6 +72,7 @@ class LessonsController < ApplicationController
     @sub_category = params[:sub_category] ? Category.find(params[:sub_category]) : Category.where(parent_id: @category.id)
     @lessons = Lesson.where(category_id: @sub_category)
   end
+  
   def new_schedule
     @new_schedule=Schedule.new
     1.times do
