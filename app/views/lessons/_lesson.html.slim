@@ -15,11 +15,11 @@
     .span2
       =number_to_currency(lesson.price)
     .span2
-      =link_to "book Now" ,book_class_path(lesson)
+      =link_to "book Now" ,book_class_path(lesson), :class => "btn btn-danger"
       / button.btn.btn-success type="button"  Book Now
       br
       br
       | people allowed :
       =lesson.maximum_people
 br
-br
+br 

@@ -11,6 +11,9 @@ class Student < ActiveRecord::Base
     COMPLETE_ATTRIBUTES.all? { |attr| send(attr).present? }
   end
 
+  has_many :favorites
+  has_many :tutors, through: :favorites
+
   def incomplete?
     !complete?
   end

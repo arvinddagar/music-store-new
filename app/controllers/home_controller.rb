@@ -1,8 +1,13 @@
 class HomeController < ApplicationController
-  before_filter :authenticate_user!, only: [:book_class]
+  before_filter :authenticate_user!, only: [:book_class , :favorite]
   
   def welcome
-    @featured_class = Lesson.where(:featured => true)
+    if current_student.present?
+      @featured_class = Lesson.where(:featured => true)
+      @fav = Favorite.where('student_id = ?' , current_student.id)
+    else
+      @featured_class = Lesson.where(:featured => true)
+    end
   end
   
   def class_search
@@ -25,4 +30,16 @@ class HomeController < ApplicationController
   def book_class
     @lesson=Lesson.find(params[:id])
   end
+
+  def favorite
+    Favorite.create(:tutor_id =>  params[:tutor] , :student_id => current_student.id)
+    redirect_to students_path
+  end
+
+  def un_favorite
+    Favorite.find_by('student_id = ? AND tutor_id = ?' , current_student.id , params[:tutor]).destroy
+    redirect_to students_path
+  end
+
+
 end
