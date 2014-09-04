@@ -31,13 +31,17 @@ class HomeController < ApplicationController
   end
 
   def favorite
-    Favorite.create(:tutor_id =>  params[:tutor] , :student_id => current_student.id)
-    redirect_to students_path
+    if Favorite.create(:tutor_id =>  params[:tutor] , :student_id => current_student.id)
+      flash[:info] = 'Tutor added to your Favorite List'
+      redirect_to students_path
+    end
   end
 
   def un_favorite
-    Favorite.find_by('student_id = ? AND tutor_id = ?' , current_student.id , params[:tutor]).destroy
-    redirect_to students_path
+    if Favorite.find_by('student_id = ? AND tutor_id = ?' , current_student.id , params[:tutor]).destroy
+      flash[:info] = 'Tutor removed from your Favorite List'
+      redirect_to students_path
+    end
   end
 
 
