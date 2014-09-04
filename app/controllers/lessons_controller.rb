@@ -68,7 +68,7 @@ class LessonsController < ApplicationController
   end
 
   def category_search
-    if params[:price_search].nil?
+    if params[:price_search].nil? and params[:neighbourhood].nil?
       @category = Category.find(params[:id])
       @sub_category = params[:sub_category] ? Category.find(params[:sub_category]) : Category.where(parent_id: @category.id)
       @lessons = Lesson.where(category_id: @sub_category)
@@ -76,11 +76,14 @@ class LessonsController < ApplicationController
       @category = Category.find(params[:category])
       @sub_category = params[:sub_category] ? Category.find(params[:sub_category]) : Category.where(parent_id: @category.id)
       @lessons = Lesson.where(category_id: @sub_category)
-      if params[:price_search].present? and params[:price_search] == "Low to High"
+      if params[:price_search].present? and params[:price_search] == "Low to High" and params[:neighbourhood].nil?
         @lessons=@lessons.order(:price)
         render @lessons, layout: false
-      elsif params[:price_search].present? and params[:price_search] == "High to Low"
+      elsif params[:price_search].present? and params[:price_search] == "High to Low" and params[:neighbourhood].nil?
         @lessons = @lessons.order("price DESC").all
+        render @lessons, layout: false
+      else
+        @lessons = @lessons.where(neighbourhood: params[:neighbourhood])
         render @lessons, layout: false
       end
     end
