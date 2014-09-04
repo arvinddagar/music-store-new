@@ -62,7 +62,9 @@
               <%= image_tag "no-image.png",:style=>"width:102%" %>
             <% end %>
             <h4><%=link_to object.name, lesson_path(object)%></h4>
-            <p align="justify"><%=object.description%></p>  
+            <p align="justify">
+              <%=truncate(object.description, :length => 100)%>
+            </p>  
             <br>
             <b>
               <%= link_to object.tutor.first_name.capitalize+" "+object.tutor.last_name.capitalize,show_profile_path(:id=>object.tutor),:style=>"margin-left: 11%;" %>
