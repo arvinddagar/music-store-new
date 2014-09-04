@@ -3,7 +3,6 @@ class HomeController < ApplicationController
   
   def welcome
     if current_student.present?
-      @featured_class = Lesson.where(:featured => true)
       @fav = Favorite.where('student_id = ?' , current_student.id)
     else
       @featured_class = Lesson.where(:featured => true)
