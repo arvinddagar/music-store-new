@@ -68,9 +68,22 @@ class LessonsController < ApplicationController
   end
 
   def category_search
-    @category = Category.find(params[:id])
-    @sub_category = params[:sub_category] ? Category.find(params[:sub_category]) : Category.where(parent_id: @category.id)
-    @lessons = Lesson.where(category_id: @sub_category)
+    if params[:price_search].nil?
+      @category = Category.find(params[:id])
+      @sub_category = params[:sub_category] ? Category.find(params[:sub_category]) : Category.where(parent_id: @category.id)
+      @lessons = Lesson.where(category_id: @sub_category)
+    else
+      @category = Category.find(params[:category])
+      @sub_category = params[:sub_category] ? Category.find(params[:sub_category]) : Category.where(parent_id: @category.id)
+      @lessons = Lesson.where(category_id: @sub_category)
+      if params[:price_search].present? and params[:price_search] == "Low to High"
+        @lessons=@lessons.order(:price)
+        render @lessons, layout: false
+      elsif params[:price_search].present? and params[:price_search] == "High to Low"
+        @lessons = @lessons.order("price DESC").all
+        render @lessons, layout: false
+      end
+    end
   end
   
   def new_schedule

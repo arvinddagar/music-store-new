@@ -33,7 +33,7 @@ br
     h1 No Class Found
 br
 br
-
+= hidden_field_tag 'category_id', @category.id
 javascript:
   $( "#neighbourhood" ).change(function() {
     $.ajax({
@@ -49,9 +49,9 @@ javascript:
   });
   $( "#price_search" ).change(function() {
     $.ajax({
-    url: 'ajaxsearch',
+    url: "ajaxsearch_path",
     type: 'GET',
-    data: {price_search:$("#price_search").val()
+    data: {price_search:$("#price_search").val(),category:$("#category_id").val()
     },
     success: function(data)
     {
