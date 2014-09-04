@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   root 'home#welcome'
   get 'book_class/:id', to: 'home#book_class', as: :book_class
   get 'complete_registration', to: 'tutors#complete_registration'
+  get 'add_fav', to: 'home#favorite'
+  get 'remove_fav', to: 'home#un_favorite'
   patch 'complete', to: 'tutors#complete'
   get 'complete_registration_stu', to: 'students#complete_registration_stu'
   patch 'complete_stu', to: 'students#complete_stu'
