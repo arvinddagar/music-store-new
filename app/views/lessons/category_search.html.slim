@@ -5,17 +5,17 @@
       br
       br
       = submit_tag "Search", :name => nil, :class=>"btn btn-info"
-.search_by_neighbourhood style=("margin-left: 3%;")
+.search_by_amount style=("margin-left: 3%;")
   br
   |Sort by Amount
   br
   = select_tag(:price_search, options_for_select([' ','High to Low', 'Low to High']))
 br
-.search_by_neighbourhood style=("margin-left: 3%;")
+.search_by_neighbourhood style=("margin-top: -80px; margin-left: 162px;")
   br
   |Search by Neighbourhood
   br
-  =select_tag(:neighbourhood, options_for_select(Lesson.pluck(:neighbourhood).compact.reject(&:blank?)), include_blank: true)
+  =select_tag(:neighbourhood, options_for_select(Lesson.pluck(:neighbourhood)))
 br
 .mid-search
   .head-buttons
