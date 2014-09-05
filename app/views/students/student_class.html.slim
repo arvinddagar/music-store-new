@@ -23,8 +23,8 @@ br
       - @upcoming_reservations.each do |preservation|
         tr
           td =preservation.lesson.name
-          td =preservation.class_date
-          td =preservation.timing.start_time
+          td =preservation.class_date.strftime("%d-%B-%y")
+          td =preservation.timing.start_time.strftime("%H : %M")
           td =preservation.lesson.address
           td cancle class
   br
