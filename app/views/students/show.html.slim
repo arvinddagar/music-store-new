@@ -11,8 +11,7 @@ br
             - if @student.image_file_name?
               = image_tag @student.image.url,:style=>"width:102%"
             - else
-              b
-                | no image found
+              = image_tag "no-image.png",:style=>"width:102%"
           .teacher-info
             dl
               dt
