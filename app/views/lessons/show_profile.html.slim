@@ -71,19 +71,24 @@ br
             dl
               = image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@tutor.latitude}%2C#{@tutor.longitude}"
 h2 My Reviews
-- binding.pry
-  .class_tab.table-responsive
-    table.table cellpadding="0" cellspacing="0"
-      tr
-        th Member
-        th Comment
-        th Date
-      - @lessons.each do |lesson|
-        - if (lesson.comments).present?
-          - lesson.comments.each do |review|
-            tr
-              td =review.user.student.first_name
-              td = review.comment
-              td = review.created_at
+- @lessons.each do |lesson|
+  - if lesson.comments.empty?
+    b NO Reviews
+  - else
+    .class_tab.table-responsive
+      table.table cellpadding="0" cellspacing="0"
+        tr
+          th Member
+          th Comment
+          th Date
+        - @lessons.each do |lesson|
+          - if (lesson.comments).present?
+            - lesson.comments.each do |review|
+              tr
+                td =review.user.student.first_name
+                td = review.comment
+                td = review.created_at
+          - else
+            td style="font-size:-webkit-xxx-large; float:right;" No reviews        
 br
 br
