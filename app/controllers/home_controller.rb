@@ -2,16 +2,15 @@ class HomeController < ApplicationController
   before_filter :authenticate_user!, only: [:book_class , :favorite]
   
   def welcome
-    # if current_student.present?
-    #   @fav = Favorite.where('student_id = ?' , current_student.id)
-    # else
-    #   @featured_class = Lesson.where(:featured => true)
-    # end
-    @tempp=Socket::getaddrinfo(Socket.gethostname,"echo",Socket::AF_INET)[0][3]
+    if current_student.present?
+      @fav = Favorite.where('student_id = ?' , current_student.id)
+    else
+      @featured_class = Lesson.where(:featured => true)
+    end
   end
   
   def class_search
-
+    
     if params[:price_search].present? and params[:price_search] == "Low to High"
       @lessons=Lesson.order(:price)
       render @lessons, layout: false
