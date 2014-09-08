@@ -16,6 +16,10 @@ br
   |Search by Neighbourhood
   br
   =select_tag(:neighbourhood, options_for_select(Lesson.pluck(:neighbourhood)))
+.search_by_neighbourhood style=("margin-top: -61px; margin-left: 350px;")
+  br
+  = link_to "Map View ",  map_path
+br
 br
 .mid-search
   .head-buttons
