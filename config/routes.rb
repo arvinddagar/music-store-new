@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   match 'complete_profile/:id' => 'admin/tutors#complete_profile',via:[:get,:post,:patch], as: :complete_profile
   match 'complete_p' => 'admin/tutors#complete_p',via:[:get,:post,:patch]
   get 'ajaxsearch', to: 'home#class_search'
+  get 'map' => 'lessons#map'
   # get 'find_neighbour', to: 'lessons#find_neighbour'
   get 'show_profile' =>'lessons#show_profile'
 

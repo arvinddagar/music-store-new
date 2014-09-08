@@ -58,6 +58,14 @@ class LessonsController < ApplicationController
     @lessons=Tutor.find(params[:id]).lessons
   end
 
+  def map
+    @lessons = Lesson.where('latitude is NOT NULL and longitude is NOT NULL')
+    @hash = ::Gmaps4rails.build_markers(@lessons) do |lesson, marker|
+      marker.lat lesson.latitude
+      marker.lng lesson.longitude
+    end
+  end
+
   def sub_category
     if  params[:parent_id].present?
       @subcategory = Category.where(parent_id: params[:parent_id])
