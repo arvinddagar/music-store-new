@@ -12,10 +12,10 @@ class HomeController < ApplicationController
   def class_search
     address = current_student.address if current_student.present?
     if params[:price_search].present? and params[:price_search] == "Low to High"
-      @lessons=Lesson.order(:price)
+      @lessons = Lesson.order("price DESC").all
       render @lessons, layout: false
     elsif params[:price_search].present? and params[:price_search] == "High to Low"
-      @lessons = Lesson.order("price DESC").all
+      @lessons=Lesson.order(:price)
       render @lessons, layout: false
     elsif params[:price_search].present? and params[:price_search] == "All Classes"
       @lessons = Lesson.all
