@@ -63,6 +63,9 @@ class LessonsController < ApplicationController
     @hash = ::Gmaps4rails.build_markers(@lessons) do |lesson, marker|
       marker.lat lesson.latitude
       marker.lng lesson.longitude
+      lesson_detail = "#{lesson.description} by #{lesson.tutor.first_name}. Price #{(lesson.price)}. Class Strength #{lesson.maximum_people}. <a href='#{lesson_url(lesson)}'>Check It</a>"
+      marker.infowindow lesson_detail
+      marker.json({title: lesson.name})
     end
   end
 
