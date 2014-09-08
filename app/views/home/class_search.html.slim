@@ -9,16 +9,23 @@
   br
   |Sort by Amount
   br
-  = select_tag(:price_search, options_for_select([' ','High to Low', 'Low to High']))
+  = select_tag(:price_search, options_for_select(['All Classes','High to Low', 'Low to High']))
 br
 .search_by_neighbourhood style=("margin-top: -80px; margin-left: 162px;")
   br
   |Search by Neighbourhood
   br
   =select_tag(:neighbourhood, options_for_select(Lesson.pluck(:neighbourhood)))
-.search_by_neighbourhood style=("margin-top: -61px; margin-left: 350px;")
+- if current_student.present?
+  .search_by_neighbourhood style=("margin-top: -60px; margin-left: 350px;")
+    br
+    |Search by Distance
+    br
+    =select_tag(:distance, options_for_select([' ','With in 1 Km', 'With in 2 Km','With in 3 Km', 'With in 4 Km', 'With in 5 Km','More than 5 Km']))
+.search_by_neighbourhood style=("margin-top: -61px; margin-left: 550px;")
   br
   = link_to "Map View ",  map_path
+
 br
 br
 .mid-search
@@ -57,6 +64,19 @@ javascript:
     url: 'ajaxsearch',
     type: 'GET',
     data: {price_search:$("#price_search").val()
+    },
+    success: function(data)
+    {
+      // alert(data)
+      $('#lesson').html(data);
+    }
+    });
+  });
+  $( "#distance" ).change(function() {
+    $.ajax({
+    url: 'ajaxsearch',
+    type: 'GET',
+    data: {distance:$("#distance").val()
     },
     success: function(data)
     {
