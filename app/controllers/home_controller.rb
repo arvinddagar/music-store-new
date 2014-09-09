@@ -2,14 +2,16 @@ class HomeController < ApplicationController
   before_filter :authenticate_user!, only: [:book_class , :favorite]
   
   def welcome
-    if current_student.present?
-      @fav = Favorite.where('student_id = ?' , current_student.id)
-    else
-      @featured_class = Lesson.where(:featured => true)
-    end
+    # if current_student.present?
+    #   @fav = Favorite.where('student_id = ?' , current_student.id)
+    # else
+    #   @featured_class = Lesson.where(:featured => true)
+    # end
+    @temp = local_ip
   end
   
   def class_search
+    
     address = current_student.address if current_student.present?
     if params[:price_search].present? and params[:price_search] == "Low to High"
       @lessons = Lesson.order("price DESC").all
@@ -66,5 +68,14 @@ class HomeController < ApplicationController
     end
   end
 
-
+  def local_ip
+    orig = Socket.do_not_reverse_lookup  
+    Socket.do_not_reverse_lookup =true # turn off reverse DNS resolution temporarily
+    UDPSocket.open do |s|
+      s.connect '64.233.187.99', 1 #google
+      s.addr.last
+    end
+  ensure
+    Socket.do_not_reverse_lookup = orig
+  end
 end
