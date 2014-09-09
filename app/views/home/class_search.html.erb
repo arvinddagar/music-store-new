@@ -1,0 +1,160 @@
+<div class="ab" style="margin-top :80px; margin-left:520px; ">
+  <p style="
+    margin-left: -65%;">Your Current Location  : </p> <p id="demo" value="" style="
+    margin-left: -65%;"
+></p>
+  <%= form_tag search_classes_path, :method => :get do %>
+    <p>
+      <%= text_field_tag :search, params[:search],:class=>"textbox_1" %>
+      <br>
+      <br>
+      <%= submit_tag "Search", :name => nil, :class=>"btn btn-info"%>
+    </p>
+  <% end %>
+</div>
+
+<div class="search_by_amount" style="margin-left: 3%;">
+  <br>
+  Sort by Amount
+  <br>
+  <%= select_tag(:price_search, options_for_select(['All Classes','High to Low', 'Low to High'])) %>
+</div>
+<br>
+<div class="search_by_neighbourhood" style="margin-top: -80px; margin-left: 162px;" >
+  <br>
+  Search by Neighbourhood
+  <br>
+  <%=select_tag(:neighbourhood, options_for_select(Lesson.pluck(:neighbourhood)))%>
+</div>
+<% if current_student.present? %>
+  <div class="search_by_neighbourhood" style="margin-top: -60px; margin-left: 350px;">
+    <br>
+    Search by Home Address
+    <br>
+    <%=select_tag(:distance, options_for_select([' ','With in 1 Km', 'With in 2 Km','With in 3 Km', 'With in 4 Km', 'With in 5 Km','More than 5 Km'])) %>
+  </div>
+<% end %>
+<div class="search_by_neighbourhood" style="margin-top: -60px; margin-left: 550px;">
+  <br>
+  Search by Current Location
+  <br>
+  <%=select_tag(:curdistance, options_for_select([' ','With in 1 Km', 'With in 2 Km','With in 3 Km', 'With in 4 Km', 'With in 5 Km','More than 5 Km']))%>
+</div>
+<div class="search_by_neighbourhood" style="margin-top: -43px; margin-left: 1146px;">
+  <br>
+  <%= link_to "Map View ",  map_path , 'data-no-turbolink' => true %>
+</div>
+<br>
+<br>
+<div class="mid-search">
+  <div class="head-buttons">
+    <ul>
+      <% category_list.each do |category| %>
+        <li>
+          <%= link_to category.category_name, category_path(category) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<div id="lesson">
+  <% if !@lessons.empty? %>
+    <%= render @lessons %>
+  <% else %>
+    <h1> No Class Found </h1>
+  <% end %>
+</div>
+<br>
+<br>
+<input id="find_by_distance" name="distance" type="hidden" value="temp">
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+<script type="text/javascript">
+var x = document.getElementById("demo");
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+function showPosition(position) {
+    // alert(position.coords.latitude)
+    // alert(position.coords.longitude)
+    var geocoder = new google.maps.Geocoder();
+    var lat = position.coords.latitude;
+    var long = position.coords.longitude;
+    var latLng = new google.maps.LatLng(lat, long);
+    geocoder.geocode({
+      latLng: latLng
+    },
+    function(responses) {
+    if (responses && responses.length > 0)
+    {
+       x.innerHTML = (responses[0].formatted_address);
+       document.getElementById('find_by_distance').value=(responses[0].formatted_address);
+    } else {
+      alert('Cannot determine address at this location.');
+    }
+  });
+}        
+
+
+
+$( "#neighbourhood" ).change(function() {
+    $.ajax({
+    url: 'ajaxsearch',
+    type: 'GET',
+    data: {neighbourhood:$("#neighbourhood").val()
+    },
+    success: function(data)
+    {
+      $('#lesson').html(data);
+    }
+    });
+  });
+  $( "#price_search" ).change(function() {
+    $.ajax({
+    url: 'ajaxsearch',
+    type: 'GET',
+    data: {price_search:$("#price_search").val()
+    },
+    success: function(data)
+    {
+      // alert(data)
+      $('#lesson').html(data);
+    }
+    });
+  });
+  $( "#distance" ).change(function() {
+    $.ajax({
+    url: 'ajaxsearch',
+    type: 'GET',
+    data: {distance:$("#distance").val()
+    },
+    success: function(data)
+    {
+      // alert(data)
+      $('#lesson').html(data);
+    }
+    });
+  });
+
+  $( "#curdistance" ).change(function() {
+    $.ajax({
+    url: 'ajaxsearch',
+    type: 'GET',
+    data: {curdistance:$("#curdistance").val(),current_area:$("#find_by_distance").val()
+    },
+    success: function(data)
+    {
+      // alert(data)
+      $('#lesson').html(data);
+    }
+    });
+  });
+ 
+
+</script>
+  
