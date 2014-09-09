@@ -2,22 +2,20 @@ class HomeController < ApplicationController
   before_filter :authenticate_user!, only: [:book_class , :favorite]
   
   def welcome
-    # if current_student.present?
-    #   @fav = Favorite.where('student_id = ?' , current_student.id)
-    # else
-    #   @featured_class = Lesson.where(:featured => true)
-    # end
-    @temp = local_ip
+    if current_student.present?
+      @fav = Favorite.where('student_id = ?' , current_student.id)
+    else
+      @featured_class = Lesson.where(:featured => true)
+    end
   end
   
   def class_search
-    
     address = current_student.address if current_student.present?
     if params[:price_search].present? and params[:price_search] == "Low to High"
-      @lessons = Lesson.order("price DESC").all
+      @lessons=Lesson.order(:price)
       render @lessons, layout: false
     elsif params[:price_search].present? and params[:price_search] == "High to Low"
-      @lessons=Lesson.order(:price)
+      @lessons = Lesson.order("price DESC").all
       render @lessons, layout: false
     elsif params[:price_search].present? and params[:price_search] == "All Classes"
       @lessons = Lesson.all
@@ -43,6 +41,24 @@ class HomeController < ApplicationController
     elsif params[:distance].present? and params[:distance] == "More than 5 Km"
       @lessons = Lesson.all
       render @lessons, layout: false
+    elsif params[:curdistance].present? and params[:curdistance] == "With in 1 Km"
+      @lessons = Lesson.near(params[:current_area],1)
+      render @lessons, layout: false
+    elsif params[:curdistance].present? and params[:curdistance] == "With in 2 Km"
+      @lessons = Lesson.near(params[:current_area],2)
+      render @lessons, layout: false
+    elsif params[:curdistance].present? and params[:curdistance] == "With in 3 Km"
+      @lessons = Lesson.near(params[:current_area],3)
+      render @lessons, layout: false
+    elsif params[:curdistance].present? and params[:curdistance] == "With in 4 Km"
+      @lessons = Lesson.near(params[:current_area],4)
+      render @lessons, layout: false
+    elsif params[:curdistance].present? and params[:curdistance] == "With in 5 Km"
+      @lessons = Lesson.near(params[:current_area],5)
+      render @lessons, layout: false
+    elsif params[:curdistance].present? and params[:curdistance] == "More than 5 Km"
+      @lessons = Lesson.all
+      render @lessons, layout: false
     elsif params[:search].present?
   	  @lessons=Lesson.search(params[:search])
     else
@@ -66,16 +82,5 @@ class HomeController < ApplicationController
       flash[:info] = 'Tutor removed from your Favorite List'
       redirect_to students_path
     end
-  end
-
-  def local_ip
-    orig = Socket.do_not_reverse_lookup  
-    Socket.do_not_reverse_lookup =true # turn off reverse DNS resolution temporarily
-    UDPSocket.open do |s|
-      s.connect '64.233.187.99', 1 #google
-      s.addr.last
-    end
-  ensure
-    Socket.do_not_reverse_lookup = orig
   end
 end

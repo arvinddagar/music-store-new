@@ -11,7 +11,13 @@
       br
       b =lesson.description
   	  br
-  	  b =lesson.neighbourhood
+      b
+      | Address : 
+      =lesson.address
+      br
+  	  b
+      | Neighbourhood : 
+      =lesson.neighbourhood
     .span2
       =number_to_currency(lesson.price)
     .span2
