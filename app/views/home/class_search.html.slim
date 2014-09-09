@@ -24,7 +24,7 @@ br
     =select_tag(:distance, options_for_select([' ','With in 1 Km', 'With in 2 Km','With in 3 Km', 'With in 4 Km', 'With in 5 Km','More than 5 Km']))
 .search_by_neighbourhood style=("margin-top: -61px; margin-left: 550px;")
   br
-  = link_to "Map View ",  map_path
+  = link_to "Map View ",  map_path , 'data-no-turbolink' => true
 
 br
 br
