@@ -13,6 +13,7 @@ html lang="en"
             span.icon-bar
             span.icon-bar
             span.icon-bar
+          br
           = link_to "Music store", root_path ,:style=>"color:grey;"
         /! Collect the nav links, forms, and other content for toggling
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
@@ -30,9 +31,7 @@ html lang="en"
                   = link_to "Logout", destroy_user_session_path, method: :delete
             - else
               li
-                = link_to "signup as tutor",new_tutor_path
-              li
-                = link_to "signup as student",new_student_path
+                = link_to "Join Us",new_tutor_path
               li
                 = link_to "signin",new_user_session_path
         /! /.navbar-collapse

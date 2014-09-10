@@ -8,6 +8,8 @@ class TutorsController < ApplicationController
   def new
     @tutor = Tutor.new
     @tutor.build_user
+    @student = Student.new
+    @student.build_user
   end
   def feedback_reminder
     @lessons=Lesson.all
