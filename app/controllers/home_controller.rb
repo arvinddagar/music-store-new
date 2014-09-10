@@ -23,40 +23,40 @@ class HomeController < ApplicationController
     elsif params[:neighbourhood].present?
       @lessons = Lesson.where(neighbourhood: params[:neighbourhood])
       render @lessons, layout: false
-    elsif params[:distance].present? and params[:distance] == "With in 1 Km"
+    elsif params[:distance].present? and params[:distance] == "With in 1 Miles"
       @lessons = Lesson.near(address, 1)
       render @lessons, layout: false
-    elsif params[:distance].present? and params[:distance] == "With in 2 Km"
+    elsif params[:distance].present? and params[:distance] == "With in 2 Miles"
       @lessons = Lesson.near(address, 2)
       render @lessons, layout: false
-    elsif params[:distance].present? and params[:distance] == "With in 3 Km"
+    elsif params[:distance].present? and params[:distance] == "With in 3 Miles"
       @lessons = Lesson.near(address, 3)
       render @lessons, layout: false
-    elsif params[:distance].present? and params[:distance] == "With in 4 Km"
+    elsif params[:distance].present? and params[:distance] == "With in 4 Miles"
       @lessons = Lesson.near(address, 4)
       render @lessons, layout: false
-    elsif params[:distance].present? and params[:distance] == "With in 5 Km"
+    elsif params[:distance].present? and params[:distance] == "With in 5 Miles"
       @lessons = Lesson.near(address, 5)
       render @lessons, layout: false
-    elsif params[:distance].present? and params[:distance] == "More than 5 Km"
+    elsif params[:distance].present? and params[:distance] == "More than 5 Miles"
       @lessons = Lesson.all
       render @lessons, layout: false
-    elsif params[:curdistance].present? and params[:curdistance] == "With in 1 Km"
+    elsif params[:curdistance].present? and params[:curdistance] == "With in 1 Miles"
       @lessons = Lesson.near(params[:current_area],1)
       render @lessons, layout: false
-    elsif params[:curdistance].present? and params[:curdistance] == "With in 2 Km"
+    elsif params[:curdistance].present? and params[:curdistance] == "With in 2 Miles"
       @lessons = Lesson.near(params[:current_area],2)
       render @lessons, layout: false
-    elsif params[:curdistance].present? and params[:curdistance] == "With in 3 Km"
+    elsif params[:curdistance].present? and params[:curdistance] == "With in 3 Miles"
       @lessons = Lesson.near(params[:current_area],3)
       render @lessons, layout: false
-    elsif params[:curdistance].present? and params[:curdistance] == "With in 4 Km"
+    elsif params[:curdistance].present? and params[:curdistance] == "With in 4 Miles"
       @lessons = Lesson.near(params[:current_area],4)
       render @lessons, layout: false
-    elsif params[:curdistance].present? and params[:curdistance] == "With in 5 Km"
+    elsif params[:curdistance].present? and params[:curdistance] == "With in 5 Miles"
       @lessons = Lesson.near(params[:current_area],5)
       render @lessons, layout: false
-    elsif params[:curdistance].present? and params[:curdistance] == "More than 5 Km"
+    elsif params[:curdistance].present? and params[:curdistance] == "More than 5 Miles"
       @lessons = Lesson.all
       render @lessons, layout: false
     elsif params[:search].present?

@@ -1,8 +1,7 @@
 <div class="ab" style="margin-top :80px; margin-left:520px; ">
   <p style="
     margin-left: -65%;">Your Current Location  : </p> <p id="demo" value="" style="
-    margin-left: -65%;"
-></p>
+    margin-left: -65%;"></p>
   <%= form_tag search_classes_path, :method => :get do %>
     <p>
       <%= text_field_tag :search, params[:search],:class=>"textbox_1" %>
@@ -31,14 +30,14 @@
     <br>
     Search by Home Address
     <br>
-    <%=select_tag(:distance, options_for_select([' ','With in 1 Km', 'With in 2 Km','With in 3 Km', 'With in 4 Km', 'With in 5 Km','More than 5 Km'])) %>
+    <%=select_tag(:distance, options_for_select([' ','With in 1 Miles', 'With in 2 Miles','With in 3 Miles', 'With in 4 Miles', 'With in 5 Miles','More than 5 Miles'])) %>
   </div>
 <% end %>
 <div class="search_by_neighbourhood" style="margin-top: -60px; margin-left: 550px;">
   <br>
   Search by Current Location
   <br>
-  <%=select_tag(:curdistance, options_for_select([' ','With in 1 Km', 'With in 2 Km','With in 3 Km', 'With in 4 Km', 'With in 5 Km','More than 5 Km']))%>
+  <%=select_tag(:curdistance, options_for_select([' ','With in 1 Miles', 'With in 2 Miles','With in 3 Miles', 'With in 4 Miles', 'With in 5 Miles','More than 5 Miles']))%>
 </div>
 <div class="search_by_neighbourhood" style="margin-top: -43px; margin-left: 1146px;">
   <br>
