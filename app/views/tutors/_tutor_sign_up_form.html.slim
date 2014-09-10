@@ -1,5 +1,5 @@
-.container style=("margin-left: 10%")  
-  .signup style="margin-top:80px;"
+.container  
+  .signup style="margin-top:10px;"
     h3 Signup as tutor
     = form_for @tutor do |f|
       - if @tutor.errors.any?
@@ -12,6 +12,7 @@
             - @tutor.errors.full_messages.each do |msg|
               li= msg
       = f.fields_for :user do |user|
+          br/
           = user.label :email
           br/
           = user.email_field :email, autofocus: true,:class=>"textbox_1"
