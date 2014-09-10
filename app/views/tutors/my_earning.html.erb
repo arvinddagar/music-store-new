@@ -1,7 +1,9 @@
 <%=  render 'application/tutor_dashboard_partial' %>
 
+
+<div class="container">
 <h2> Current Week </h2>
-<table class="table">
+<table class="table table-hover" style="width: 90%;">
   <tr>
   	<th>
   	 Date
@@ -63,7 +65,7 @@
   <% end %>
   <tr>
   	  <th colspan=2>
-  	    <center><h2>Total</h2></center>
+  	    <center><h2>Total Income From Starting</h2></center>
   	  </th>
   	  <% arr_total = [] %>
       <% arr_comm  = [] %>
@@ -88,4 +90,4 @@
   	  </th>
     </tr>
 </table>
-  
+</div>
