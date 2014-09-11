@@ -1,59 +1,67 @@
-<div class="ab" style="margin-top :80px; margin-left:520px; ">
-  <p style="
-    margin-left: -65%;">Your Current Location  : </p> <p id="demo" value="" style="
-    margin-left: -65%;"></p>
-  <%= form_tag search_classes_path, :method => :get do %>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+  <div class="row-fluid">
+    <div class="span10">
+      <p>Your Current Location  : </p> <p id="demo" value=""></p>
+    </div>
+    <div class="span2">
+      <%= form_tag search_classes_path, :method => :get do %>
     <p>
-      <%= text_field_tag :search, params[:search],:class=>"textbox_1" %>
+      <%= text_field_tag :search, params[:search],:class=>"form-control",:placeholder => "Search Classes",:style=>'color:#c9302c;float: right' %>
       <br>
       <br>
       <%= submit_tag "Search", :name => nil, :class=>"btn btn-info"%>
     </p>
   <% end %>
-</div>
-
-<div class="search_by_amount" style="margin-left: 3%;">
-  <br>
-  Sort by Amount
-  <br>
-  <%= select_tag(:price_search, options_for_select(['All Classes','High to Low', 'Low to High'])) %>
-</div>
-<br>
-<div class="search_by_neighbourhood" style="margin-top: -80px; margin-left: 162px;" >
-  <br>
-  Search by Neighbourhood
-  <br>
-  <%=select_tag(:neighbourhood, options_for_select(Lesson.pluck(:neighbourhood)))%>
-</div>
-<% if current_student.present? %>
-  <div class="search_by_neighbourhood" style="margin-top: -60px; margin-left: 350px;">
-    <br>
-    Search by Home Address
-    <br>
-    <%=select_tag(:distance, options_for_select([' ','With in 1 Miles', 'With in 2 Miles','With in 3 Miles', 'With in 4 Miles', 'With in 5 Miles','More than 5 Miles'])) %>
+    </div>
   </div>
-<% end %>
-<div class="search_by_neighbourhood" style="margin-top: -60px; margin-left: 550px;">
   <br>
-  Search by Current Location
-  <br>
-  <%=select_tag(:curdistance, options_for_select([' ','With in 1 Miles', 'With in 2 Miles','With in 3 Miles', 'With in 4 Miles', 'With in 5 Miles','More than 5 Miles']))%>
-</div>
-<div class="search_by_neighbourhood" style="margin-top: -43px; margin-left: 1146px;">
-  <br>
-  <%= link_to "Map View ",  map_path , 'data-no-turbolink' => true %>
-</div>
-<br>
-<br>
-<div class="mid-search">
-  <div class="head-buttons">
-    <ul>
-      <% category_list.each do |category| %>
-        <li>
-          <%= link_to category.category_name, category_path(category) %>
-        </li>
+  <br>  
+  <div class="row-fluid">
+    <div class="span2">
+      Sort by Amount
+      <br>
+      <div class="form-group">
+        <%= select_tag(:price_search, options_for_select([['All Classes'],['High to Low'], ['Low to High']]),{class: "form-control"}) %>
+      </div>
+    </div>
+    <div class="span2">
+      Neighbourhood
+      <br>
+      <div class="form-group">
+        <%= select_tag(:neighbourhood, options_for_select(Lesson.pluck(:neighbourhood)),{class: "form-control"}) %>
+      </div>
+    </div>
+    <div class="span2">
+      Current Location
+      <br>
+      <div class="form-group">
+        <%=select_tag(:curdistance, options_for_select([[' '],['With in 1 Miles'], ['With in 2 Miles'],['With in 3 Miles'], ['With in 4 Miles'], ['With in 5 Miles'],['More than 5 Miles']]),{class: "form-control"})%>
+      </div>
+    </div>
+    <div class="span2">
+      <% if current_student.present? %>
+        Home Address
+        <br>
+        <div class="form-group">
+          <%=select_tag(:distance, options_for_select([[' '],['With in 1 Miles'], ['With in 2 Miles'],['With in 3 Miles'],['With in 4 Miles'],['With in 5 Miles'],['More than 5 Miles']]),{class: "form-control"}) %>
+        </div>
       <% end %>
-    </ul>
+    </div>
+    <div class="span2">
+      Sort by Rating
+      <br>
+      <div class="form-group">
+        <%= select_tag(:rating, options_for_select([['All Classes'],['High to Low'], ['Low to High']]),{class: "form-control"}) %>
+      </div>
+    </div>
+    <div class="span2">
+      <%= link_to "Map View ",  map_path , 'data-no-turbolink' => true, :style=>'color:#c9302c;float: right'%>
+    </div>
   </div>
 </div>
 <br>
