@@ -9,6 +9,7 @@ development: &default
   username: root
   password: root
 
+
 production: &default
   adapter: postgresql
   database: music_development
@@ -18,4 +19,4 @@ production: &default
   timeout: 5000
   host: localhost
   username: postgres
-  password: postgres
+  password: postgres_music_12345
