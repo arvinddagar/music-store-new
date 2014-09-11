@@ -41,6 +41,9 @@ br
         | Location
       th
         | Reviews
+      th
+        | Rating of this class
+
     - if @past_reservations.present?
       - @past_reservations.each do |preservation|
         tr
@@ -54,4 +57,27 @@ br
             - else
               = form_for [preservation.lesson, preservation.lesson.comments.new]  do |f|
                 = f.text_area :comment
+                br
                 = f.submit 'Add Review', class: 'btn btn-primary'
+          td
+            - if Rating.find_by('student_id = ? AND lesson_id = ?' , current_student.id ,preservation.lesson.id).present? 
+              = Rating.find_by('student_id = ? AND lesson_id = ?' , current_student.id ,preservation.lesson.id).rate
+            - else
+              = form_tag rate_path
+                = hidden_field_tag 'lesson_id', preservation.lesson.id
+                .temp
+                  = radio_button_tag(:rate, "Poor")
+                  = label :rate_lbl, 'Poor',:style=>'margin-left: 3%'
+                .temp
+                  = radio_button_tag(:rate, "Average")
+                  = label :rate_lbl, 'Average',:style=>'margin-left: 3%'
+                .temp
+                  = radio_button_tag(:rate, "Good")
+                  = label :rate_lbl, 'Good',:style=>'margin-left: 3%'
+                .temp
+                  = radio_button_tag(:rate, "Very Good")
+                  = label :rate_lbl, 'Very Good',:style=>'margin-left: 3%'
+                = radio_button_tag(:rate, "Excellent")
+                = label :rate_lbl, 'Excellent',:style=>'margin-left: 3%'
+                br
+                = submit_tag

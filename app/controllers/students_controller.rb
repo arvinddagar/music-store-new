@@ -7,9 +7,35 @@ class StudentsController < ApplicationController
   def index
     @upcoming_reservations= current_student.reservations.where("class_date > ?", Date.today)
   end
+  
   def student_class
     @past_reservations= current_student.reservations.where("class_date < ?", Date.today)
     @upcoming_reservations= current_student.reservations.where("class_date > ?", Date.today)
+  end
+
+  def rate
+    if params[:rate]=="Average"
+      val=2
+    elsif params[:rate]=="Poor"
+      val=1
+    elsif params[:rate]=="Good"
+      val=3
+    elsif params[:rate]=="Very Good"
+      val=4
+    else
+      val=5
+    end     
+    hash = {:lesson_id=>params[:lesson_id],:student_id=>current_student.id,:rate=>val}
+    Rating.create(hash)
+    @record=Rating.where(lesson_id:params[:lesson_id])
+    sum=0
+    @record.each do |record|
+      sum=sum+record.rate.to_f
+    end
+    @lesson=Lesson.find(params[:lesson_id])
+    @lesson.avg_rate=sum.to_f / @record.count
+    @lesson.save
+    redirect_to :action => 'student_class'
   end
 
   def new

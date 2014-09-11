@@ -14,6 +14,11 @@ class Lesson < ActiveRecord::Base
   validates :price, :presence => true
   validates :duration, :presence => true
   validates :maximum_people, :presence => true
+
+  has_many :ratings
+  has_many :students, through: :ratings
+
+
   # delegate :image, to: :picture, allow_nil: true
   acts_as_commentable
   geocoded_by :address

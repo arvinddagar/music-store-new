@@ -14,6 +14,10 @@ class Student < ActiveRecord::Base
   has_many :favorites
   has_many :tutors, through: :favorites
 
+
+   has_many :ratings
+    has_many :lessons, through: :ratings
+
   def incomplete?
     !complete?
   end

@@ -1,7 +1,13 @@
 class ChargesController < ApplicationController
+
 def new
-  @lesson=Lesson.find(params[:id])
-  @lesson_details=Timing.find(params[:timing_id])
+  if Reservation.find_by('student_id = ? AND timing_id = ? AND schedule_id = ? ' , current_student.id ,params[:timing_id],params[:schedule_id]).present?
+    flash[:info] = 'You Cannot booked this class , as you have already booked this class'
+    redirect_to root_path
+  else
+    @lesson=Lesson.find(params[:id])
+    @lesson_details=Timing.find(params[:timing_id])
+  end
 end
 
 def create
