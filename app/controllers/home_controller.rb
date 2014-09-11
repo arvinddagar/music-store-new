@@ -16,6 +16,7 @@ class HomeController < ApplicationController
       render @lessons, layout: false
     elsif params[:price_search].present? and params[:price_search] == "High to Low"
       @lessons = Lesson.order("price desc")
+      render @lessons, layout: false
     elsif params[:rating].present? and params[:rating] == "Low to High"
       @lessons=Lesson.order(:avg_rate)
       render @lessons, layout: false
