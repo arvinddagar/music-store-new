@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   get 'map' => 'lessons#map'
   # get 'find_neighbour', to: 'lessons#find_neighbour'
   get 'show_profile' =>'lessons#show_profile'
+  post  'rate' =>'students#rate'
 
   authenticated :user do
     resources :conversations, only: [:index, :show, :new, :create, :send] do
