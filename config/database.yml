@@ -6,9 +6,8 @@ development: &default
   pool: 2
   timeout: 5000
   host: localhost
-  username: postgres
-  password: postgres
-
+  username: root
+  password: root
 
 production: &default
   adapter: postgresql
