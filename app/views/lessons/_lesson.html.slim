@@ -10,7 +10,7 @@
       h3
         =link_to lesson.name, lesson_path(lesson)
       br
-      b =lesson.description
+      b == truncate(lesson.description, length: 150, omission: '... (continued)')
   	  br
       b
       | Address : 
@@ -19,6 +19,18 @@
   	  b
       | Neighbourhood : 
       =lesson.neighbourhood
+      br
+      b
+      | Rating : 
+      =lesson.avg_rate.to_f
+      .ratings
+        p
+          span.glyphicon.glyphicon-star
+          span.glyphicon.glyphicon-star
+          span.glyphicon.glyphicon-star
+          span.glyphicon.glyphicon-star
+          span.glyphicon.glyphicon-star
+
     .span2
       =number_to_currency(lesson.price)
     .span2
