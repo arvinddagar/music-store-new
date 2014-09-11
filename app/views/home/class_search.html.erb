@@ -134,6 +134,19 @@ $( "#neighbourhood" ).change(function() {
     }
     });
   });
+  $( "#rating" ).change(function() {
+    $.ajax({
+    url: 'ajaxsearch',
+    type: 'GET',
+    data: {rating:$("#rating").val()
+    },
+    success: function(data)
+    {
+      // alert(data)
+      $('#lesson').html(data);
+    }
+    });
+  });
   $( "#distance" ).change(function() {
     $.ajax({
     url: 'ajaxsearch',
