@@ -44,13 +44,6 @@
       </div>
     </div>
     <div class="span2">
-      Sort by Rating
-      <br>
-      <div class="form-group">
-        <%= select_tag(:rating, options_for_select([['All Classes'],['High to Low'], ['Low to High']]),{class: "form-control"}) %>
-      </div>
-    </div>
-    <div class="span2">
       <% if current_student.present? %>
         Home Address
         <br>
@@ -60,11 +53,31 @@
       <% end %>
     </div>
     <div class="span2">
+      Sort by Rating
+      <br>
+      <div class="form-group">
+        <%= select_tag(:rating, options_for_select([['All Classes'],['High to Low'], ['Low to High']]),{class: "form-control"}) %>
+      </div>
+    </div>
+    <div class="span2">
       <%= link_to "Map View ",  map_path , 'data-no-turbolink' => true, :style=>'color:#c9302c;float: right'%>
     </div>
   </div>
 </div>
 <br>
+<br>
+<br>
+<div class="mid-search">
+  <div class="head-buttons">
+    <ul>
+      <% category_list.each do |category| %>
+        <li>
+          <%= link_to category.category_name, category_path(category) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 <br>
 <br>
 <div id="lesson">
