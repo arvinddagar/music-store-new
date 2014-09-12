@@ -3,7 +3,7 @@
   h2 style = "margin-left:400px" Create new class
   br
   .form-actions
-    = form_for @lesson, :html => { :id => "lesson_form" } do |f|
+    = nested_form_for @lesson, :html => { :id => "lesson_form" } do |f|
       /= render 'shared/errors', object: f.object
       .row
         = f.label :name,"Class Name (Choose a catchy name for yourclass)",class: 'label_text'
@@ -73,15 +73,12 @@
         = f.number_field :maximum_people, class:"textbox_1"
         br
       .row
-        - f.object.pictures.build if f.object.pictures.blank?
-        = f.fields_for :pictures do |pic|
-          br/
-          = pic.label :image
-          br/
-          = pic.file_field :image
-          - if !pic.object.id.blank?
-            = pic.hidden_field :id, :value => pic.object.id
-          br/
+        h2 Add images for Lessons
+        = f.fields_for :pictures
+        = f.link_to_add "Add a More Image", :pictures
+        br
+        br
+        br
       =f.hidden_field :tutor_id, :value => current_tutor.id
       = f.submit 'Save', class: 'btn btn-success', :style=> "margin-bottom:20px;"
 javascript:

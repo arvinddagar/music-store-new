@@ -1,7 +1,7 @@
 class Lesson < ActiveRecord::Base
   belongs_to :tutor
   belongs_to :category
-  has_many :pictures
+  has_many :pictures, :dependent => :destroy
   accepts_nested_attributes_for :pictures,:allow_destroy => true
   has_one :schedule, :dependent => :destroy
   has_one :schedule

@@ -3,11 +3,12 @@ class LessonsController < ApplicationController
                 only: [:new, :create,:edit,:update,:new_schedule,:create_schedule]
   def new
     @lesson = Lesson.new
-    @lesson.pictures.build
+    # @lesson.pictures.build
   end
 
   def create
     @lesson = current_user.tutor.lessons.new(lesson_params)
+    binding.pry
     @lesson.save
     flash[:info] = 'Class created'
     redirect_to new_schedule_path(:lesson_id => @lesson)
@@ -118,7 +119,7 @@ class LessonsController < ApplicationController
 
   private
    def lesson_params
-    params.require(:lesson).permit(:latitude, :longitude,:name,:description,:neighbourhood,:category_id,:address,:phone_no,:price,:duration,:publish,:maximum_people, pictures_attributes: [:image])
+    params.require(:lesson).permit(:latitude, :longitude,:name,:description,:neighbourhood,:category_id,:address,:phone_no,:price,:duration,:publish,:maximum_people, pictures_attributes: [:id,:image,:_destroy])
    end
 
    def update_lesson_params
