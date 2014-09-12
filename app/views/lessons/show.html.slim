@@ -120,4 +120,10 @@ br
       h2
         | Class Address
       = image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@lesson.latitude}%2C#{@lesson.longitude}"
+  
   hr
+  h2 Pictures
+  .row-fluid.class_show_page
+    - @lesson.pictures.each do |pic|
+      .span3
+        = image_tag pic.image.url,:style=>"width:102%" 
