@@ -38,7 +38,7 @@
       <h2>Featured Class </h2>
       <br>
       <div class="row-fluid">
-        <% @featured_class.each do |object| %>
+        <% @featured_class[0..3].each do |object| %>
           <div class="span3">
             <% if object.pictures.first.present? %>
               <%= image_tag object.pictures.first.image.url,:style=>"width:102%" %>
