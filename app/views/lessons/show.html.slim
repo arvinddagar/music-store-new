@@ -17,18 +17,13 @@ br
 
   .row-fluid.class_show_page
     .span8
-      h2 =@lesson.name
-      b style="margin-left:3%"
-        |with
+      h2 =@lesson.name.capitalize
+      h4 style="margin-left:3%"
+        |with         
         =@lesson.tutor.first_name.capitalize+" "+@lesson.tutor.last_name.capitalize
-      br
-      br
-      b
-        =@lesson.address
-      br
-      =@lesson.created_at.strftime("%d-%b-%y")
-      br
-      =@lesson.created_at.strftime("%H : %M")
+      h2 class Location
+      h4 style="margin-left:3%"
+        =@lesson.address.capitalize
     .span2
       br
       b
