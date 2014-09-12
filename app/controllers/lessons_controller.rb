@@ -8,7 +8,6 @@ class LessonsController < ApplicationController
 
   def create
     @lesson = current_user.tutor.lessons.new(lesson_params)
-    binding.pry
     @lesson.save
     flash[:info] = 'Class created'
     redirect_to new_schedule_path(:lesson_id => @lesson)
