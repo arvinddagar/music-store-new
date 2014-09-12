@@ -1,0 +1,193 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+  <div class="row-fluid">
+    <div class="span10">
+      <p>Your Current Location  : </p> <p id="demo" value=""></p>
+    </div>
+    <div class="span2">
+      <%= form_tag search_classes_path, :method => :get do %>
+    <p>
+      <%= text_field_tag :search, params[:search],:class=>"form-control",:placeholder => "Search Classes",:style=>'color:#c9302c;float: right' %>
+      <br>
+      <br>
+      <%= submit_tag "Search", :name => nil, :class=>"btn btn-info"%>
+    </p>
+  <% end %>
+    </div>
+  </div>
+  <br>
+  <br>  
+  <div class="row-fluid">
+    <div class="span2">
+      Sort by Amount
+      <br>
+      <div class="form-group">
+        <%= select_tag(:price_search, options_for_select([['All Classes'],['High to Low'], ['Low to High']]),{class: "form-control"}) %>
+      </div>
+    </div>
+    <div class="span2">
+      Neighbourhood
+      <br>
+      <div class="form-group">
+        <%= select_tag(:neighbourhood, options_for_select(Lesson.pluck(:neighbourhood)),{class: "form-control"}) %>
+      </div>
+    </div>
+    <div class="span2">
+      Current Location
+      <br>
+      <div class="form-group">
+        <%=select_tag(:curdistance, options_for_select([[' '],['With in 1 Miles'], ['With in 2 Miles'],['With in 3 Miles'], ['With in 4 Miles'], ['With in 5 Miles'],['More than 5 Miles']]),{class: "form-control"})%>
+      </div>
+    </div>
+    <div class="span2">
+      <% if current_student.present? %>
+        Home Address
+        <br>
+        <div class="form-group">
+          <%=select_tag(:distance, options_for_select([[' '],['With in 1 Miles'], ['With in 2 Miles'],['With in 3 Miles'],['With in 4 Miles'],['With in 5 Miles'],['More than 5 Miles']]),{class: "form-control"}) %>
+        </div>
+      <% end %>
+    </div>
+    <div class="span2">
+      Sort by Rating
+      <br>
+      <div class="form-group">
+        <%= select_tag(:rating, options_for_select([['All Classes'],['High to Low'], ['Low to High']]),{class: "form-control"}) %>
+      </div>
+    </div>
+    <div class="span2">
+      <%= link_to "Map View ",  map_path , 'data-no-turbolink' => true, :style=>'color:#c9302c;float: right'%>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<div class="mid-search">
+  <div class="head-buttons">
+    <ul>
+      <% category_list.each do |category| %>
+        <li>
+          <%= link_to category.category_name, category_path(category) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<br>
+<br>
+<div id="lesson">
+  <% if !@lessons.empty? %>
+    <%= render @lessons %>
+  <% else %>
+    <h1> No Class Found </h1>
+  <% end %>
+</div>
+<br>
+<br>
+<input id="find_by_distance" name="distance" type="hidden" value="temp">
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+<script type="text/javascript">
+var x = document.getElementById("demo");
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+function showPosition(position) {
+    // alert(position.coords.latitude)
+    // alert(position.coords.longitude)
+    var geocoder = new google.maps.Geocoder();
+    var lat = position.coords.latitude;
+    var long = position.coords.longitude;
+    var latLng = new google.maps.LatLng(lat, long);
+    geocoder.geocode({
+      latLng: latLng
+    },
+    function(responses) {
+    if (responses && responses.length > 0)
+    {
+       x.innerHTML = (responses[0].formatted_address);
+       document.getElementById('find_by_distance').value=(responses[0].formatted_address);
+    } else {
+      alert('Cannot determine address at this location.');
+    }
+  });
+}        
+
+
+
+$( "#neighbourhood" ).change(function() {
+    $.ajax({
+    url: 'ajaxsearch',
+    type: 'GET',
+    data: {neighbourhood:$("#neighbourhood").val()
+    },
+    success: function(data)
+    {
+      $('#lesson').html(data);
+    }
+    });
+  });
+  $( "#price_search" ).change(function() {
+    $.ajax({
+    url: 'ajaxsearch',
+    type: 'GET',
+    data: {price_search:$("#price_search").val()
+    },
+    success: function(data)
+    {
+      // alert(data)
+      $('#lesson').html(data);
+    }
+    });
+  });
+  $( "#rating" ).change(function() {
+    $.ajax({
+    url: 'ajaxsearch',
+    type: 'GET',
+    data: {rating:$("#rating").val()
+    },
+    success: function(data)
+    {
+      // alert(data)
+      $('#lesson').html(data);
+    }
+    });
+  });
+  $( "#distance" ).change(function() {
+    $.ajax({
+    url: 'ajaxsearch',
+    type: 'GET',
+    data: {distance:$("#distance").val()
+    },
+    success: function(data)
+    {
+      // alert(data)
+      $('#lesson').html(data);
+    }
+    });
+  });
+
+  $( "#curdistance" ).change(function() {
+    $.ajax({
+    url: 'ajaxsearch',
+    type: 'GET',
+    data: {curdistance:$("#curdistance").val(),current_area:$("#find_by_distance").val()
+    },
+    success: function(data)
+    {
+      // alert(data)
+      $('#lesson').html(data);
+    }
+    });
+  });
+ 
+
+</script>
+  
