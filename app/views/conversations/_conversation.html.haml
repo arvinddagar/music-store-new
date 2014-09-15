@@ -2,9 +2,14 @@
   - receipts = conversation.receipts.find_by(receiver_id: current_user.id)
   %p
     sender:
-    / = link_to receipts.notification.sender.name, conversation_path(conversation)
     = receipts.notification.sender.name
     %br
+    Date :
+    = receipts.notification.created_at.strftime("%d-%b-%y").to_s
+    %br
+    Time :
+    = receipts.notification.created_at.strftime("%I:%M %p").to_s
+    %br 
     = link_to conversation.subject, conversation_path(conversation)
     |
     - if conversation.is_completely_trashed?(current_user)
