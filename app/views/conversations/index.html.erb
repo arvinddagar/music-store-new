@@ -1,0 +1,67 @@
+<% if current_user.student? %>
+  <%= render 'application/student_dashboard_partial' %>
+<% else %>
+  <%= render 'application/tutor_dashboard_partial' %>
+<% end %>
+<div class="container">
+  <div class="row-fluid">
+    <br>
+    <br>
+    <div class="span2">
+      <b><i><a href="" id="inbox_link">Inbox</a></i><b>
+      <br>
+      <br>
+      <b><a href="" id="sentbox_link"><i>Sentbox</i></a><b>
+    </div>
+    <div class="span10">
+      <div id="main_content" style="margin-top: -3%;">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="inbox">
+  <h1>Inbox</h1>
+  <ol>
+    <%= render collection: mailbox.inbox, partial: 'conversation' %>
+  </ol>
+</div>
+<div id="sentbox">
+  <h1>Sentbox</h1>
+  <ol>
+    <%=render collection: mailbox.sentbox, partial: 'conversation' %>
+  </ol>
+</div>
+
+
+<script type="text/javascript">
+$("#sentbox").hide()
+$("#inbox").hide()
+$('#main_content').html($('#inbox').html())
+$("#inbox_link").click(function(e){
+  e.preventDefault();
+  $('#main_content').html($('#inbox').html())
+});
+$("#sentbox_link").click(function(e){
+  e.preventDefault();
+  $('#main_content').html($('#sentbox').html())
+});
+</script>
+
+   <!--  .row-fluid
+      .span2
+        b Inbox
+        br
+        br
+        br
+        b Sentbox 
+      .span10
+        #inbox_content
+          h1 Inbox-Box
+          ul= render collection: mailbox.inbox, partial: 'conversation'
+        #sentbox_content
+          h1 Sent-Box
+          ul= render collection: mailbox.sentbox, partial: 'conversation'
+    / h2 Trash
+  / ul= render collection: mailbox.trash, partial: 'conversation'
+ -->
