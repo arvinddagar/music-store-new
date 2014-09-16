@@ -43,17 +43,13 @@ class LessonsController < ApplicationController
       redirect_to tutors_path
     end
  end
- 
-
-
-
-  
-  def show
+ def show
     @lesson=Lesson.find(params[:id])
     @reviews=@lesson.comments
   end
   
   def show_profile
+    session['referer'] = request.env["HTTP_REFERER"]
     @tutor=Tutor.find(params[:id])
     @lessons=Tutor.find(params[:id]).lessons
   end

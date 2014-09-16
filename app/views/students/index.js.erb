@@ -1,1 +1,5 @@
-window.location.replace("/students");
+<% if session["user_return_to"].present? %>
+  window.location.replace("");
+<% else %>
+  window.location.replace("/students");
+<% end %>
