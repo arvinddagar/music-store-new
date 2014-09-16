@@ -21,8 +21,14 @@
       =lesson.neighbourhood
       br
       b
-      | Rating : 
-      =lesson.avg_rate.to_f
+      | Rating :
+      - if lesson.avg_rate.to_i > 0
+        - i=1
+        - while i <= lesson.avg_rate.to_i  do
+          span &#9734
+          - i +=1
+      - else
+        | No User have given rating to this class
     .span2
       =number_to_currency(lesson.price)
     .span2
