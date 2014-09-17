@@ -32,6 +32,7 @@ gem 'searchkick'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'capistrano', '~> 3.0'
 gem 'capistrano-rvm'
+gem "kaminari"
 group :development do
   gem 'better_errors'
   gem 'letter_opener'
