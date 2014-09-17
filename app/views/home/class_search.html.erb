@@ -89,39 +89,39 @@
 </div>
 <br>
 <br>
+
 <input id="find_by_distance" name="distance" type="hidden" value="temp">
+<input id="lat" name="distance" type="hidden" value="temp">
+<input id="lon" name="distance" type="hidden" value="temp">
+
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
 
 <script type="text/javascript">
 var x = document.getElementById("demo");
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-function showPosition(position) {
-    // alert(position.coords.latitude)
-    // alert(position.coords.longitude)
+  var coords = new Array();
+  $.get("http://ipinfo.io", function(response) {
+    coords = (response.loc).split(',');
+    document.getElementById("lat").value = coords[0];
+    document.getElementById("lon").value = coords[1];
+    console.log(response.loc)
     var geocoder = new google.maps.Geocoder();
-    var lat = position.coords.latitude;
-    var long = position.coords.longitude;
+    var lat = document.getElementById("lat").value
+    var long = document.getElementById("lon").value
     var latLng = new google.maps.LatLng(lat, long);
     geocoder.geocode({
       latLng: latLng
     },
     function(responses) {
     if (responses && responses.length > 0)
-    {
+    {  
        x.innerHTML = (responses[0].formatted_address);
        document.getElementById('find_by_distance').value=(responses[0].formatted_address);
     } else {
       alert('Cannot determine address at this location.');
     }
   });
-}        
-
-
-
+}, "jsonp");
 $( "#neighbourhood" ).change(function() {
     $.ajax({
     url: 'ajaxsearch',
@@ -187,7 +187,4 @@ $( "#neighbourhood" ).change(function() {
     }
     });
   });
- 
-
-</script>
-  
+ </script> 
