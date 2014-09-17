@@ -98,6 +98,7 @@
 
 
 <script type="text/javascript">
+
 var x = document.getElementById("demo");
   var coords = new Array();
   $.get("http://ipinfo.io", function(response) {
@@ -122,6 +123,7 @@ var x = document.getElementById("demo");
     }
   });
 }, "jsonp");
+
 $( "#neighbourhood" ).change(function() {
     $.ajax({
     url: 'ajaxsearch',

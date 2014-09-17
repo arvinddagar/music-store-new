@@ -16,7 +16,6 @@ class HomeController < ApplicationController
       @lessons=@lessons_price.reverse
       render @lessons, layout: false
     elsif params[:price_search].present? and params[:price_search] == "High to Low"
-      # @lessons = Lesson.order("price desc")
       @lessons=@lessons_price
       render @lessons, layout: false
     elsif params[:rating].present? and params[:rating] == "Low to High"
@@ -72,7 +71,6 @@ class HomeController < ApplicationController
     else
       @lessons = Lesson.all
     end
-    
   end
   def book_class
     @lesson=Lesson.find(params[:id])
