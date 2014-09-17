@@ -2,41 +2,48 @@
 br
 br
 br
-.tutor_dashboard
-  h4
-    | Welcome
+.container
+  .tutor_dashboard
+    h4
+      | Welcome
 
-    =" "+current_tutor.first_name.capitalize+"  "+current_tutor.last_name.capitalize
-  - if @lessons.empty?
-    h2
-      center  no classes present
-    br
-  - else
-    table.table.table-hover style=("width: 90%;")
-      tr
-        th
-          | Active Classes
-        th
-          | Date
-        th
-          | time
-        th
-          | Location
-        th
-          | Edit Class
-        th
-          | Edit Schedule
-      - @lessons.each do |lesson|
+      =" "+current_tutor.first_name.capitalize+"  "+current_tutor.last_name.capitalize
+    - if @lessons.empty?
+      h2
+        center  no classes present
+      br
+    - else
+      table.table.table-hover style=("width: 90%;")
         tr
-          td
-            =lesson.name
-          td
-            =lesson.created_at.strftime("%d-%b-%y")
-          td
-            =lesson.created_at.strftime("%H : %M")
-          td
-            =lesson.address
-          td
-            = link_to 'Edit', edit_lesson_path(lesson)
-          td
-            = link_to 'Edit', edit_schedule_path(lesson)
+          th
+            | Active Classes
+          th
+            | Date
+          th
+            | time
+          th
+            | Location
+          th
+            | Edit Class
+          th
+            | Edit Schedule
+        - @lessons.each do |lesson|
+          tr
+            td
+              =lesson.name
+            td
+              =lesson.created_at.strftime("%d-%b-%y")
+            td
+              =lesson.created_at.strftime("%H : %M")
+            td
+              =lesson.address
+            td
+              = link_to 'Edit', edit_lesson_path(lesson)
+            td
+              = link_to 'Edit', edit_schedule_path(lesson)
+  center
+    br
+    .digg_pagination
+      .page_info
+        = page_entries_info @lessons
+      = paginate @lessons

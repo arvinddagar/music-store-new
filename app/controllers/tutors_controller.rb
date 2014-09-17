@@ -31,7 +31,7 @@ class TutorsController < ApplicationController
   end
 
   def index
-    @lessons=current_tutor.lessons
+    @lessons=current_tutor.lessons.page(params[:page]).per(5)
   end
 
   def create
