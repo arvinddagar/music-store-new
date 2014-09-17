@@ -75,27 +75,72 @@ class LessonsController < ApplicationController
   end
 
   def category_search
-    if params[:price_search].nil? and params[:neighbourhood].nil?
+    if params[:price_search].nil? and params[:neighbourhood].nil? and params[:rating].nil? and params[:curdistance].nil? and params[:distance].nil? 
       @category = Category.find(params[:id])
       @sub_category = params[:sub_category] ? Category.find(params[:sub_category]) : Category.where(parent_id: @category.id)
       @lessons = Lesson.where(category_id: @sub_category)
     else
+      address = current_student.address if current_student.present?
       @category = Category.find(params[:category])
       @sub_category = params[:sub_category] ? Category.find(params[:sub_category]) : Category.where(parent_id: @category.id)
       @lessons = Lesson.where(category_id: @sub_category)
-      if params[:price_search].present? and params[:price_search] == "Low to High" and params[:neighbourhood].nil?
-        @lessons=@lessons.order(:price)
+      @lessons_price=@lessons.all.sort { |a, b| b.price.to_i <=> a.price.to_i }
+      if params[:price_search].present? and params[:price_search] == "Low to High"
+        @lessons=@lessons_price.reverse
         render @lessons, layout: false
-      elsif params[:price_search].present? and params[:price_search] == "High to Low" and params[:neighbourhood].nil?
-        @lessons = @lessons.order("price DESC").all
+      elsif params[:price_search].present? and params[:price_search] == "High to Low"
+        @lessons=@lessons_price
         render @lessons, layout: false
-      else
+      elsif params[:neighbourhood].present?
         @lessons = @lessons.where(neighbourhood: params[:neighbourhood])
+        render @lessons, layout: false
+      elsif params[:rating].present? and params[:rating] == "Low to High"
+        @lessons=@lessons.order(:avg_rate)
+        render @lessons, layout: false
+      elsif params[:rating].present? and params[:rating] == "High to Low"
+        @lessons = @lessons.order("avg_rate desc")
+        render @lessons, layout: false
+      elsif params[:curdistance].present? and params[:curdistance] == "With in 1 Miles"
+        @lessons = @lessons.near(params[:current_area],1)
+        render @lessons, layout: false
+      elsif params[:curdistance].present? and params[:curdistance] == "With in 2 Miles"
+        @lessons = @lessons.near(params[:current_area],2)
+        render @lessons, layout: false
+      elsif params[:curdistance].present? and params[:curdistance] == "With in 3 Miles"
+        @lessons = @lessons.near(params[:current_area],3)
+        render @lessons, layout: false
+      elsif params[:curdistance].present? and params[:curdistance] == "With in 4 Miles"
+        @lessons = @lessons.near(params[:current_area],4)
+        render @lessons, layout: false
+      elsif params[:curdistance].present? and params[:curdistance] == "With in 5 Miles"
+        @lessons = @lessons.near(params[:current_area],5)
+        render @lessons, layout: false
+      elsif params[:curdistance].present? and params[:curdistance] == "More than 5 Miles"
+        @lessons = @lessons.all
+        render @lessons, layout: false
+      elsif params[:distance].present? and params[:distance] == "With in 1 Miles"
+        @lessons = @lessons.near(address, 1)
+        render @lessons, layout: false
+      elsif params[:distance].present? and params[:distance] == "With in 2 Miles"
+        @lessons = @lessons.near(address, 2)
+        render @lessons, layout: false
+      elsif params[:distance].present? and params[:distance] == "With in 3 Miles"
+        @lessons = @lessons.near(address, 3)
+        render @lessons, layout: false
+      elsif params[:distance].present? and params[:distance] == "With in 4 Miles"
+        @lessons = @lessons.near(address, 4)
+        render @lessons, layout: false
+      elsif params[:distance].present? and params[:distance] == "With in 5 Miles"
+        @lessons = @lessons.near(address, 5)
+        render @lessons, layout: false
+      elsif params[:distance].present? and params[:distance] == "More than 5 Miles"
+        @lessons = @lessons.all
         render @lessons, layout: false
       end
     end
   end
   
+
   def new_schedule
     @new_schedule=Schedule.new
     1.times do
