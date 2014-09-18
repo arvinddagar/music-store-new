@@ -70,13 +70,6 @@ br
            | Attire: Comfortable
            br
     .span2
-       button.btn.btn-default type="button"  Invite a Friend
-       br
-       br
-       button.btn.btn-default type="button"  Like
-       br
-       br
-       button.btn.btn-default type="button"  Twitter
   hr
   .row-fluid.class_show_page
     .span2
@@ -115,10 +108,39 @@ br
       h2
         | Class Address
       = image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@lesson.latitude}%2C#{@lesson.longitude}"
-  
-  hr
-  h2 Pictures
-  .row-fluid.class_show_page
-    - @lesson.pictures.each do |pic|
-      .span3
-        = image_tag pic.image.url,:style=>"width:102%" 
+    .span5.pull-right
+      h2
+        | Class Pictures 
+      #pic
+        - @lesson.pictures.each do |pic|
+          = image_tag pic.image.url,size: "450x300"
+      br
+      br
+      .nav
+        ul.pager
+          li.previous
+            a#prev2 href="#"  &larr; Prevoius Image
+          li.next
+            a#next2 href="#"  Next Image &rarr;
+
+br
+br
+br
+br
+br
+br
+br
+br
+br
+
+javascript:
+  $(document).ready(function()
+  {
+    $('#pic').cycle({
+      fx:     'fade',
+      speed:  'fast',
+      timeout: 0,
+      next:   '#next2',
+      prev:   '#prev2'
+    });
+  }); 
