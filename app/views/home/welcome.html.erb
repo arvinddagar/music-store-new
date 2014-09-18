@@ -12,7 +12,7 @@
       <br>
       <div class="row-fluid">
         <% @fav.each do |temp| %>
-          <% temp.tutor.lessons.each do |object| %>
+          <% temp.tutor.lessons[0..3].each do |object| %>
             <div class="span3">
               <% if object.pictures.first.present? %>
                 <%= image_tag object.pictures.first.image.url,:style=>"width:102%" %>
