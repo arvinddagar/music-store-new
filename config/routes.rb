@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   patch 'complete_stu', to: 'students#complete_stu'
   get 'tutors/profile' => 'tutors#show'
   get 'students/profile' => 'students#show'
+  get 'my_wish_list' => 'students#mylist'
   get 'category/:id' => 'lessons#category_search', as: :category
   get 'category/:id/:sub_category' => 'lessons#category_search', as: :subcategory
   get 'subcategory', to: 'lessons#sub_category'

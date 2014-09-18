@@ -38,6 +38,11 @@ class StudentsController < ApplicationController
     redirect_to :action => 'student_class'
   end
 
+  def mylist
+    @favs=Favorite.where(:student => current_student).page(params[:page]).per(5)
+  end
+
+
   def new
     @student = Student.new
     @student.build_user

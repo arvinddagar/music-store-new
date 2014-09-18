@@ -1,0 +1,62 @@
+<%= render 'application/student_dashboard_partial'%>
+<div class="container">
+  <div class="tutor_dashboard">
+    <h4>
+      Welcome
+      <%=" "+current_student.first_name.capitalize+"  "+current_student.last_name.capitalize %>
+    </h4>
+    <% if @favs.empty? %>
+      <center><b>you dont have any favorite teacher</b></center>
+    <% else %>
+      <center><b><i>list of your favorite teachers</i></b></center>
+      <br>
+      <table class="table table-hover" style="width: 90%;">
+        <tr>
+  	      <th>
+  	 		    S.no
+  		    </th>
+	        <th>
+  	 		    Tutor Name
+  		    </th>
+  	      <th>
+  	        Added on 
+  	      </th>
+  	      <th>
+  	        Profile 
+  	      </th>
+  	      <th>
+  	        Message 
+  	      </th>
+  	      <th>
+  	        Remove 
+  	      </th>
+  	    </tr>
+        <% i = 1 %> 
+        <% @favs.each do |temp| %>
+          <tr>
+            <td><%=i%></td>
+            <td><%=temp.tutor.first_name.capitalize+"  "+temp.tutor.last_name.capitalize %></td>  
+            <td><%=temp.created_at.strftime("%d-%b-%y") %></td>
+            <td><%= link_to "View Profile",show_profile_path(:id=>temp.tutor), :class => "btn btn-success"%></td>
+            <td><%=link_to "Send Message",new_conversation_path(tutor: temp.tutor), :class => "btn btn-success" %></td>
+            <td><%=link_to 'Remove', remove_fav_path(tutor:temp.tutor), :class =>"btn btn-danger" %></td>
+          </tr>
+          <% i = i + 1%>
+        <% end %>     
+      </table>
+    <% end %>
+  </div>
+  <center>
+    <br>
+    <div class="digg_pagination">
+      <div class="page_info">
+        <%=page_entries_info @favs %>
+      </div>
+        <%= paginate @favs%>
+    </div>
+  </center>
+</div>
+<br>
+<br>
+<br>
+<br>
