@@ -74,6 +74,10 @@ br
       br
       br
       = social_share_button_tag(@lesson.name,desc: @lesson.description)
+      br
+      br
+      b like this class
+      .fb-like data-action="like" data-layout="standard" data-show-faces="true"
   hr
   .row-fluid.class_show_page
     .span2
@@ -147,4 +151,12 @@ javascript:
       next:   '#next2',
       prev:   '#prev2'
     });
-  }); 
+  });
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=810351318994564&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+ 
