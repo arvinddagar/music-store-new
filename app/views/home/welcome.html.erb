@@ -10,14 +10,8 @@
     <% if  !@fav.blank? %>
       <h2> classes from your favorite teacher</h2>
       <br>
-      <% array = Array.new %>
-      <% @fav.each do |temp| %>
-        <% temp.tutor.lessons.each do |object| %>
-          <% array << object %>
-        <% end %>
-      <% end %>
       <div class="row-fluid">
-        <% array[0..3].each do |object| %>
+        <% @array[0..3].each do |object| %>
           <div class="span3">
             <% if object.pictures.first.present? %>
               <%= image_tag object.pictures.first.image.url,:style=>"width:102%" %>

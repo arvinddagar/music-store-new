@@ -5,6 +5,12 @@ class HomeController < ApplicationController
   def welcome
     if current_student.present?
       @fav = Favorite.where('student_id = ?' , current_student.id)
+      @array = Array.new
+      @fav.each do |temp|
+        temp.tutor.lessons.each do |object|
+          @array << object
+        end
+      end
     else
       @featured_class = Lesson.where(:featured => true)
     end
