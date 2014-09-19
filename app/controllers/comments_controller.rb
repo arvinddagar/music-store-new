@@ -1,5 +1,7 @@
 
 class CommentsController < ApplicationController
+    respond_to :json
+
   def create
     lesson          = Lesson.find(params[:lesson_id])
     comment         = lesson.comments.build comment_params

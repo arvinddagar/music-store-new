@@ -1,6 +1,8 @@
 class LessonsController < ApplicationController
   before_filter :authenticate_user!,
                 only: [:new, :create,:edit,:update,:new_schedule,:create_schedule]
+    respond_to :json
+
   def new
     @lesson = Lesson.new
     # @lesson.pictures.build

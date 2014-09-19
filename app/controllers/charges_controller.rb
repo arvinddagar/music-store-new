@@ -1,4 +1,5 @@
 class ChargesController < ApplicationController
+  respond_to :json
 
 def new
   if Reservation.find_by('student_id = ? AND timing_id = ? AND schedule_id = ? ' , current_student.id ,params[:timing_id],params[:schedule_id]).present?

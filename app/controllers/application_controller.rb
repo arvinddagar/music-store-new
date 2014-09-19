@@ -6,8 +6,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_student,
                 :category_list,
                 :current_tutor
-
-
   def after_sign_in_path_for(resource)
     if resource.is_a?(User) && resource.type == :student && session[:return_to]
       session.delete(:return_to)

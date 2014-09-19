@@ -2,6 +2,7 @@
 class ConversationsController < ApplicationController
   before_filter :authenticate_user!
   helper_method :mailbox, :conversation
+  respond_to :json
 
   def new
     @tutor=Tutor.find(params[:tutor])

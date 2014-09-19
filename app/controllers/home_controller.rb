@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   before_filter :authenticate_user!, only: [:book_class , :favorite]
+    respond_to :json
   
   def welcome
     if current_student.present?
