@@ -73,7 +73,11 @@ br
       b share this class
       br
       br
-      = social_share_button_tag(@lesson.name)
+      - if @lesson.pictures.empty?
+        = social_share_button_tag(@lesson.name,:image =>"no-image.png",:style=>"width:102%",desc: @lesson.description)
+      - else
+        = social_share_button_tag(@lesson.name,:image =>@lesson.pictures.first.image.url,desc: @lesson.description)
+
   hr
   .row-fluid.class_show_page
     .span2
