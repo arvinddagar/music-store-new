@@ -33,6 +33,9 @@ class TutorsController < ApplicationController
 
   def index
     @lessons=current_tutor.lessons.page(params[:page]).per(5)
+    if params[:format] == "json"
+      render json: @lessons
+    end
   end
 
   def create

@@ -7,11 +7,17 @@ class StudentsController < ApplicationController
   respond_to :json
   def index
     @upcoming_reservations= current_student.reservations.where("class_date > ?", Date.today)
+    if params[:format] == "json"
+      render json: @upcoming_reservations
+    end
   end
   
   def student_class
     @past_reservations= current_student.reservations.where("class_date < ?", Date.today)
     @upcoming_reservations= current_student.reservations.where("class_date > ?", Date.today)
+    if params[:format] == "json"
+      render json: @past_reservations
+    end
   end
 
   def rate
@@ -40,7 +46,11 @@ class StudentsController < ApplicationController
   end
 
   def mylist
+    
     @favs=Favorite.where(:student => current_student).page(params[:page]).per(5)
+    if params[:format] == "json"
+      render json: @favs
+    end
   end
 
 
@@ -50,8 +60,10 @@ class StudentsController < ApplicationController
   end
   
   def reservations
-    # binding.pry
     @reservations=current_student.reservations.all
+    if params[:format] == "json"
+      render json: @reservations
+    end
   end
 
   def create
