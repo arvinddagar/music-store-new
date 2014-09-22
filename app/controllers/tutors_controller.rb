@@ -4,13 +4,14 @@ class TutorsController < ApplicationController
                      only: [:complete_registration, :complete]
   before_filter :authenticate_user!,
                 only: [:index, :update, :complete_registration]
-  respond_to :json
+  
   def new
     @tutor = Tutor.new
     @tutor.build_user
     @student = Student.new
     @student.build_user
   end
+  
   def feedback_reminder
     @lessons=Lesson.all
     @lessons.each do |reser|
@@ -39,6 +40,7 @@ class TutorsController < ApplicationController
     if @tutor.save
       sign_in @tutor.user
       redirect_to root_url
+      format.json { render  @tutor }
     else
       flash.now[:alert] = 'Error in registration'
       render :new

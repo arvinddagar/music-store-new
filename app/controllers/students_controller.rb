@@ -58,6 +58,7 @@ class StudentsController < ApplicationController
     @student = Student.new(student_params)
     if @student.save
       sign_in @student.user
+      format.json { render  @student }
       redirect_to root_url
     else
       flash.now[:alert] = 'Error in registration. !!'

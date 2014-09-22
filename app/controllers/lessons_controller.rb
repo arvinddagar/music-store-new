@@ -1,18 +1,20 @@
 class LessonsController < ApplicationController
   before_filter :authenticate_user!,
                 only: [:new, :create,:edit,:update,:new_schedule,:create_schedule]
-    respond_to :json
-
+ 
   def new
     @lesson = Lesson.new
     # @lesson.pictures.build
   end
 
+  
   def create
     @lesson = current_user.tutor.lessons.new(lesson_params)
-    @lesson.save
-    flash[:info] = 'Class created'
-    redirect_to new_schedule_path(:lesson_id => @lesson)
+    if @lesson.save
+      flash[:info] = 'Class created'
+      redirect_to new_schedule_path(:lesson_id => @lesson)
+      format.json { render  @lesson }
+    end
   end
 
   def edit
@@ -45,15 +47,24 @@ class LessonsController < ApplicationController
       redirect_to tutors_path
     end
  end
+ 
  def show
     @lesson=Lesson.find(params[:id])
     @reviews=@lesson.comments
-  end
+ end
   
   def show_profile
     session['referer'] = request.env["HTTP_REFERER"]
     @tutor=Tutor.find(params[:id])
     @lessons=Tutor.find(params[:id]).lessons
+    if "#{params[:id]}".split(//).last(4).join == "json"
+      render json: @tutor
+    end
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    #   # format.json { :id => @tutor.id, :format => :json }
+    #   #format.json { render json: @tutor,:id => @tutor.id }
+    # end
   end
 
   def map
