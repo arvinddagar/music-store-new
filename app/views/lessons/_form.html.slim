@@ -73,6 +73,11 @@
         = f.number_field :maximum_people, class:"textbox_1"
         br
       .row
+        h2 images for this Lessons
+        - if @lesson.pictures.present?
+          - @lesson.pictures.each do |pic|
+            = image_tag pic.image.url,size: "150x150"
+            | &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         h2 Add images for Lessons
         = f.fields_for :pictures
         = f.link_to_add "Add a More Image", :pictures
