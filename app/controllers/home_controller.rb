@@ -77,6 +77,9 @@ class HomeController < ApplicationController
   	  @lessons=Lesson.search(params[:search])
     else
       @lessons = Lesson.all
+      if params[:format] == "json"
+          render json: @lessons
+      end
     end
   end
   def book_class
