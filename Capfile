@@ -6,7 +6,7 @@ require 'capistrano/deploy'
 require 'capistrano/rvm'
 set :rvm_type, :user                     # Defaults to: :auto
 set :rvm_ruby_version, '2.1.2p95'      # Defaults to: 'default'
-set :rvm_custom_path, '/home/deploy_music_store/.rvm'
+set :rvm_custom_path, '/home/music-store/.rvm'
 # only needed if not detected
 # Includes tasks from other gems included in your Gemfile
 #
