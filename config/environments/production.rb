@@ -90,5 +90,5 @@ Rails.application.configure do
       enable_starttls_auto: true  }
     ActionMailer::Base.delivery_method = :smtp
 
-      config.action_mailer.default_url_options = { host: "http://104.131.125.87/" }
+      config.action_mailer.default_url_options = { host: "104.131.125.87" }
 end
