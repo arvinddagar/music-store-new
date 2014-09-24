@@ -1,0 +1,57 @@
+<header>
+  <div id="main-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="logo">
+            <a href="#">
+            <%= link_to image_tag("logo.png"), root_path %>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="search-box">
+            <form name="search_form" method="get" class="search_form">
+              <input id="search" type="text" />
+              <input type="submit" id="search-button" />
+            </form>
+          </div>
+        </div>
+        <div class="col-md-3 pull-right">
+          <div class="main-menu">
+            <% if user_signed_in? %>
+              <% if current_user.student? %>
+                <ul>
+                  <li>
+                    <%=link_to "Dashboard",students_path %>
+                  </li>
+                  <li>
+                    <%= link_to "sign out", destroy_user_session_path, method: :delete %>
+                  </li>
+                </ul>
+              <% else %>
+                <ul>
+                  <li>
+                    <%=link_to "Dashboard",tutors_path %>
+                  </li>
+                  <li>
+                    <%=link_to "Logout", destroy_user_session_path, method: :delete %>
+                  </li>
+                </ul>
+              <% end %>
+            <% else %>
+              <ul>
+                <li>
+                  <%= link_to "signin",new_user_session_path %>
+                </li>
+                <li>
+                  <%= link_to "Join Us",new_tutor_path %>
+                </li>
+              </ul>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
