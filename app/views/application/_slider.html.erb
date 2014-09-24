@@ -7,15 +7,14 @@
           <p>Donec justo dui, semper vitae aliquam euzali, ornare pretium enim. Maecenas molestie diam
             <br><br>eget tellus luctus fermentum.
           </p>
-          <form class="col-sm-12 " id="searchForm">
+          <%= form_tag search_classes_path , :class => "col-sm-12 ",:id => "searchForm", :method => :get do %>
             <div class="form-group col-sm-4 col-sm-offset-4 " >
               <div class="input-group input-group-lg center-block">
-                <input type="text" class="form-control neetu" placeholder="What whould you like to learn ?" style="width:80%     !important;">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-search">
-                </i></span>
-              </div>
+                <%= text_field_tag :search, params[:search],:class=>"form-control neetu",:placeholder => "What whould you like to learn ?",:style=>'width:80%     !important;' %>
+                  <%= submit_tag "Search", :name => nil, :class=>"btn btn-info button_search",:style=>'margin-top: -12%;margin-left: 82%;width: 41%;height: 47px;'%>
+                </div>
             </div>
-          </form>
+          <%end%>
         </div>
         <%= image_tag ("slide2.jpg") %>
       </li>
@@ -23,8 +22,16 @@
         <div class="slider-caption">
           <h1>Live Classes</h1>
           <p>Nulla id iaculis ligula. Vivamus mattis quam eget urna tincidunt consequat. Nullam 
-            <br><br>consectetur tempor neque vitae iaculis. Aliquam erat volutpat.
+            <br><br>consectetur tempor neque vitae iaculis. Aliquam erat volutpat
           </p>
+          <%= form_tag search_classes_path , :class => "col-sm-12 ",:id => "searchForm", :method => :get do %>
+            <div class="form-group col-sm-4 col-sm-offset-4 " >
+              <div class="input-group input-group-lg center-block">
+                <%= text_field_tag :search, params[:search],:class=>"form-control neetu",:placeholder => "What whould you like to learn ?",:style=>'width:80%     !important;' %>
+                  <%= submit_tag "Search", :name => nil, :class=>"btn btn-info button_search",:style=>'margin-top: -12%;margin-left: 82%;width: 41%;height: 47px;'%>
+                </div>
+            </div>
+          <%end%>
         </div>
         <%= image_tag ("slide2.jpg") %>
       </li>
@@ -34,6 +41,14 @@
           <p>Maecenas fermentum est ut elementum vulputate. Ut vel consequat urna. Ut aliquet 
             <br><br>ornare massa, quis dapibus quam condimentum id.
           </p>
+          <%= form_tag search_classes_path , :class => "col-sm-12 ",:id => "searchForm", :method => :get do %>
+            <div class="form-group col-sm-4 col-sm-offset-4 " >
+              <div class="input-group input-group-lg center-block">
+                <%= text_field_tag :search, params[:search],:class=>"form-control neetu",:placeholder => "What whould you like to learn ?",:style=>'width:80%     !important;' %>
+                  <%= submit_tag "Search", :name => nil, :class=>"btn btn-info button_search",:style=>'margin-top: -12%;margin-left: 82%;width: 41%;height: 47px;'%>
+                </div>
+            </div>
+          <%end%>
         </div>
         <%= image_tag ("slide2.jpg") %>
       </li>
