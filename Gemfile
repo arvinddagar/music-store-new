@@ -34,6 +34,7 @@ gem 'capistrano', '~> 3.0'
 gem 'capistrano-rvm'
 gem "kaminari"
 gem 'social-share-button', '~> 0.1.6'
+gem 'font-awesome-sass', '~> 4.2.0'
 group :development do
   gem 'better_errors'
   gem 'letter_opener'
