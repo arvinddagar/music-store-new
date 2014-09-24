@@ -13,7 +13,7 @@ class LessonsController < ApplicationController
     if @lesson.save
       flash[:info] = 'Class created'
       redirect_to new_schedule_path(:lesson_id => @lesson)
-      format.json { render  @lesson }
+      # format.json { render  @lesson }
     end
   end
 
