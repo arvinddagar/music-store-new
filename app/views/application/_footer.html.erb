@@ -1,55 +1,88 @@
-<div class="container">
-  <footer>
-    <div class="row-fluid">
-      <div class="span3">
-        <div style="margin-left: 14%;">
-          <h4><u>Company</u></h4>
-          <a href="">About Us</a><br>
-          <a href="">Contact Us</a><br>
-          <a href="">Blog</a><br>
-          <a href="">Legal</a><br>
+<footer>
+  <div class="container">
+    <div class="top-footer">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="subscribe-form">
+            <span>Get in touch with us</span>
+            <form method="get" class="subscribeForm">
+              <input id="subscribe" type="text" />
+              <input type="submit" id="submitButton" />
+            </form>
+          </div>
         </div>
-      </div>
-      <div class="span3">
-        <div style="margin-left: -7%;">
-          <h4><u>Getting Started</u></h4>
-          <a href="">How it Works</a><br>
-          <a href="">Trainer Profile Tip</a><br>
-          <a href="">FAQs</a><br>
-        </div>
-      </div>
-      <div class="span2">
-        <div style="margin-left: -30%;">
-          <h4><u>Popular Cities</u></h4>
-          <a href="">Boston</a><br>
-          <a href="">New York</a><br>
-          <a href="">Los Angeles</a><br>
-        </div>
-      </div>
-      <div class="span2">
-        <div style="margin-left: -19%;">
-          <h4><u>Popular Classes</u></h4>
-          <a href="">Yoga</a><br>
-          <a href="">Fitness</a><br>
-          <a href="">Dance</a><br>
-          <a href="" data-toggle="modal" data-target="#modal-contact-form">Contact us</a>
-        </div>
-      </div>
-      <div class="span2">
-        <div style="margin-left: -19%;">
-          <h4><u>Connect With Us</u></h4>
-          <a href="">
-          <%= image_tag("google.png", height: '32', width: '32') %>
-          </a>&nbsp&nbsp&nbsp
-          <a href=""><%= image_tag("linkd.png", height: '32', width: '32') %></a>&nbsp&nbsp&nbsp
-          <a href=""><%= image_tag("fb.png", height: '32', width: '32') %></a>&nbsp&nbsp&nbsp
-          <a href="" style="margin-left: -5%;">
-          <%= image_tag("twitter.png", height: '32', width: '32') %>
-          </a>
-          <br>
-          <br>
+        <div class="col-md-2">
+          <div class="social-bottom">
+            <span>Follow us:</span>
+            <ul>
+              <li><a href="#" class="fa fa-facebook"></a></li>
+              <li><a href="#" class="fa fa-twitter"></a></li>
+              <li><a href="#" class="fa fa-rss"></a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </footer>
-</div>
+    <div class="main-footer">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="about">
+            <h4 class="footer-title">About E-Tutorials</h4>
+            <p>E-tutorials is <a rel="nofollow" href="http://www.templatemo.com">Online Courses Website</a> by There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain.
+              <br><br>Credit goes to <a rel="nofollow" href="http://google.com">Abcde</a> for study There is no one who loves pain itself, who seeks after it.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="shop-list">
+            <h4 class="footer-title">Learn More</h4>
+            <ul>
+              <li><a href="#"><i class="fa fa-angle-right"></i>How to get here</a></li>
+              <li><a href="#"><i class="fa fa-angle-right"></i>Our History</a></li>
+              <li><a href="#"><i class="fa fa-angle-right"></i>Events</a></li>
+              <li><a href="#"><i class="fa fa-angle-right"></i>New Releases</a></li>
+              <li><a href="#"><i class="fa fa-angle-right"></i>Staff Favorites</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="recent-posts">
+            <h4 class="footer-title">Recent Blog Entries</h4>
+            <div class="recent-post">
+              <div class="recent-post-thumb">
+                <%= image_tag('recent-post1.jpg') %>
+              </div>
+              <div class="recent-post-info">
+                <h6><a href="#">Delicious and Healthy Menus</a></h6>
+                <span>24/12/2084</span>
+              </div>
+            </div>
+            <div class="recent-post">
+              <div class="recent-post-thumb">
+                <%= image_tag('recent-post2.jpg') %>
+              </div>
+              <div class="recent-post-info">
+                <h6><a href="#">Simple and effective meals</a></h6>
+                <span>18/12/2084</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="more-info">
+            <h4 class="footer-title">More info</h4>
+            <p>Sed dignissim, diam id molestie faucibus, purus nisl pretium quam, in pulvinar velit massa id elit.</p>
+            <ul>
+              <li><i class="fa fa-phone"></i>000-000-0000</li>
+              <li><i class="fa fa-globe"></i>123 Dabcde Sdksjhd, Yhdiefy Street, Dbxkhskhsk bs</li>
+              <li><i class="fa fa-envelope"></i><a href="#">mail@demolink.com</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-footer">
+      <p>Copyright © 2014 <a href="#">Your Company Name</a></p>
+    </div>
+  </div>
+</footer>

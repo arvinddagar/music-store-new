@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
   before_filter :authenticate_user!, only: [:book_class , :favorite]
     respond_to :json
+
+  layout 'application_new', :only => [:welcome]
   
   def welcome
     if current_student.present?
@@ -15,6 +17,7 @@ class HomeController < ApplicationController
       @featured_class = Lesson.where(:featured => true)
     end
   end
+  
   
   def class_search
     @lessons_price=Lesson.all.sort { |a, b| b.price.to_i <=> a.price.to_i }

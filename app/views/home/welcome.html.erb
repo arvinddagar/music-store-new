@@ -1,68 +1,76 @@
-<br>
-<br>
-<br>
-<br>
-<div class="container">
-  <div id="banner">
-    <%= image_tag "slider_1.png",:style=>"width:100%" %>
-  </div>    
-  <% if current_student.present? %>
-    <% if  !@fav.blank? %>
-      <h2> classes from your favorite teacher</h2>
-      <br>
-      <div class="row-fluid">
+<%=  render 'application/slider' %>
+<div id="latest-blog">
+  <div class="container">
+    <% if current_student.present? %>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="heading-section">
+            <h2>Classes from your Favorite teacher</h2>
+            <%= image_tag ('under-heading.png') %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
         <% @array[0..3].each do |object| %>
-          <div class="span3">
-            <% if object.pictures.first.present? %>
-              <%= image_tag object.pictures.first.image.url,:style=>"width:102%" %>
-            <% else %>
-              <%= image_tag "no-image.png",:style=>"width:102%" %>
-            <% end %>
-            <h4><%=link_to object.name, lesson_path(object),'data-turbolink' => true%></h4>
-            <p align="justify">
-              <%=truncate(object.description, :length => 100)%>
-            </p>  
-            <b>
-              <%= link_to object.tutor.first_name.capitalize+" "+object.tutor.last_name.capitalize,show_profile_path(:id=>object.tutor),:style=>"margin-left: 11%;" %>
-            </b>  
+          <div class="col-md-4 col-sm-6">
+            <div class="blog-post">
+              <div class="blog-thumb">
+                <% if object.pictures.first.present? %>
+                  <%= image_tag object.pictures.first.image.url,:style=>"height:40%";  %>
+                <% else %>
+                  <%= image_tag "no-image.png",:style=>"height:40%"; %>
+                <% end %>
+              </div>
+              <div class="blog-content">
+                <div class="content-show">
+                  <h4><%=link_to object.name, lesson_path(object)%></h4>
+                  <span><%=object.created_at.strftime("%d-%b-%y")%></span>
+                </div>
+                <div class="content-hide">
+                  <p>
+                    <%=truncate(object.description, :length => 100)%>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         <% end %>
       </div>
     <% else %>
-      <h2> classes from your favorite teacher is not present</h2>
-    <%end%>
-  <%else%>
-    <% if  !@featured_class.blank? %>  
-      <h2>Featured Class </h2>
-      <br>
-      <div class="row-fluid">
-        <% @featured_class[0..3].each do |object| %>
-          <div class="span3">
-            <% if object.pictures.first.present? %>
-              <%= image_tag object.pictures.first.image.url,:style=>"width:102%" %>
-            <% else %>
-              <%= image_tag "no-image.png",:style=>"width:102%" %>
-            <% end %>
-            <h4><%=link_to object.name, lesson_path(object)%></h4>
-            <p align="justify">
-              <%=truncate(object.description, :length => 100)%>
-            </p>  
-            <b>
-              <%= link_to object.tutor.first_name.capitalize+" "+object.tutor.last_name.capitalize,show_profile_path(:id=>object.tutor),:style=>"margin-left: 11%;" %>
-            </b>  
+      <div class="row">
+        <div class="col-md-12">
+          <div class="heading-section">
+            <h2>Featured Classes</h2>
+            <%= image_tag ('under-heading.png') %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <% @featured_class.each do |object| %>
+          <div class="col-md-4 col-sm-6">
+            <div class="blog-post">
+              <div class="blog-thumb">
+                <% if object.pictures.first.present? %>
+                  <%= image_tag object.pictures.first.image.url,:style=>"height:40%";  %>
+                <% else %>
+                  <%= image_tag "no-image.png",:style=>"height:40%"; %>
+                <% end %>
+              </div>
+              <div class="blog-content">
+                <div class="content-show">
+                  <h4><%=link_to object.name, lesson_path(object)%></h4>
+                  <span><%=object.created_at.strftime("%d-%b-%y")%></span>
+                </div>
+                <div class="content-hide">
+                  <p>
+                    <%=truncate(object.description, :length => 100)%>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         <% end %>
       </div>
-    <% else %>
-      <h2>There are no featured Class </h2>
-      <br>
     <% end %>
-  <% end %>
-  <br>
-  <br>  
-  <div class="readmore" style="text-align: center; padding: 5px 0 0 0;">
-    <%= link_to "click here to list all classes",search_classes_path, {:style=>'color: #fff; font-size: 20px; margin: 0; padding: 0; display: inline-block; vertical-align: top; background: #c81e28; border-radius: 7px; height: 60px; line-height: 60px; padding: 0 25px;', :class => "css_class"} %> 
   </div>
 </div>
-<br>
-<br>

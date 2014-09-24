@@ -10,6 +10,7 @@
   <%= javascript_include_tag 'gmaps/google', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'social-share-button', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href=  "/assets/font-config.scss" rel="stylesheet" %>
 </head>
 <body>
   <%= render 'header'%>
@@ -20,6 +21,6 @@
     </div>
   <% end %>
   <%= yield %>
-  <%= render 'footer'%>
+  <%= render 'footer_old'%>
 </body>
-</html>
+</html>s
