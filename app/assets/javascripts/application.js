@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-//= shared.js
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery_nested_form
+//= require_tree .
