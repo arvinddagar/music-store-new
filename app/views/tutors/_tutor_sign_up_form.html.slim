@@ -1,45 +1,29 @@
-.container  
-  .signup style="margin-top:10px;"
-    h3 Signup as tutor
-    = form_for @tutor do |f|
-      - if @tutor.errors.any?
-        #has-error
-          h4
-            = pluralize(@tutor.errors.count, "error")
-            | &nbsp&nbspprohibited
-            | &nbsp&nbspthis form from being saved:
-          ul
-            - @tutor.errors.full_messages.each do |msg|
-              li= msg
-      = f.fields_for :user do |user|
-          br/
-          = user.label :email
-          br/
-          = user.email_field :email, autofocus: true,:class=>"textbox_1"
-          br/
-          = user.label :password
-          br/
-          = user.password_field :password, autocomplete: "off",:class=>"textbox_1"
-          = user.hidden_field :user_type, :value => "true"
-          br/
-          = f.label 'First name'
-          br/
-          = f.text_field :first_name, autocomplete: "off",:class=>"textbox_1"
-          br
-          = f.label 'Last name'
-          br
-          = f.text_field :last_name, autocomplete: "off",:class=>"textbox_1"
-          br
-          uname style="display: none;"
-            = f.label 'username'
-            br
-            = f.text_field :user_name, autocomplete: "off",:class=>"textbox_1"
-            = f.hidden_field :user_name, :id=>"usname"
-            br
-          #err-uname
-
-          = f.button class: "btn btn-success",:style=>"margin-top:20px; margin-bottom:20px;",:id=>"uniq"
-
+= form_for @tutor do |f|
+  - if @tutor.errors.any?
+    #has-error
+      h4
+        = pluralize(@tutor.errors.count, "error")
+        | &nbsp&nbspprohibited
+        | &nbsp&nbspthis form from being saved:
+      ul
+        - @tutor.errors.full_messages.each do |msg|
+          li= msg
+  = f.fields_for :user do |user|
+    = user.label :email
+    = user.email_field :email, autofocus: true,:class=>"input-block-level"
+    = user.label :password
+    = user.password_field :password, autocomplete: "off",:class=>"input-block-level"
+    = user.hidden_field :user_type, :value => "true"
+    = f.label 'First name'
+    = f.text_field :first_name, autocomplete: "off",:class=>"input-block-level"
+    = f.label 'Last name'
+    = f.text_field :last_name, autocomplete: "off",:class=>"input-block-level"
+    uname style="display: none;"
+      = f.label 'username'
+      = f.text_field :user_name, autocomplete: "off",:class=>"input-block-level"
+      = f.hidden_field :user_name, :id=>"usname"
+      #err-uname
+    = f.button class: "btn",:style=>"margin-top:20px; margin-bottom:20px;",:id=>"uniq"
 javascript:
   $( "#tutor_last_name" ).blur(function() {
    $.ajax('/check_username',{

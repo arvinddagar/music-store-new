@@ -1,4 +1,5 @@
 class Devise::SessionsController < DeviseController
+  layout 'aaplication_login', :only => [:new]
   prepend_before_filter :require_no_authentication, only: [ :new, :create ]
   prepend_before_filter :allow_params_authentication!, only: :create
   prepend_before_filter :verify_signed_out_user, only: :destroy
@@ -6,6 +7,11 @@ class Devise::SessionsController < DeviseController
 
   # GET /resource/sign_in
   def new
+        @tutor = Tutor.new
+    @tutor.build_user
+
+    @student = Student.new
+    @student.build_user
     self.resource = resource_class.new(sign_in_params)
     clean_up_passwords(resource)
     respond_with(resource, serialize_options(resource))
