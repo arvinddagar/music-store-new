@@ -12,6 +12,9 @@ class Devise::PasswordsController < DeviseController
   # POST /resource/password
   def create
    
+
+
+   
     @tutor = Tutor.new
     @tutor.build_user
     @student = Student.new

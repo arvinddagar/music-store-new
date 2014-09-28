@@ -3,7 +3,6 @@ class HomeController < ApplicationController
     respond_to :json
 
   layout 'application_new', :only => [:welcome]
-  
   def welcome
     if current_student.present?
       @fav = Favorite.where('student_id = ?' , current_student.id)
