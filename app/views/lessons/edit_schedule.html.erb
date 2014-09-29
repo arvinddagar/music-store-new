@@ -21,4 +21,11 @@
   <br>
   <b> you have to create a new schedule </b>
 
+
+<%= link_to 'create schedule', new_schedule_path(:lesson_id => params[:lesson_id]) %>
+
+
+
 <% end %>
+
+<!-- Day.find_by(:schedule_id => 11) -->
