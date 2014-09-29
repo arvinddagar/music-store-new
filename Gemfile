@@ -16,6 +16,7 @@ gem 'omniauth-facebook'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem "omniauth-google-oauth2"
+gem 'bootstrap-kaminari-views'
 gem 'omniauth-linkedin'
 gem 'sunspot_rails'
 gem 'sunspot_solr'

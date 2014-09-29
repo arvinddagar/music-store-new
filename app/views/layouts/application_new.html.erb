@@ -1,17 +1,18 @@
 <html>
   <head>
     <title>App</title>
-    <link href=  "/assets/bootstrap.css" rel="stylesheet" %>
-    <link href=  "/assets/bootstrap-responsive.css" rel="stylesheet" %>
-    <link href=  "/assets/font-config.scss" rel="stylesheet" %>
-    <link href=  "/assets/templatemo_misc.css" rel="stylesheet" %>
-    <link href=  "/assets/templatemo_style.css" rel="stylesheet" %>
-    <link href=  "/assets/flexslider.css" rel="stylesheet" %>
-    <link href=  "/assets/testimonails-slider" rel="stylesheet" %>
+    <link href=  "/assets/bootstrap.css" rel="stylesheet" />
+    <link href="/assets/profile.css?body=1" media="all" rel="stylesheet" />
+    <link href=  "/assets/bootstrap-responsive.css" rel="stylesheet" />
+    <link href=  "/assets/font-config.scss" rel="stylesheet" />
+    <link href=  "/assets/templatemo_misc.css" rel="stylesheet" />
+    <link href=  "/assets/templatemo_style.css" rel="stylesheet" />
+    <link href=  "/assets/flexslider.css" rel="stylesheet" />
+    <link href=  "/assets/testimonails-slider" rel="stylesheet" />
     <script src="assets/vendor/jquery-1.11.0.min.js"></script>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <script src="assets/vendor/jquery.gmap3.min.js"></script>
     <script src="assets/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'plugins', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'bootstrap', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'main', 'data-turbolinks-track' => true %>
@@ -20,11 +21,11 @@
   <body>
     <%= render 'header_new'%>
     <% flash.each do |type, message| %>
-      <div class="alert flash_message" style="margin-top:5%;">
-        <button class="close" data-dismiss="alert">×</button>
-        <%= message %>
-      </div>
-    <% end %>
+    <div class="alert flash_message" style="margin-top:5%;">
+      <button class="close" data-dismiss="alert">×</button>
+      <%= message %>
+    </div>
+  <% end %>
     <%= yield %>
     <%= render 'footer'%>
   </body>
