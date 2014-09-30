@@ -7,6 +7,7 @@
     <link href=  "/assets/font-config.scss" rel="stylesheet" />
     <link href=  "/assets/templatemo_misc.css" rel="stylesheet" />
     <link href=  "/assets/templatemo_style.css" rel="stylesheet" />
+    <link href=  "/assets/preview.css" rel="stylesheet" />
     <link href=  "/assets/flexslider.css" rel="stylesheet" />
     <link href=  "/assets/testimonails-slider" rel="stylesheet" />
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -19,7 +20,7 @@
     <%= javascript_include_tag 'main', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
-  <body>
+  <body class="eternity-form scroll-animations-activated">
     <%= render 'header_new'%>
     <% flash.each do |type, message| %>
     <div class="alert flash_message" style="margin-top:5%;">

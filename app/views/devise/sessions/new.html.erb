@@ -1,0 +1,51 @@
+<section class="colorBg1 colorBg active" id="demo1" data-panel="first">
+  <div class=" container">
+    <div class="login-form-section">
+      <div class="login-content  animated bounceIn" data-animation="bounceIn">
+        <%= form_for resource , as: resource_name, url: session_path(resource_name), remote: true do |f|%>
+          <div class="section-title">
+            <h3>Login to your Account</h3>
+            <div class="error">
+              <div class="log_in">
+            </div>
+            </div>
+          </div>
+          <div class="textbox-wrap">
+            <div class="input-group" style="width: 100%;">
+              <span class="input-group-addon "><i class="icon-user icon-color"></i></span>
+              <%= f.email_field :email, autofocus: true,:class=>"form-control",  required: true, :placeholder => "Email Address", :style=>"margin-top: 2%;" %>
+            </div>
+          </div>
+          <div class="textbox-wrap">
+            <div class="input-group" style="width: 100%;">
+              <span class="input-group-addon "><i class="icon-key icon-color"></i></span>
+              <%= f.password_field :password, autocomplete: "off",:class=>"form-control",  required: true, :placeholder => "Password", :style=>"margin-top: 2%;"%>
+            </div>
+          </div>
+          <div class="login-form-action clearfix">
+            <div class="checkbox pull-left">
+              <div class="custom-checkbox">
+                <div style="position: relative;" class="icheckbox_square-blue checked"><input style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;" checked="checked" name="iCheck" type="checkbox"><ins style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div>
+              </div>
+              <span class="checkbox-text pull-left">&nbsp;Remember Me</span>
+            </div>
+            <%#= f.submit "Sign in",:class=>"btn btn-info" %>
+            <button type="submit" class="btn btn-success pull-right green-btn">LogIn &nbsp; <i class="icon-chevron-right"></i></button>
+          </div>
+        <%end%>
+      </div>
+      <div style="animation-delay: 0.2s;" class="login-form-links link1  animated fadeInLeftBig" data-animation="fadeInLeftBig" data-animation-delay=".2s">
+        <h4 class="blue">Don't have an Account?</h4>
+        <span>No worry</span>
+        <a href="#demo2" class="blue">Click Here</a>
+        <span>to Register</span>
+      </div>
+      <div style="animation-delay: 0.4s;" class="login-form-links link2  animated fadeInRightBig" data-animation="fadeInRightBig" data-animation-delay=".4s">
+        <h4 class="green">Forget your Password?</h4>
+        <span>Dont worry</span>
+        <a href="#demo3" class="green">Click Here</a>
+        <span>to Get New One</span>
+      </div>
+    </div>
+  </div>
+</section>
