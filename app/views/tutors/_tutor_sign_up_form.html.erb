@@ -1,0 +1,49 @@
+<div class="col-sm-6 registration-right-section" data-animation="fadeInUp">
+  <%= form_for @tutor do |f| %>
+    <% if @tutor.errors.any? %>
+      <div class="alert alert-error">
+        <h4><%=pluralize(@tutor.errors.count, "error") %></h4>
+        <ul>
+          <% @tutor.errors.full_messages.each do |msg| %>
+            <li>
+              <%= msg %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= f.fields_for :user do |user| %>
+      <div class="reg-content">
+        <h4 style="color : #3498db; font-weight:Bold; margin-left:10px;"><i class="fa fa-user" ></i>&nbsp;&nbsp;Register As a Tutor</h4>
+        <div class="textbox-wrap">
+          <div class="input-group">
+            <span class="input-group-addon "><i class="icon-user icon-color"></i></span>
+            <%= f.text_field :first_name, autocomplete: "off",:class=>"form-control",:placeholder => "First Name" %>
+          </div>
+        </div>
+        <div class="textbox-wrap">
+          <div class="input-group">
+            <span class="input-group-addon "><i class="icon-user icon-color"></i></span>
+            <%= f.text_field :last_name, autocomplete: "off",:class=>"form-control",:placeholder => "Last Name" %>
+          </div>
+        </div>
+        <div class="textbox-wrap">
+          <div class="input-group">
+            <span class="input-group-addon "><i class="icon-envelope icon-color"></i></span>
+            <%= user.email_field :email, autofocus: true,:class=>"form-control",:placeholder => "Email" %>
+          </div>
+        </div>
+        <div class="textbox-wrap">
+          <div class="input-group">
+            <span class="input-group-addon "><i class="icon-key icon-color"></i></span>
+            <%= user.password_field :password, autofocus: true,:class=>"form-control",:placeholder => "Password" %>
+            <%= user.hidden_field :user_type, :value => "true" %>
+          </div>
+        </div>
+        <div class="textbox-wrap">
+          <%= f.button class: "btn btn-success pull-right blue-btn  " %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
