@@ -37,14 +37,21 @@
       <div style="animation-delay: 0.2s;" class="login-form-links link1  animated fadeInLeftBig" data-animation="fadeInLeftBig" data-animation-delay=".2s">
         <h4 class="blue">Don't have an Account?</h4>
         <span>No worry</span>
-        <a href="#demo2" class="blue">Click Here</a>
+        <%= link_to "Click Here",new_tutor_path, :class => "blue" %>
         <span>to Register</span>
       </div>
       <div style="animation-delay: 0.4s;" class="login-form-links link2  animated fadeInRightBig" data-animation="fadeInRightBig" data-animation-delay=".4s">
         <h4 class="green">Forget your Password?</h4>
         <span>Dont worry</span>
-        <a href="#demo3" class="green">Click Here</a>
+        <!-- <a href="#demo3" class="green">Click Here</a> -->
+        <%= link_to "Click Here", new_password_path(resource_name),'data-no-turbolink' => true %><br />
         <span>to Get New One</span>
+      </div>
+      <div style="animation-delay: 0.6s;" class="login-form-links link1  animated fadeInLeftBig" data-animation="fadeInLeftBig" data-animation-delay=".6s">
+        <h4 class="blue">Did'nt Receive Mail Confirmation?</h4>
+          <span>No worry</span>
+        <%= link_to "click here", new_confirmation_path(resource_name),'data-no-turbolink' => true %>
+        <span>to Register</span>
       </div>
     </div>
   </div>

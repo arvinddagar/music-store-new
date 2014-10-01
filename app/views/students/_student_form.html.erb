@@ -1,30 +1,49 @@
-    <%= form_for @student do |f| %>
-      <% if @student.errors.any? %>
-        <div class="alert.alert-error">
-          <h4>
-            <%= pluralize(@student.errors.count, "error") %>
-          </h4>
-          <ul>
-            <% @student.errors.full_messages.each do |msg| %>
-              <li>
-                <%=msg%>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-      <%= f.fields_for :user do |user| %>
-        <label>Email</label>
-        <%=user.email_field :email, autofocus: true,:class=>"input-block-level",  required: true%>
-        <label>Password</label>
-        <%= user.password_field :password, autocomplete: "off",:class=>"input-block-level",  required: true%>
-        <%=user.hidden_field :user_type,:value=>"false" %>
-        <label>FirstName</label>
-        <%=f.text_field :first_name, autocomplete: "off",:class=>"input-block-level",  required: true%>
-        <label>LastName</label>
-        <%=f.text_field :last_name, autocomplete: "off",:class=>"input-block-level",  required: true%>
-        <br>
-        <%= f.button class: "btn",:style=>"margin-bottom:20px;" %>
-<!--         <a href="#" class=" btn  ">Register Now&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-sign-right"></i></a> -->
-      <% end %>
+<div class="col-sm-6 registration-left-section" data-animation="fadeInUp">
+  <%= form_for @student do |f| %>
+    <% if @student.errors.any? %>
+      <div class="alert alert-error">
+        <h4><%=pluralize(@student.errors.count, "error") %></h4>
+        <ul>
+          <% @student.errors.full_messages.each do |msg| %>
+            <li>
+              <%= msg %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
+    <%= f.fields_for :user do |user| %>
+      <div class="reg-content">
+        <h4 style="color : #3498db; font-weight:Bold; margin-left:10px;"><i class="fa fa-user" ></i>&nbsp;&nbsp; Register As a Student</h4>
+        <div class="textbox-wrap" >
+          <div class="input-group">
+            <span class="input-group-addon "><i class="icon-user icon-color"></i></span>
+            <%= f.text_field :first_name, :class => "form-control" , :placeholder => "First Name", autocomplete: "off" %>
+          </div>
+        </div>
+        <div class="textbox-wrap">
+          <div class="input-group">
+            <span class="input-group-addon "><i class="icon-user icon-color"></i></span>
+            <%= f.text_field :last_name,:class => "form-control" , :placeholder => "Last Name", autocomplete: "off" %>
+          </div>
+        </div>
+        <div class="textbox-wrap">
+          <div class="input-group">
+            <span class="input-group-addon "><i class="icon-envelope icon-color"></i></span>
+            <%= user.email_field :email, :class => "form-control" , :placeholder => "Email" , autofocus: true %>
+          </div>
+        </div>
+        <div class="textbox-wrap">
+          <div class="input-group">
+            <span class="input-group-addon "><i class="icon-key icon-color"></i></span>
+            <%= user.password_field :password, :class => "form-control" , :placeholder => "Password" , autofocus: true %>
+          </div>
+        </div>
+        <%= user.hidden_field :user_type,:value=>"false" %>
+        <div class="textbox-wrap">
+          <%= f.button class: "btn btn-success pull-right blue-btn  " %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

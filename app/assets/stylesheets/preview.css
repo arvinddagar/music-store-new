@@ -11494,22 +11494,22 @@ body {
   background-image: radial-gradient(circle farthest-side at center top, #ffffff 0%, #78c3d1 100%);
 }
 .colorBg.colorBg2 {
-  background-color: #2ecc71;
-  background-image: -ms-radial-gradient(center top, circle farthest-side, #7ee2a8 0%, #2ecc71 100%);
-  background-image: -moz-radial-gradient(center top, circle farthest-side, #7ee2a8 0%, #2ecc71 100%);
-  background-image: -o-radial-gradient(center top, circle farthest-side, #7ee2a8 0%, #2ecc71 100%);
-  background-image: -webkit-gradient(radial, center top, 0, center top, 487, color-stop(0, #7ee2a8), color-stop(1, #2ecc71));
-  background-image: -webkit-radial-gradient(center top, circle farthest-side, #7ee2a8 0%, #2ecc71 100%);
-  background-image: radial-gradient(circle farthest-side at center top, #7ee2a8 0%, #2ecc71 100%);
+   background-color: #78c3d1;
+  background-image: -ms-radial-gradient(center top, circle farthest-side, #ffffff 0%, #78c3d1 100%);
+  background-image: -moz-radial-gradient(center top, circle farthest-side, #ffffff 0%, #78c3d1 100%);
+  background-image: -o-radial-gradient(center top, circle farthest-side, #ffffff 0%, #78c3d1 100%);
+  background-image: -webkit-gradient(radial, center top, 0, center top, 487, color-stop(0, #ffffff), color-stop(1, #78c3d1));
+  background-image: -webkit-radial-gradient(center top, circle farthest-side, #ffffff 0%, #78c3d1 100%);
+  background-image: radial-gradient(circle farthest-side at center top, #ffffff 0%, #78c3d1 100%);
 }
 .colorBg.colorBg3 {
-  background-color: #3498db;
-  background-image: -ms-radial-gradient(center top, circle farthest-side, #8bc4ea 0%, #3498db 100%);
-  background-image: -moz-radial-gradient(center top, circle farthest-side, #8bc4ea 0%, #3498db 100%);
-  background-image: -o-radial-gradient(center top, circle farthest-side, #8bc4ea 0%, #3498db 100%);
-  background-image: -webkit-gradient(radial, center top, 0, center top, 487, color-stop(0, #8bc4ea), color-stop(1, #3498db));
-  background-image: -webkit-radial-gradient(center top, circle farthest-side, #8bc4ea 0%, #3498db 100%);
-  background-image: radial-gradient(circle farthest-side at center top, #8bc4ea 0%, #3498db 100%);
+  background-color: #78c3d1;
+  background-image: -ms-radial-gradient(center top, circle farthest-side, #ffffff 0%, #78c3d1 100%);
+  background-image: -moz-radial-gradient(center top, circle farthest-side, #ffffff 0%, #78c3d1 100%);
+  background-image: -o-radial-gradient(center top, circle farthest-side, #ffffff 0%, #78c3d1 100%);
+  background-image: -webkit-gradient(radial, center top, 0, center top, 487, color-stop(0, #ffffff), color-stop(1, #78c3d1));
+  background-image: -webkit-radial-gradient(center top, circle farthest-side, #ffffff 0%, #78c3d1 100%);
+  background-image: radial-gradient(circle farthest-side at center top, #ffffff 0%, #78c3d1 100%);
 }
 .colorBg.colorBg4 {
   background-color: #9b59b6;
@@ -11732,6 +11732,6 @@ body {
 }
 @media only screen and (min-width: 968px) {
   .no-touch.cssanimations [data-animation] {
-    opacity: 0;
+    opacity: 1;
   }
 }
