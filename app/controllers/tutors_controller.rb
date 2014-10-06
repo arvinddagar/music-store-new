@@ -5,7 +5,7 @@ class TutorsController < ApplicationController
   before_filter :authenticate_user!,
                 only: [:index, :update, :complete_registration]
   
-  layout 'application_new', :only => [:index,:complete_registration,:new]
+  layout 'application_new', :only => [:index,:complete_registration,:new,:show]
   def new
     @tutor = Tutor.new
     @tutor.build_user

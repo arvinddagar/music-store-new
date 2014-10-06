@@ -34,3 +34,9 @@
   padding:5px 10px;
   margin:0px;
 }
+
+p.table_width
+{
+width:36em; 
+word-wrap:break-word;
+}
