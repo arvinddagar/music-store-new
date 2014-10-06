@@ -26,9 +26,9 @@ class TutorsController < ApplicationController
         end
       end
     end
-    if @user.present?
-    NotifierMailer.feedback_reminder(@user).deliver
-    end
+    # if @user.present?
+    # NotifierMailer.feedback_reminder(@user).deliver
+    # end
     redirect_to tutors_url
   end
 
@@ -59,6 +59,9 @@ class TutorsController < ApplicationController
 
   def complete_registration
     @tutor = current_user.tutor
+    if params[:format] == "json"
+      render json: @tutor
+    end
   end
 
   def complete
@@ -95,6 +98,9 @@ class TutorsController < ApplicationController
     today = Date.today # Today's date
     @days_from_this_week = (today.at_beginning_of_week..today.at_end_of_week).map
     @my_earnings =  Earning.where("tutor_id = #{current_tutor.id}")
+    if params[:format] == "json"
+      render json: @my_earnings
+    end
   end
 
 

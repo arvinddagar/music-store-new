@@ -4,6 +4,9 @@ class LessonsController < ApplicationController
  
   def new
     @lesson = Lesson.new
+    if params[:format] == "json"
+      render json: @lesson
+    end
     # @lesson.pictures.build
   end
 

@@ -8,6 +8,11 @@ class ConversationsController < ApplicationController
     @tutor=Tutor.find(params[:tutor])
   end
 
+  def index
+    #         if params[:format] == "json"
+    #   render json: @lesson
+    # end
+  end
   def create
     recipient_emails                = conversation_params(:recipients).split(',')
     recipient                       = User.find_by(email: recipient_emails[0])

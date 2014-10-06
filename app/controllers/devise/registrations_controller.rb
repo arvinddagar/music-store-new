@@ -39,9 +39,15 @@ class Devise::RegistrationsController < DeviseController
   end
 
   # GET /resource/edit
+  
   def edit
-    render :edit
+    if params[:format] == "json"
+      render json: @user
+    else
+      render :edit
+    end
   end
+
 
   # PUT /resource
   # We need to use a copy of the resource because we don't want to change
