@@ -3,32 +3,53 @@
 <% else %>
     <%= render 'application/student_dashboard_partial' %>
 <% end %>
-<div class="container">
-  <h2 style="margin-top:100px;">Edit Profile </h2>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= devise_error_messages! %>
-    <div>
-      <%= f.label :password %>
-      <i>(leave blank if you don't want to change it)</i>
-      <br />
-      <%= f.password_field :password, autocomplete: "off",:class=>"textbox_1" %>
+<section class="colorBg1 colorBg active" id="demo1" data-panel="first">
+  <div class=" container">
+    <div class="login-form-section">
+      <div class="login-content  animated bounceIn" data-animation="bounceIn">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= devise_error_messages! %>
+          <div class="section-title">
+            <h3>Change Password</h3>
+            <div class="error">
+              <div class="log_in">
+            </div>
+            </div>
+          </div>
+          
+          <div class="textbox-wrap">
+            <div class="input-group" style="width: 100%;">
+              <span class="input-group-addon "><i class="icon-key icon-color"></i></span>
+              <%= f.password_field :password, autocomplete: "off",:class=>"form-control",  required: true, :placeholder => "New Password", :style=>"margin-top: 2%;"%>
+            </div>
+          </div>
+
+          <div class="textbox-wrap">
+            <div class="input-group" style="width: 100%;">
+              <span class="input-group-addon "><i class="icon-key icon-color"></i></span>
+              <%= f.password_field :password_confirmation, autocomplete: "off",:class=>"form-control",  required: true, :placeholder => "Re-Enter Password", :style=>"margin-top: 2%;"%>
+            </div>
+          </div>
+
+          <div class="textbox-wrap">
+            <div class="input-group" style="width: 100%;">
+              <span class="input-group-addon "><i class="icon-key icon-color"></i></span>
+              <%= f.password_field :current_password, autocomplete: "off",:class=>"form-control",  required: true, :placeholder => "Current Password", :style=>"margin-top: 2%;"%>
+            </div>
+          </div>
+          
+          
+          <div class="login-form-action clearfix">
+            <div class="checkbox pull-left">
+              <div class="custom-checkbox">
+                <div style="position: relative;" class="icheckbox_square-blue checked"><input style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;" checked="checked" name="iCheck" type="checkbox"><ins style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: none repeat scroll 0% 0% rgb(255, 255, 255); border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div>
+              </div>
+            </div>
+            <%#= f.submit "Sign in",:class=>"btn btn-info" %>
+            <button type="submit" class="btn btn-success pull-right green-btn">change password &nbsp; <i class="icon-chevron-right"></i></button>
+          </div>
+        <%end%>
+      </div>
     </div>
-    </br>
-    <div>
-      <%= f.label :password_confirmation %>
-      <br />
-      <%= f.password_field :password_confirmation, autocomplete: "off",:class=>"textbox_1" %>
-    </div>
-    </br>
-    <div>
-      <%= f.label :current_password %>
-      <i>(we need your current password to confirm your changes)</i>
-      <br />
-      <%= f.password_field :current_password, autocomplete: "off",:class=>"textbox_1" %>
-    </div>
-    </br>
-    <div>
-      <%= f.submit "Update",:class=>"btn btn-info" %>
-    </div>
-  <% end %>
-</div>
+  </div>
+</section>
