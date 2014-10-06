@@ -366,3 +366,8 @@ section:last-child {
 	-moz-animation-delay: 0, 2.5s;
 	animation-delay: 0, 2.5s;
 }
+p.table_width
+{
+width:36em; 
+word-wrap:break-word;
+}
