@@ -9,6 +9,7 @@
     <%= f.time_field :end_time ,:class=>"time_width" %>
   </div>
   <br/>
+  <%= f.hidden_field :max_people, :value => "#{Lesson.find(params[:lesson_id]).maximum_people}" %>
   <div style=" margin-left: -67%; ">
     <%= f.link_to_remove "Remove this Time" %>
   </div>

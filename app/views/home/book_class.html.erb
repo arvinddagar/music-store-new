@@ -57,10 +57,14 @@
                 <%=time.end_time.strftime("%I:%M %p").to_s %>
               </td>
               <td>
-                <%=@lesson.maximum_people %>
+                <%=time.max_people %>
               </td>
               <td>
-                <%= link_to 'Book now',new_charge_path(:id=>params[:id],:schedule_id=> @lesson.schedule.id,:timing_id=>time.id), :class => "btn btn-success"%>
+                <% if time.max_people > 0  %>
+                  <%= link_to 'Book now',new_charge_path(:id=>params[:id],:schedule_id=> @lesson.schedule.id,:timing_id=>time.id), :class => "btn btn-success"%>
+                <% else %>
+                  <p> sorry all slots for this batch is booked </p>
+                <% end %>
               </td>
             </td>
             </tr>

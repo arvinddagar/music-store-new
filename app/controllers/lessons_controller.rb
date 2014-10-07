@@ -183,6 +183,6 @@ class LessonsController < ApplicationController
    end
 
    def schedule_params
-    params.require(:schedule).permit(:lesson_id,days_attributes:[:id,:name,:date,:schedule_id,:_destroy,timings_attributes: [:id,:day_id,:start_time, :end_time,:_destroy]])
+    params.require(:schedule).permit(:lesson_id,days_attributes:[:id,:name,:date,:schedule_id,:_destroy,timings_attributes: [:id,:max_people,:day_id,:start_time, :end_time,:_destroy]])
    end
 end

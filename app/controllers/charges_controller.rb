@@ -34,6 +34,10 @@ def create
     @earning=Earning.new(:amount => Lesson.find(params[:lesson_id]).price, :reservation_id => @reservation_id, :commission => @temp_commision, :tutor_id  => @temp_lesson.tutor.id)
     @earning.save
     @tutor=@temp_lesson.tutor.user
+    t=Timing.find(params[:timing_id])
+    temp=t.max_people
+    t.max_people=temp-1
+    t.save
     @admin="admin@music.com"
     NotifierMailer.admin_confirmation(@admin).deliver
     NotifierMailer.reservation_confirmation(@tutor).deliver
