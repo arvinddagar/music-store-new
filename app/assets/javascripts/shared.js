@@ -179,106 +179,61 @@ $(document).ready(function() {
             },
         },
     })
+    
     $("#new_schedule").validate({
         rules: {
             "schedule[days_attributes][0][timings_attributes][0][start_time]": {
                 required: true
             },
-            "schedule[days_attributes][0][timings_attributes][0][end_time]": {
-                required: true
-            },
-
             "schedule[days_attributes][0][timings_attributes][1][start_time]": {
                 required: true
             },
-            "schedule[days_attributes][0][timings_attributes][1][end_time]": {
-                required: true
-            },
-
-
+ 
             "schedule[days_attributes][1][timings_attributes][0][start_time]": {
                 required: true
             },
-            "schedule[days_attributes][1][timings_attributes][0][end_time]": {
-                required: true
-            },
-
+ 
             "schedule[days_attributes][1][timings_attributes][1][start_time]": {
                 required: true
             },
-            "schedule[days_attributes][1][timings_attributes][1][end_time]": {
-                required: true
-            },
-
+ 
             "schedule[days_attributes][2][timings_attributes][0][start_time]": {
                 required: true
             },
-            "schedule[days_attributes][2][timings_attributes][0][end_time]": {
-                required: true
-            },
-
+ 
             "schedule[days_attributes][2][timings_attributes][1][start_time]": {
                 required: true
             },
-            "schedule[days_attributes][2][timings_attributes][1][end_time]": {
-                required: true
-            },
-
+ 
             "schedule[days_attributes][3][timings_attributes][0][start_time]": {
                 required: true
             },
-            "schedule[days_attributes][3][timings_attributes][0][end_time]": {
-                required: true
-            },
-
             "schedule[days_attributes][3][timings_attributes][1][start_time]": {
                 required: true
             },
-            "schedule[days_attributes][3][timings_attributes][1][end_time]": {
-                required: true
-            },
-
             "schedule[days_attributes][4][timings_attributes][0][start_time]": {
                 required: true
             },
-            "schedule[days_attributes][4][timings_attributes][0][end_time]": {
-                required: true
-            },
-
+ 
             "schedule[days_attributes][4][timings_attributes][1][start_time]": {
                 required: true
             },
-            "schedule[days_attributes][4][timings_attributes][1][end_time]": {
-                required: true
-            },
-
+ 
             "schedule[days_attributes][5][timings_attributes][0][start_time]": {
                 required: true
             },
-            "schedule[days_attributes][5][timings_attributes][0][end_time]": {
-                required: true
-            },
-
+ 
             "schedule[days_attributes][5][timings_attributes][1][start_time]": {
                 required: true
             },
-            "schedule[days_attributes][5][timings_attributes][1][end_time]": {
-                required: true
-            },
-
+ 
             "schedule[days_attributes][6][timings_attributes][0][start_time]": {
                 required: true
             },
-            "schedule[days_attributes][6][timings_attributes][0][end_time]": {
-                required: true
-            },
-
+ 
             "schedule[days_attributes][6][timings_attributes][1][start_time]": {
                 required: true
             },
-            "schedule[days_attributes][6][timings_attributes][1][end_time]": {
-                required: true
-            },
-         },
+          },
     })
 });
