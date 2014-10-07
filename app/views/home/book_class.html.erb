@@ -43,32 +43,34 @@
         </td>
       </tr>
       <% @lesson.schedule.days.each do |lesson| %>
-        <tr>
-          <td rowspan="<%=lesson.timings.count %>" >
-            <%=lesson.date %>
-            <br>
-            <br>
-            <%=lesson.name %>
-            <% lesson.timings.each do |time| %>
-              <td>
-                <%=time.start_time.strftime("%I:%M %p").to_s %>
+        <% if lesson.date > Time.now %>
+          <tr>
+            <td rowspan="<%=lesson.timings.count %>" >
+              <%=lesson.date %>
+              <br>
+              <br>
+              <%=lesson.name %>
+              <% lesson.timings.each do |time| %>
+                <td>
+                  <%=time.start_time.strftime("%I:%M %p").to_s %>
+                </td>
+                <td>
+                  <%=time.end_time.strftime("%I:%M %p").to_s %>
+                </td>
+                <td>
+                  <%=time.max_people %>
+                </td>
+                <td>
+                  <% if time.max_people > 0  %>
+                    <%= link_to 'Book now',new_charge_path(:id=>params[:id],:schedule_id=> @lesson.schedule.id,:timing_id=>time.id), :class => "btn btn-success"%>
+                  <% else %>
+                    <p> sorry all slots for this batch is booked </p>
+                  <% end %>
+                </td>
               </td>
-              <td>
-                <%=time.end_time.strftime("%I:%M %p").to_s %>
-              </td>
-              <td>
-                <%=time.max_people %>
-              </td>
-              <td>
-                <% if time.max_people > 0  %>
-                  <%= link_to 'Book now',new_charge_path(:id=>params[:id],:schedule_id=> @lesson.schedule.id,:timing_id=>time.id), :class => "btn btn-success"%>
-                <% else %>
-                  <p> sorry all slots for this batch is booked </p>
-                <% end %>
-              </td>
-            </td>
-            </tr>
-            <% end %>
+              </tr>
+              <% end %>
+        <% end %>
       <% end %>
     </table>
   <% else %>
