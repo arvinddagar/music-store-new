@@ -5,7 +5,7 @@ class StudentsController < ApplicationController
     before_filter :authenticate_user!,
                 only: [:index,:reservations, :update,:complete_registration_stu,:mylist,:rate]
   respond_to :json
-  layout 'application_new', :only => [:index,:student_class,:mylist]
+  layout 'application_new', :only => [:index,:student_class,:mylist,:complete_registration_stu]
   def index
     @upcoming_reservations= current_student.reservations.where("class_date > ?", Date.today).page(params[:page]).per(5)
     if params[:format] == "json"
