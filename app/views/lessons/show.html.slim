@@ -104,7 +104,21 @@ hr
     br
 
     =link_to "View Complete Profile",show_profile_path(:id=>@lesson.tutor),:style=>"margin-left: 11%;"
-
+hr
+.row-fluid.class_show_page
+  - if @lesson.comments.empty?
+    .span12
+        | No Reviews are Present for this class
+  - else
+    - @lesson.comments.each do |review|
+      .span10
+        b Reviews total number of reviews  :
+        =@lesson.comments.count
+        .row-fluid
+          .span2
+            = image_tag "clip.jpg",:style=>"width:25%" 
+          .span10
+            = review.comment
 hr
 .row-fluid.class_show_page
   .span6
