@@ -1,0 +1,114 @@
+<%= render 'application/tutor_dashboard_partial' %>
+<div class="container">
+<!-- Forms  -->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="page-header">
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="well">
+      <%= nested_form_for @lesson, :html => { :id => "lesson_form" } do |f|%>
+        <fieldset>
+        <legend>Create New Class</legend>
+        <div class="form-group col-lg-12">
+          <label class="control-label" for="focusedInput">Choose Name (Choose Catchy Name for your Class)</label>
+          <%= f.text_field :name,class: 'form-control'%>
+        </div>
+        <div class="form-group col-lg-12">
+          <label class="control-label" for="focusedInput">Description (Tell Everyone what it's all about)</label>
+          <%= f.text_area :description,:class=>"form-control",:rows=>5 %>
+        </div>
+        <div class="form-group col-lg-12">
+          <label class="control-label" for="focusedInput">Maximum Students per Class</label>
+          <%= f.number_field :maximum_people, class:"form-control"%>
+        </div>
+        <div class="form-group col-lg-12">
+          <label class="control-label" for="focusedInput">Duration (Minutes)</label>
+          <%= f.number_field :duration, class:"form-control"%>
+        </div>
+        <div class="form-group col-lg-12">
+          <label class="control-label" for="focusedInput">Neighbourhood</label>
+          <%= f.text_field :neighbourhood, class: "form-control" %>
+        </div>
+        <div class="form-group col-lg-12">
+          <label class="control-label" for="focusedInput">Phone Number</label>
+          <%= f.text_field :phone_no, class: "form-control" %>
+        </div>
+        <div class="form-group col-lg-12">
+          <label class="control-label" for="focusedInput">Address</label>
+          <%= f.text_field :address, class: "form-control" %>
+        </div>
+        <div class="form-group col-lg-12">
+          <label class="control-label" for="focusedInput">Fee per Class</label>
+          <%= f.number_field :price, class: "form-control"%>
+        </div>
+        <div class="form-group col-lg-6">
+          <label class="control-label" for="focusedInput">Type of Class</label>
+          <% if @lesson.try(:category) %>
+            <% child = Category.find(@lesson.try(:category)) %>
+            <%= "#{child.parent.category_name} - #{@lesson.try(:category)}" %>
+          <% end %>
+          <%= select("lessons", "category", category_list.collect{|p| [ p.category_name, p.id ] }, {include_blank: 'None'} , :class => "form-control") %>
+          <div id="subcategory">
+          </div>
+          <%=f.hidden_field :tutor_id, :value => current_tutor.id %>
+        </div>
+        <div class="form-group col-lg-12">
+          <label class="control-label" for="focusedInput">Images for Class</label>
+            <br>
+            <br>
+            <% if @lesson.pictures.present? %>
+              <% @lesson.pictures.each do |pic| %>
+                <%= image_tag pic.image.url,size: "150x150" %>
+              <% end %>
+            <% end %>
+        </div>
+        <div class="form-group col-lg-12">
+          <label class="control-label" for="focusedInput">Add Image for Class</label>
+          <%= f.fields_for :pictures %>
+          <%= f.link_to_add "Add a More Image", :pictures %>
+        </div>
+        <div class="form-group col-lg-12"> 
+          <label class="control-label" for="focusedInput">Publish</label>
+          <%= f.check_box :publish %>
+        </div>
+        <div class="form-group col-lg-12">
+          <%= f.submit 'Save', class: 'btn btn-primary', :style=> "width:15%;" %>
+      <% end %>
+      </div>
+    </div>
+    <div class="clearfix" style="height:50px;"></div>
+  </div> <!-- end of col-lg-6 -->
+</div>   <!-- end of row -->
+
+    <script type="text/javascript">
+      jQuery(function ($) {
+          $('[data-toggle="popover"]').popover();
+          $('[data-toggle="tooltip"]').tooltip();
+      });
+    
+      $( "#lessons_category" ).change(function() {
+    if ($('#lessons_category :selected').text() !== 'Others') {
+      $.ajax({
+        url: '/subcategory',
+        data: {
+          parent_id: this.value
+        },
+        type: 'get',
+        success: function(data) {
+          return $('#subcategory').html(data);
+        },
+        complete: function() {}
+      });
+    }
+    else
+    {
+      $('#subcategory').html("<label for='main_category'>Main Category</label><input id='main_category' name='category[category_name]' type='text'><label for='sub_category'>Sub Category</label><input id='sub_category' name='category[subcategory_name]' type='text'>");
+    }
+    return;
+  });
+</script>
+    <!-- sample templates end -->
