@@ -5,9 +5,9 @@ class StudentsController < ApplicationController
     before_filter :authenticate_user!,
                 only: [:index,:reservations, :update,:complete_registration_stu,:mylist,:rate]
   respond_to :json
-  layout 'application_new', :only => [:index]
+  layout 'application_new', :only => [:index,:student_class,:mylist]
   def index
-    @upcoming_reservations= current_student.reservations.where("class_date > ?", Date.today)
+    @upcoming_reservations= current_student.reservations.where("class_date > ?", Date.today).page(params[:page]).per(5)
     if params[:format] == "json"
       render json: @upcoming_reservations
     end
@@ -48,7 +48,7 @@ class StudentsController < ApplicationController
 
   def mylist
     
-    @favs=Favorite.where(:student => current_student).page(params[:page]).per(5)
+    @favs=Favorite.where(:student => current_student).page(params[:page]).per(1)
     if params[:format] == "json"
       render json: @favs
     end
