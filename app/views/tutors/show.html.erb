@@ -1,143 +1,59 @@
 <%= render 'application/tutor_dashboard_partial' %>
-<br>
-<br>
-<div id="cv" class="instaFade">
-  <div class="mainDetails">
-    <div id="headshot" class="quickFade">
+<div class="container " >
+  <div class="row text-center" style="padding-top:30px;">
+    <div class="col-md-12">
+      <h1>  TUTOR PROFILE</h1>
+    </div>
+  </div>
+  <div class="row " style="padding-bottom:50px; ">
+    <div class="col-md-3">
       <% if @tutor.image_file_name? %>
-        <%= image_tag @tutor.image.url,:style=>"width:200%;height:75%" %>
+        <%= image_tag @tutor.image.url,:style=>"width:75%;" %>
       <% else %>
-        <%= image_tag "no-image.png",:style=>"width:200%;height:200%" %>
+        <%= image_tag "no-image.png",:style=>"width:75%;" %>
       <% end %>
     </div>
-    <div id="name">
-      <h1 class="quickFade delayTwo"><%=@tutor.first_name.capitalize+"  "+@tutor.last_name.capitalize%></h1>
+    <div class="col-md-9">
+      <br /><br />
+      <hr />
+      <div >
+        <h3><strong> Name:</strong><%=@tutor.first_name.capitalize+"  "+@tutor.last_name.capitalize%></h3>
+        <br />
+        <h3> <strong> Address:</strong><%=@tutor.address%></h3>
+      </div>
     </div>
-    <div id="contactDetails" class="quickFade delayFour">
-      <ul>
-        <li>e: <a href="mailto:joe@bloggs.com" target="_blank"><%=@tutor.user.email%></a></li>
-        <li>w: <a href="http://www.bloggs.com">www.abc.com</a></li>
-        <li>m: 9000-000-000</li>
-      </ul>
-    </div>
-    <div class="clear"></div>
   </div>
-  <div id="mainArea" class="quickFade delayFive">
-    <section>
-      <article>
-        <div class="sectionTitle">
-          <h1>About Me</h1>
-        </div>
-        <div class="sectionContent">
-          <p class="table_width" align="justify"><%=@tutor.description%></p>
-        </div>
-      </article>
-      <div class="clear"></div>
-    </section>
-    <section>
-      <div class="sectionTitle">
-        <h1>Teaching Philoshophy</h1>
-      </div>
-      <div class="sectionContent">
-        <article>
-          <p class="table_width" align="justify"><%=@tutor.teaching_philosophy%></p>
-        </article>
-      </div>
-      <div class="clear"></div>
-    </section>
-    <section>
-      <div class="sectionTitle">
-        <h1>Experience</h1>
-      </div>
-      <div class="sectionContent">
-        <article>
-          <p class="table_width" align="justify"><%=@tutor.experience%></p>
-        </article>
-      </div>
-      <div class="clear"></div>
-    </section>
-    <section>
-      <div class="sectionTitle">
-        <h1>Credentials</h1>
-      </div>
-      <div class="sectionContent">
-        <article>
-          <p class="table_width" align="justify"><%=@tutor.cre%></p>
-        </article>
-      </div>
-      <div class="clear"></div>
-    </section>
-    <section>
-      <div class="sectionTitle">
-        <h1>Instruments</h1>
-      </div>
-      <div class="sectionContent">
-        <article>
-          <p class="table_width" align="justify"><%=@tutor.instruments%></p>
-        </article>
-      </div>
-      <div class="clear"></div>
-    </section>
-    <section>
-      <div class="sectionTitle">
-        <h1>Skill Levels</h1>
-      </div>
-      <div class="sectionContent">
-        <article>
-          <p class="table_width" align="justify"><%=@tutor.skills%></p>
-        </article>
-      </div>
-      <div class="clear"></div>
-    </section>
-    <section>
-      <div class="sectionTitle">
-        <h1>Genres</h1>
-      </div>
-      <div class="sectionContent">
-        <article>
-          <p class="table_width" align="justify"><%=@tutor.instruments%></p>
-        </article>
-      </div>
-      <div class="clear"></div>
-    </section>
-    <section>
-      <div class="sectionTitle">
-        <h1>Lesson Duration</h1>
-      </div>
-      <div class="sectionContent">
-        <article>
-          <p class="table_width" align="justify"><%=@tutor.duration.to_s + "  minutes"%></p>
-        </article>
-      </div>
-      <div class="clear"></div>
-    </section>
-    <section>
-      <div class="sectionTitle">
-        <h1>Age Groups</h1>
-      </div>
-      <div class="sectionContent">
-        <article>
-          <p class="table_width" align="justify"><%=@tutor.age_group.to_s + "+"%></p>
-        </article>
-      </div>
-      <div class="clear"></div>
-    </section>
-    <section>
-      <div class="sectionTitle">
-        <h1>Address</h1>
-      </div>
-      <div class="sectionContent">
-        <article>
-          <p class="table_width" align="justify"><%==@tutor.address%></p>
-          <br>
-          <br>
-          <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@tutor.latitude}%2C#{@tutor.longitude}" %>
-        </article>
-      </div>
-      <div class="clear"></div>
-    </section>
+  <div class="row " >
+    <div class="col-md-6">
+      <h3>Small Biography </h3>
+      <hr />
+      <h4>About Me :</h4>
+      <p>
+        <%=@tutor.description%>
+      </p>
+      <h4>Experience :</h4>
+      <p><%=@tutor.experience%></p>
+      <h4>Address:</h4>
+      <p><%=@tutor.address%></p>
+      <br>
+      <h4>Map:</h4>
+      <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@tutor.latitude}%2C#{@tutor.longitude}" %>
+    </div>
+    <div class="col-md-6" style="padding-bottom:80px;">
+      <h3>Skills  </h3>
+      <hr />
+      <h4>Instruments :</h4>
+      <p><%=@tutor.instruments%></p>
+      <h4>Skill Levels :</h4>
+      <p><%=@tutor.skills%></p>
+      <h4>Genres :</h4>
+      <p><%=@tutor.cre%></p>
+      <h4>Lesson Duration :</h4>
+      <p><%=@tutor.duration.to_s + "  minutes"%></p>
+      <h4>Age Groups :</h4>
+      <p><%=@tutor.age_group.to_s + "+"%></p>
+    </div>
   </div>
 </div>
 <br>
-<br>
-<br>
+<br>  
