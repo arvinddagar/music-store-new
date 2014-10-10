@@ -1,0 +1,143 @@
+<div class="container " >
+  <div class="row text-left">
+    <div class="col-md-12">
+      <h2>  <%=@lesson.name.capitalize %> <span style="font-size: 22px;">with <%=@lesson.tutor.first_name.capitalize+" "+@lesson.tutor.last_name.capitalize%></span> </h2>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
+  <div class="row" style="padding-left:20px;">
+    <hr />
+    <div class="col-md-4">
+      <br>
+      <h4><strong> Location:</strong><%=@lesson.address.capitalize%></h4>
+      <h4><strong> Amount:</strong> <%=number_to_currency(@lesson.price) %></h4>
+      <h4><strong> Date:</strong> <%=@lesson.created_at.strftime("%d-%b-%y") %></h4>
+      <h4><strong> Time: </strong><%=@lesson.created_at.strftime("%H : %M") %></h4>
+    </div>
+    <div class="col-md-4 pull-right">
+      <br>
+      <h4><strong> Share this class:</strong> <%=social_share_button_tag(@lesson.name,desc: @lesson.description) %></h4>
+      <br>
+      <%= link_to "Book Now",book_class_path(@lesson) , :class=>"btn btn-default"%>
+<!--       <h4><strong> Amount:</strong> <%=number_to_currency(@lesson.price) %></h4>
+      <h4><strong> Date:</strong> <%=@lesson.created_at.strftime("%d-%b-%y") %></h4>
+      <h4><strong> Time: </strong><%=@lesson.created_at.strftime("%H : %M") %></h4> -->
+    </div>
+
+  </div>
+  <br>
+  <br>
+  <br>
+  <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+    <li class="active"><a href="#Class_Description" data-toggle="tab">Class Description</a></li>
+    <li><a href="#Instructor" data-toggle="tab">Instructor</a></li>
+    <li><a href="#Reviews" data-toggle="tab" >Reviews</a></li>
+    <li><a href="#Map" data-toggle="tab">Map</a></li>
+    <li><a href="#Pictures" data-toggle="tab">Pictures</a></li>
+  </ul>
+  <div id="my-tab-content" class="tab-content">
+    <div class="tab-pane active" id="Class_Description">
+      <div class="row" style="padding-left:20px;">
+        <br>
+        <br>
+        <%=@lesson.description %>
+        <hr>
+        <h3>About the Class </h3>
+        <br>
+        <b>Level :</b>
+        <div class="col-md-12">
+          <p>
+            ALL
+          </p>
+        </div>
+        <br>
+        <b>Ages :</b>
+        <div class="col-md-12">
+          <p> <%= @lesson.tutor.age_group %></p>
+        </div>
+        <br>
+        <b>Avarage Class Size :</b>
+        <div class="col-md-12">
+          <p>
+            <%=@lesson.maximum_people %> Students
+          </p>
+        </div>
+        <br>
+        <b>Attire </b>
+        <div class="col-md-12">
+          <p>
+            Comfortable 
+          </p>
+        </div>
+      </div>        
+    </div>  <!-- end of tab-pane active -->
+    <div class="tab-pane" id="Instructor">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Instructor Profile </h3>
+          <hr>
+          <div class="profile">
+            <div class="col-md-3">
+              <% if @lesson.tutor.image.present? %>
+                <%= image_tag @lesson.tutor.image.url,:style=>"width:100%" %>
+              <% else %>
+                <%= image_tag "no-image.png",:style=>"width:100%" %>      
+              <% end %>
+            </div>
+            <div class="col-md-9">
+              <h3><%=@lesson.tutor.first_name.capitalize+" "+@lesson.tutor.last_name.capitalize%></h3>
+              <p><%=@lesson.tutor.description%> </p>
+              <br>
+              <%=link_to "View Complete Profile",show_profile_path(:id=>@lesson.tutor) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane" id="Reviews">
+      <div class="row">
+        <div class="col-md-12">
+          <% if @lesson.comments.empty? %>
+            <h3>No Reviews are Present for this class </h3>
+          <% else %>
+            <h3> Reviews</h3>
+            <hr>
+            <% @lesson.comments.each do |review| %>
+              <!-- <H4>Justina C.</H4> -->
+              <p><%= review.comment%></p> 
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane" id="Map">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Find on Map </h3>
+          <hr>
+          <div class="col-md-12">
+            <div class="mapbox">
+              <!-- <img src="images/map_img.jpg" alt=""> -->
+              <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@lesson.latitude}%2C#{@lesson.longitude}" %>
+              <div class="line_1"><%=@lesson.address.capitalize%></div>
+              <div class="line_2"><%=@lesson.phone_no %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane" id="Pictures">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>Pictures </h3>
+          <hr>
+          <% @lesson.pictures.each do |pic| %>
+            <div class="col-md-3">
+              <%= image_tag pic.image.url,size: "200x200" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
