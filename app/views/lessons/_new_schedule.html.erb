@@ -1,9 +1,10 @@
+
 <%=render 'application/tutor_dashboard_partial' %>
 <br>
 <br>
 <div class="class_show_page">
 <b><i> Create Schedule for Class </i></b>
- <%= nested_form_for @new_schedule , url: create_schedule_path do |f| %>
+<%= nested_form_for @new_schedule , url: create_schedule_path do |f| %>
   <p>
     <div class="row-fluid" style=" margin-left: 1%;font-size: 12px; ">
       <div class="span2_schedule" style=" margin-left: 1%; ">
@@ -35,3 +36,61 @@
 <br>
 <br>
 </div>
+
+<script type="text/javascript">
+  var today = new Date();
+  for(i=0;i<7;i++)
+  {
+    today.setDate(today.getDate() + 1);
+    document.getElementById("schedule_days_attributes_"+i+"_date").value = today
+    document.getElementById("schedule_days_attributes_"+i+"_name").value = get_day_name (today)
+  }  
+    
+  function get_day_name (today) {
+    var day_name=today.getDay()
+    if (day_name == 0)
+      return 'Sunday'
+    else if (day_name == 1)
+      return 'Monday'
+    else if (day_name == 2)
+      return 'Tuesday'
+    else if (day_name == 3)
+      return 'Wednesday'
+    else if (day_name == 4)
+      return 'Thrusday'
+    else if (day_name == 5)
+      return 'Friday'
+    else
+      return 'Saturday'
+  }
+
+// function myFunction() {
+//     $.ajax({
+//     url: 'ghanshyam',
+//     type: 'GET',
+//     data: {neighbourhood:$("#neighbourhood").val()
+//     },
+//     success: function(data)
+//     {
+//       $('#lesson').html(data);
+//     }
+//     });
+// }
+// ,schedule_id:$("#schedule_id").val(),day_id:$("#day_id").val()
+$( ".time_width" ).change(function() {
+    // alert($(".time_width").val())
+
+    $.ajax({
+    url: 'ghan',
+    type: 'GET',
+    data: {time:$(".time_width").val()
+    },
+    success: function(data)
+    {
+      // alert(data)
+      // $('#lesson').html(data);
+    }
+    });
+  });
+
+</script>

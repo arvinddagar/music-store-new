@@ -2,13 +2,22 @@ class LessonsController < ApplicationController
   before_filter :authenticate_user!,
                 only: [:new, :create,:edit,:update,:new_schedule,:create_schedule]
  
-  layout 'application_new'
+  layout 'application_new', :only => [:show]  
+  # layout 'application', :only => [:new_schedule]
   def new
     @lesson = Lesson.new
     if params[:format] == "json"
       render json: @lesson
     end
     # @lesson.pictures.build
+  end
+
+  def ghan
+    #binding.pry
+    #  @new_schedule=Schedule.new(schedule_params)
+    # @new_schedule.save
+    # flash[:info] = 'Class Schedule created'
+    # redirect_to tutors_path
   end
 
   
