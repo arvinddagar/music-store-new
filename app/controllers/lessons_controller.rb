@@ -2,7 +2,7 @@ class LessonsController < ApplicationController
   before_filter :authenticate_user!,
                 only: [:new, :create,:edit,:update,:new_schedule,:create_schedule]
  
-  layout 'application_new', :only => [:show]  
+  layout 'application_new', :only => [:show,:edit]  
   # layout 'application', :only => [:new_schedule]
   def new
     @lesson = Lesson.new
@@ -37,6 +37,15 @@ class LessonsController < ApplicationController
   def update
     @lesson=Lesson.find(params[:id])
     if @lesson.update(update_lesson_params)
+      @timings=Timing.where(:day => Lesson.find(params[:id]).schedule.days)
+      j=0
+      
+      while j < @timings.count
+        @timings[j].max_people = params[:lesson][:maximum_people].to_i - @timings[j].booked 
+        @timings[j].save
+        j=j+1 
+      end
+      
       flash[:info] = 'Class updated'
       redirect_to tutors_path
     else

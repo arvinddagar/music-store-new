@@ -37,6 +37,7 @@ def create
     t=Timing.find(params[:timing_id])
     temp=t.max_people
     t.max_people=temp-1
+    t.booked=t.booked+1
     t.save
     @admin="admin@music.com"
     NotifierMailer.admin_confirmation(@admin).deliver

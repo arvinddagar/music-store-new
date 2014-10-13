@@ -11,19 +11,20 @@
       <br>
       <h4><strong> Location:</strong><%=@lesson.address.capitalize%></h4>
       <h4><strong> Amount:</strong> <%=number_to_currency(@lesson.price) %></h4>
-      <h4><strong> Date:</strong> <%=@lesson.created_at.strftime("%d-%b-%y") %></h4>
-      <h4><strong> Time: </strong><%=@lesson.created_at.strftime("%H : %M") %></h4>
+      <% if @lesson.schedule.present? %>
+        <h4><strong> Next Class Date:</strong> <%=@lesson.schedule.days.where("date > ?",Time.now).first.date %></h4>
+        <h4><strong> Time: </strong><%=@lesson.created_at.strftime("%H : %M") %></h4>
+      <% end %>
+      
     </div>
     <div class="col-md-4 pull-right">
       <br>
       <h4><strong> Share this class:</strong> <%=social_share_button_tag(@lesson.name,desc: @lesson.description) %></h4>
       <br>
-      <%= link_to "Book Now",book_class_path(@lesson) , :class=>"btn btn-default"%>
-<!--       <h4><strong> Amount:</strong> <%=number_to_currency(@lesson.price) %></h4>
-      <h4><strong> Date:</strong> <%=@lesson.created_at.strftime("%d-%b-%y") %></h4>
-      <h4><strong> Time: </strong><%=@lesson.created_at.strftime("%H : %M") %></h4> -->
+      <% if @lesson.schedule.present? %>
+        <%= link_to "Book Now",book_class_path(@lesson) , :class=>"btn btn-default"%>
+      <% end %>
     </div>
-
   </div>
   <br>
   <br>
