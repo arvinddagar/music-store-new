@@ -42,9 +42,9 @@ br
               dt
                 - if  current_student.present?    
                   - if  !Favorite.find_by('student_id = ? AND tutor_id = ?' , current_student.id , @tutor.id).present?
-                    =link_to 'Add to Favorite', add_fav_path(tutor: @tutor), :class =>"btn btn-success"
+                    =link_to 'Add to Favorite', add_fav_path(tutor: @tutor), 'data-no-turbolink' => true, :class =>"btn btn-success"
                   -else
-                    =link_to 'Remove From Favorite', remove_fav_path(tutor: @tutor), :class =>"btn btn-danger"
+                    =link_to 'Remove From Favorite', remove_fav_path(tutor: @tutor), 'data-no-turbolink' => true, :class =>"btn btn-danger"
             dl
               dt Description
             .tagline itemprop="description"

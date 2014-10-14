@@ -2,7 +2,7 @@ class LessonsController < ApplicationController
   before_filter :authenticate_user!,
                 only: [:new, :create,:edit,:update,:new_schedule,:create_schedule]
  
-  layout 'application_new', :only => [:show,:edit]  
+  layout 'application_new', :only => [:show,:edit,:new,:create]  
   # layout 'application', :only => [:new_schedule]
   def new
     @lesson = Lesson.new
@@ -24,6 +24,15 @@ class LessonsController < ApplicationController
   def create
     @lesson = current_user.tutor.lessons.new(lesson_params)
     if @lesson.save
+      i=0
+      @fav = Favorite.where(:tutor => current_tutor)
+      if !@fav.empty?
+        while i < @fav.count
+          # @fav[i].student.user
+          NotifierMailer.lesson_confirmation(@fav[i].student.user).deliver
+          i=i+1
+        end
+      end
       flash[:info] = 'Class created'
       redirect_to new_schedule_path(:lesson_id => @lesson)
       # format.json { render  @lesson }
@@ -39,13 +48,11 @@ class LessonsController < ApplicationController
     if @lesson.update(update_lesson_params)
       @timings=Timing.where(:day => Lesson.find(params[:id]).schedule.days)
       j=0
-      
       while j < @timings.count
         @timings[j].max_people = params[:lesson][:maximum_people].to_i - @timings[j].booked 
         @timings[j].save
         j=j+1 
       end
-      
       flash[:info] = 'Class updated'
       redirect_to tutors_path
     else

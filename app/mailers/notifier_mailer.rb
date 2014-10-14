@@ -17,5 +17,12 @@ class NotifierMailer < ActionMailer::Base
   def admin_confirmation(user)
     mail(:to => user, :subject => "payment confirmation")
   end
+
+  def lesson_confirmation(user)
+    binding.pry
+    mail(:to => user.email, :subject => "new lesson from your favorite teacher")
+  end
   
 end
+
+
