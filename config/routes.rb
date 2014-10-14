@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   root 'home#welcome'
   get 'book_class/:id', to: 'home#book_class', as: :book_class
   get 'complete_registration', to: 'tutors#complete_registration'
+  get 'reschedule', to: 'charges#reschedule'
   get 'add_fav', to: 'home#favorite'
   get 'remove_fav', to: 'home#un_favorite'
   patch 'complete', to: 'tutors#complete'
@@ -37,6 +38,7 @@ Rails.application.routes.draw do
   match 'complete_profile/:id' => 'admin/tutors#complete_profile',via:[:get,:post,:patch], as: :complete_profile
   match 'complete_p' => 'admin/tutors#complete_p',via:[:get,:post,:patch]
   get 'ajaxsearch', to: 'home#class_search'
+  # get 'ghan', to: 'lessons#ghan'
   get 'map' => 'lessons#map'
   # get 'find_neighbour', to: 'lessons#find_neighbour'
   get 'show_profile' =>'lessons#show_profile'

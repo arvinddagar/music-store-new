@@ -23,6 +23,7 @@
                 <td><%=preservation.timing.day.date %></td>
                 <td><%=preservation.timing.start_time.strftime("%I:%M %p").to_s %></td>
                 <td><%=preservation.lesson.address%></td>
+                <td><%=link_to "Reschedule Class",book_class_path(preservation.lesson,preservation:preservation) %></td>
                 <td><%=link_to "Message trainer",new_conversation_path(tutor: preservation.lesson.tutor) %></td>
               </tr>
             <% end %>

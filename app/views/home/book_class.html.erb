@@ -42,6 +42,7 @@
           Book
         </td>
       </tr>
+    
       <% @lesson.schedule.days.each do |lesson| %>
         <% if lesson.date > Time.now %>
           <tr>
@@ -62,7 +63,12 @@
                 </td>
                 <td>
                   <% if time.max_people > 0  %>
-                    <%= link_to 'Book now',new_charge_path(:id=>params[:id],:schedule_id=> @lesson.schedule.id,:timing_id=>time.id), :class => "btn btn-success"%>
+                    <%if params[:preservation].present? %>
+                      <%= link_to 'reschedule class',reschedule_path(:id=>params[:id],:schedule_id=> @lesson.schedule.id,:timing_id=>time.id,:preservation=>params[:preservation]), :class => "btn btn-success", 'data-no-turbolink' => true  if Reservation.find(params[:preservation]).timing != time %>
+                    <% else %>
+                      <%= link_to 'Book now',new_charge_path(:id=>params[:id],:schedule_id=> @lesson.schedule.id,:timing_id=>time.id), :class => "btn btn-success"%>
+                    <% end %>
+                                     
                   <% else %>
                     <p> sorry all slots for this batch is booked </p>
                   <% end %>

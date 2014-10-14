@@ -19,7 +19,6 @@ class NotifierMailer < ActionMailer::Base
   end
 
   def lesson_confirmation(user)
-    binding.pry
     mail(:to => user.email, :subject => "new lesson from your favorite teacher")
   end
   
