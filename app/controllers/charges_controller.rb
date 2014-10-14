@@ -25,7 +25,9 @@ class ChargesController < ApplicationController
     temp=@new_timing.max_people
     @new_timing.max_people=temp-1
     @new_timing.booked=@new_timing.booked+1
-    @new_timing.save 
+    @new_timing.save
+    NotifierMailer.reschedule_student_confirmation(@rev.student.user).deliver
+    NotifierMailer.reservation_tutor_confirmation(@rev.lesson.tutor.user).deliver 
     flash[:info] = 'Class rescheduled'
     redirect_to students_path
   end

@@ -1,5 +1,5 @@
-
 class NotifierMailer < ActionMailer::Base
+ 
  default :from => "tutor@music.com"
 
   def feedback_reminder(user)
@@ -21,7 +21,15 @@ class NotifierMailer < ActionMailer::Base
   def lesson_confirmation(user)
     mail(:to => user.email, :subject => "new lesson from your favorite teacher")
   end
+
+
+  def reschedule_student_confirmation(user)
+    mail(:to => user.email, :subject => "Reschedule of your class")
+  end
+
+
+  def reservation_tutor_confirmation(user)
+    mail(:to => user.email, :subject => "Reschedule of your class")
+  end
   
 end
-
-
