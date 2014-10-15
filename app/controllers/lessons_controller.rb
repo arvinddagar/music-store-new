@@ -2,7 +2,7 @@ class LessonsController < ApplicationController
   before_filter :authenticate_user!,
                 only: [:new, :create,:edit,:update,:new_schedule,:create_schedule]
  
-  layout 'application_new', :only => [:show,:edit,:new,:create]  
+  layout 'application_new', :only => [:show,:edit,:new,:create,:update]  
   # layout 'application', :only => [:new_schedule]
   def new
     @lesson = Lesson.new
@@ -44,15 +44,19 @@ class LessonsController < ApplicationController
   end
 
   def update
+    # binding.pry
     @lesson=Lesson.find(params[:id])
     if @lesson.update(update_lesson_params)
-      @timings=Timing.where(:day => Lesson.find(params[:id]).schedule.days)
-      j=0
-      while j < @timings.count
-        @timings[j].max_people = params[:lesson][:maximum_people].to_i - @timings[j].booked 
-        @timings[j].save
-        j=j+1 
+      if !@lesson.schedule.nil?
+        @timings=Timing.where(:day => Lesson.find(params[:id]).schedule.days)
+        j=0
+        while j < @timings.count
+          @timings[j].max_people = params[:lesson][:maximum_people].to_i - @timings[j].booked 
+          @timings[j].save
+          j=j+1 
+        end
       end
+
       flash[:info] = 'Class updated'
       redirect_to tutors_path
     else
@@ -205,7 +209,7 @@ class LessonsController < ApplicationController
    end
 
    def update_lesson_params
-    params.require(:lesson).permit(:latitude, :longitude,:name,:description,:neighbourhood,:category_id,:address,:phone_no,:price,:duration,:publish,:maximum_people, pictures_attributes: [:image,:id])
+    params.require(:lesson).permit(:latitude, :longitude,:name,:description,:neighbourhood,:category_id,:address,:phone_no,:price,:duration,:publish,:maximum_people, pictures_attributes: [:image,:id,:_destroy])
    end
 
    def schedule_params
