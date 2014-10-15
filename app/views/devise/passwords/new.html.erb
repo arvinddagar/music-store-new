@@ -6,9 +6,14 @@
     <div class="forgot-password-section" data-animation="bounceInLeft">
       <div class="section-title">
         <h3>Forget Password :</h3>
+        <div class="error">
+          <div class="log_in">
+          </div>
+        </div>
       </div>
       <div class="forgot-content">
-        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), remote: true, html: { method: :post }) do |f| %>
+        
           <%= devise_error_messages! %>
           <div class="textbox-wrap">
             <div class="input-group">

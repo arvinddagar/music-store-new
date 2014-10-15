@@ -11,25 +11,17 @@ class Devise::PasswordsController < DeviseController
 
   # POST /resource/password
   def create
-   
-
-
-   
-    @tutor = Tutor.new
-    @tutor.build_user
-    @student = Student.new
-    @student.build_user
-   
-    puts "hello"
-    self.resource = resource_class.send_reset_password_instructions(resource_params)
-    yield resource if block_given?
-
-    if successfully_sent?(resource)
-      respond_with({}, location: after_sending_reset_password_instructions_path_for(resource_name))
-    else
+    # binding.pry
+    if User.find_by "email = ? " ,params[:user][:email]
+      self.resource = resource_class.send_reset_password_instructions(resource_params)
+      yield resource if block_given?
+      if successfully_sent?(resource)
+        respond_with({}, location: after_sending_reset_password_instructions_path_for(resource_name))
+      else
       respond_with(resource)
+      end
     end
-  end
+  end  
 
   # GET /resource/password/edit?reset_password_token=abcdef
   def edit
