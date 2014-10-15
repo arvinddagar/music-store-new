@@ -1,0 +1,8 @@
+
+<% if @user.nil? %>
+  $(".log_in").text("Email Address not found");
+<% elsif !@user.confirmed_at.nil? %>
+	$(".log_in").text("Email Address alerady confirmed");
+<% elsif @user.confirmation_token.nil? %>
+	$(".log_in").text("Confirmation token can't be null");
+<% end %>
