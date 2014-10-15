@@ -23,9 +23,13 @@
             <div class="forgot-password-section" data-animation="bounceInLeft">
                 <div class="section-title">
                     <h3> Resend Confirmation Instructions :</h3>
+                    <div class="error">
+                      <div class="log_in">
+                      </div>
+                    </div>
                 </div>
                 <div class="forgot-content">
-                    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+                    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), remote: true, html: { method: :post }) do |f| %>
                         <div class="textbox-wrap">
                         	<%= devise_error_messages! %>
                             <div class="input-group">

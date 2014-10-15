@@ -1,1 +1,8 @@
-$(".log_in").text("Invalid email or password");
+<% @user=User.find_by "email = ? " ,params[:user][:email] %>
+<% if @user.nil? %>
+  $(".log_in").text("Invalid email address");
+<% elsif @user and @user.confirmed_at.nil? %>
+  $(".log_in").text("You have to confirm your account before continuing");
+<% elsif !@user.valid_password?(params[:user][:password]) %>
+    $(".log_in").text("Invalid Password");
+<% end %>

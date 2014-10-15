@@ -1,20 +1,22 @@
 class Devise::ConfirmationsController < DeviseController
   # GET /resource/confirmation/new
 
-  layout 'application_new', :only => [:new,:create]
+  layout 'application_new', :only => [:new,:create,:show]
   def new
     self.resource = resource_class.new
   end
 
   # POST /resource/confirmation
   def create
-    self.resource = resource_class.send_confirmation_instructions(resource_params)
-    yield resource if block_given?
-
-    if successfully_sent?(resource)
-      respond_with({}, location: after_resending_confirmation_instructions_path_for(resource_name))
-    else
-      respond_with(resource)
+    @user=User.find_by "email = ? " ,params[:user][:email]
+    if @user and @user.confirmed_at.nil? and @user.confirmation_token
+      self.resource = resource_class.send_confirmation_instructions(resource_params)
+      yield resource if block_given?
+      if successfully_sent?(resource)
+        respond_with({}, location: after_resending_confirmation_instructions_path_for(resource_name))
+     else
+        respond_with(resource)
+      end
     end
   end
 
