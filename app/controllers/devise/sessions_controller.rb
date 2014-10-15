@@ -15,7 +15,7 @@ class Devise::SessionsController < DeviseController
   # POST /resource/sign_in
   def create
     @user = User.find_by "email = ? " ,params[:user][:email]
-    if @user and @user.confirmed_at and @pass == 1
+    if @user and @user.confirmed_at
       self.resource = warden.authenticate!(auth_options)
       set_flash_message(:notice, :signed_in) if is_flashing_format?
       sign_in(resource_name, resource)
