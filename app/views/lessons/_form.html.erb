@@ -60,16 +60,13 @@
           <label class="control-label" for="focusedInput">Images for Class</label>
             <br>
             <br>
-            <% if @lesson.pictures.present? %>
-              <% @lesson.pictures.each do |pic| %>
-                <%= image_tag pic.image.url,size: "150x150" %>
-              <% end %>
-            <% end %>
         </div>
         <div class="form-group col-lg-12">
           <label class="control-label" for="focusedInput">Add Image for Class</label>
+          <% @i = 0 %>   
           <%= f.fields_for :pictures %>
           <%= f.link_to_add "Add a More Image", :pictures %>
+          <% @i =@i + @i %>
         </div>
         <div class="form-group col-lg-12"> 
           <label class="control-label" for="focusedInput">Publish</label>

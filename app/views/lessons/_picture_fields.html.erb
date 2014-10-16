@@ -1,6 +1,13 @@
-
+<% if @i < @lesson.pictures.count %>
+  <%= image_tag @lesson.pictures[@i].image.url,size: "150x150" %>
+<% end %>
+<% @i = @i + 1 %>
 <%= f.file_field :image %>
 <%= f.link_to_remove "Remove this Image"%>
+
 <br>
 <br>
 <br>
+<script type="text/javascript">
+
+</script>
