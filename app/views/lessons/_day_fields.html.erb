@@ -1,11 +1,11 @@
-<div class="span2_schedule" style=" margin-left: 1%; ">
+<div class="span2_schedule">
   <%= f.text_field :name,:readonly => true, :class => "schedule_day_show" %>
   <%= f.text_field :date,:readonly => true, :class => "schedule_day_show" %>
   <%= f.fields_for :timings %>
 <br>
-<div style=" margin-left: -67%; ">
+<!-- <div style=" margin-left: -67%; "> -->
   <%= f.link_to_remove "Remove this Day" %>
-</div>
+<!-- </div> -->
 <br>
 <br>
 </div>

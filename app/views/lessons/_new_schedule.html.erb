@@ -6,38 +6,46 @@
 <b><i> Create Schedule for Class </i></b>
 <%= nested_form_for @new_schedule , url: create_schedule_path do |f| %>
   <p>
-    <div class="row-fluid" style=" margin-left: 1%;font-size: 12px; ">
-      <div class="span2_schedule" style=" margin-left: 1%; ">
+    <div class="row-fluid">
+      <div class="span2_schedule">
         <%= f.fields_for :days %>
       </div>
-      <div class="span2_schedule" style=" margin-left: 1%; ">
+      <div class="span2_schedule">
         <%= f.fields_for :days %>
       </div>
-      <div class="span2_schedule" style=" margin-left: 1%; ">
+      <div class="span2_schedule">
         <%= f.fields_for :days %>
       </div>
-      <div class="span2_schedule" style=" margin-left: 1%; ">
+      <div class="span2_schedule">
         <%= f.fields_for :days %>
       </div>
-      <div class="span2_schedule" style=" margin-left: 1%; ">
+      <div class="span2_schedule">
         <%= f.fields_for :days %>
       </div>
-      <div class="span2_schedule" style=" margin-left: 1%; ">
+      <div class="span2_schedule">
         <%= f.fields_for :days %>
       </div>
-      <div class="span2_schedule" style=" margin-left: 1%; ">
+      <div class="span2_schedule">
         <%= f.fields_for :days %>
       </div>
     </div>
     <%= f.hidden_field :lesson_id,:value=>params[:lesson_id]%>
   </p>
-<p><%= f.submit "Submit", class: 'btn btn-success' %></p>
+  <div class="row-fluid">
+      <div class="span2_schedule">
+        <%= f.submit "Submit", class: 'btn btn-success' %>
+      </div>
+  </div>
+
+
+
 <% end %>
 <br>
 <br>
 </div>
 
 <script type="text/javascript">
+  // schedule_days_attributes_5_name
   var today = new Date();
   for(i=0;i<7;i++)
   {
@@ -77,20 +85,20 @@
 //     });
 // }
 // ,schedule_id:$("#schedule_id").val(),day_id:$("#day_id").val()
-$( ".time_width" ).change(function() {
-    // alert($(".time_width").val())
+// $( ".time_width" ).change(function() {
+//     // alert($(".time_width").val())
 
-    $.ajax({
-    url: 'ghan',
-    type: 'GET',
-    data: {time:$(".time_width").val()
-    },
-    success: function(data)
-    {
-      // alert(data)
-      // $('#lesson').html(data);
-    }
-    });
-  });
+//     $.ajax({
+//     url: 'ghan',
+//     type: 'GET',
+//     data: {time:$(".time_width").val()
+//     },
+//     success: function(data)
+//     {
+//       // alert(data)
+//       // $('#lesson').html(data);
+//     }
+//     });
+//   });
 
 </script>

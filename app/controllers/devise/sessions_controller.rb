@@ -15,6 +15,7 @@ class Devise::SessionsController < DeviseController
   # POST /resource/sign_in
 
   def create
+    # rkprealtor@gmail.com
     string_url = request.original_url
     if string_url.include? "admin"
       if request.xhr?.nil?  || !warden.authenticate(auth_options).nil?

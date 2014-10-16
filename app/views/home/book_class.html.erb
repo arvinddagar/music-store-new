@@ -66,7 +66,7 @@
                     <%if params[:preservation].present? %>
                       <%= link_to 'reschedule class',reschedule_path(:id=>params[:id],:schedule_id=> @lesson.schedule.id,:timing_id=>time.id,:preservation=>params[:preservation]), :class => "btn btn-success", 'data-no-turbolink' => true  if Reservation.find(params[:preservation]).timing != time %>
                     <% else %>
-                      <%= link_to 'Book now',new_charge_path(:id=>params[:id],:schedule_id=> @lesson.schedule.id,:timing_id=>time.id), :class => "btn btn-success"%>
+                      <%= link_to 'Book now',new_charge_path(:id=>params[:id],:schedule_id=> @lesson.schedule.id,:timing_id=>time.id), :class => "btn btn-success", 'data-no-turbolink' => true%>
                     <% end %>
                                      
                   <% else %>

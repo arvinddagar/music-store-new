@@ -276,7 +276,8 @@
     *width: 23.023731587561375%;
   }
   .row-fluid .span2_schedule{
-    width: 12.529915%;
+    width: 140px;
+    margin-left: 2%;
   }
   .row-fluid .span2 {
     width: 14.52991452991453%;
