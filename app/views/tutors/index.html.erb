@@ -35,10 +35,10 @@
                   <%=lesson.address %>
                 </td>
                 <td>
-                  <%= link_to 'Edit', edit_lesson_path(lesson)%>
+                  <%= link_to 'Edit', edit_lesson_path(lesson),'data-no-turbolink' => true%>
                 </td>
                 <td>
-                  <%=link_to 'Edit', edit_schedule_path(lesson)%>
+                  <%=link_to 'Edit', edit_schedule_path(lesson),'data-no-turbolink' => true%>
                 </td>
               </tr>
             <% end %>
