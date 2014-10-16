@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_filter :authenticate_user!, only: [:book_class , :favorite]
     respond_to :json
 
-  layout 'application_new', :only => [:welcome]
+  layout 'application_new', :only => [:welcome,:book_class,:class_search]
   def welcome
     if current_student.present?
       @fav = Favorite.where('student_id = ?' , current_student.id)
@@ -19,6 +19,7 @@ class HomeController < ApplicationController
   
   
   def class_search
+    session['referer'] = request.env["HTTP_REFERER"]
     @lessons_price=Lesson.all.sort { |a, b| b.price.to_i <=> a.price.to_i }
     address = current_student.address if current_student.present?
     if params[:price_search].present? and params[:price_search] == "Low to High"
@@ -81,7 +82,7 @@ class HomeController < ApplicationController
       @lessons = Lesson.all
       if params[:format] == "json"
           render json: @lessons
-      end
+       end
     end
   end
   
