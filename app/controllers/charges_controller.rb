@@ -4,7 +4,7 @@ class ChargesController < ApplicationController
   def new
     if Reservation.find_by('student_id = ? AND timing_id = ? AND schedule_id = ? ' , current_student.id ,params[:timing_id],params[:schedule_id]).present?
       flash[:info] = 'You Cannot booked this class , as you have already booked this class'
-      redirect_to root_path
+      redirect_to(:back)
     else
       @lesson=Lesson.find(params[:id])
       @lesson_details=Timing.find(params[:timing_id])
