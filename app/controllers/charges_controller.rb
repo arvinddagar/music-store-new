@@ -1,6 +1,10 @@
 class ChargesController < ApplicationController
   respond_to :json
 
+   before_filter :authenticate_user!,
+                only: [:new, :create,:reschedule]
+ 
+  layout 'application_new', :only => [:new,:create]  
   def new
     if Reservation.find_by('student_id = ? AND timing_id = ? AND schedule_id = ? ' , current_student.id ,params[:timing_id],params[:schedule_id]).present?
       flash[:info] = 'You Cannot booked this class , as you have already booked this class'
@@ -64,10 +68,10 @@ class ChargesController < ApplicationController
       NotifierMailer.admin_confirmation(@admin).deliver
       NotifierMailer.reservation_confirmation(@tutor).deliver
     end
-    @user=current_student.user
-    NotifierMailer.payment_confirmation(@user).deliver
-    rescue Stripe::CardError => e
-      flash[:error] = e.message
+  @user=current_student.user
+  NotifierMailer.payment_confirmation(@user).deliver
+  rescue Stripe::CardError => e
+     flash[:error] = e.message
       redirect_to charges_path
-    end
   end
+end
