@@ -1,61 +1,51 @@
-<br>
-<br>
-<br>
-<br>
-<section>
-  <ul class="breadcrumb">
-    <li>
-      <a href="">Music - Store</a>
-      <span class="divider">/</span>
-      <a href="">Search Page</a>
-      <span class="divider">/</span>
-      <a href="">Booking Page</a>
-    </li>
-    <li class="active">Purchase</li>
-  </ul>
-</section>
-<div style=" margin-left: 4%; margin-bottom: 9%; ">
-  <%= form_tag charges_path do %>
-    <article>
-      <label class="amount">
-          <span>Tutor Name : <%= @lesson
-        .tutor.first_name.capitalize+"  "+@lesson.tutor.  last_name.capitalize %></span>
-        <br>
-        <br>
-        <span>Class Name : <%= @lesson.name %> </span>
-        <br>
-        <br>
-        <span>Class Address : <%= @lesson.address %> </span>
-        <br>
-        <br>
-        <span>Amount: <%=number_to_currency(@lesson.price)%></span>
-        <br>
-        <br>
-        <span>Date : <%= @lesson_details.day.date %></span>
-        <br>
-        <br>
-        <span>Day : <%= @lesson_details.day.name %></span>
-        <br>
-        <br>
-        <span>Date : <%= @lesson_details.day.date %></span>
-        <br>
-        <br>
-
-        <span>Class Start Time : <%= @lesson_details.start_time.strftime("%I:%M %p").to_s %></span>
-        <br>
-        <br>
-        <span>Class End Time : <%= @lesson_details.end_time.strftime("%I:%M %p").to_s %></span>
-        <br>
-        <br>
-
-      </label>
-    </article>
-    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <h1>Confirmation before payment :</h1>
+      <%= form_tag charges_path do %>
+        <table class="table table-striped table-hover">
+          <tr>
+            <th>Tutor Name</th>
+            <td><%= @lesson
+          .tutor.first_name.capitalize+"  "+@lesson.tutor.  last_name.capitalize %></td>
+          </tr>
+          <tbody>
+            <tr class="info">
+              <th>Class Name</th>
+              <td><%= @lesson.name %></td>
+            </tr>
+            <tr class="success">
+              <th>Class Address</th>
+              <td><%= @lesson.address %>  </td>
+            </tr>
+            <tr class="info">
+              <th>Amount</th>
+              <td><%=number_to_currency(@lesson.price)%></td>
+            </tr>
+            <tr class="success">
+              <th>Date</th>
+              <td><%= @lesson_details.day.date %></td>
+            </tr>
+            <tr class="danger">
+              <th>Day</th>
+              <td><%= @lesson_details.day.name %></td>
+            </tr>
+            <tr class="Warning">
+              <th>class Time</th>
+              <td><%= @lesson_details.start_time.strftime("%I:%M %p").to_s %></td>
+            </tr>
+          </tbody>
+        </table>
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
             data-description="A month's subscription"
             data-amount="<%= @lesson.price %>"></script>
-    <%= hidden_field_tag "lesson_id" , params[:id]%>
-    <%= hidden_field_tag "schedule_id" , params[:schedule_id]%>
-    <%= hidden_field_tag "timing_id" , params[:timing_id]%>
-  <% end %>
-</div>
+        <%= hidden_field_tag "lesson_id" , params[:id]%>
+        <%= hidden_field_tag "schedule_id" , params[:schedule_id]%>
+        <%= hidden_field_tag "timing_id" , params[:timing_id]%>
+      <% end %>
+ <!--      <div class="col-md-2"><button type="button" class="btn btn-success"><a class="glyphicons shopping_cart"></a>Pay with Card</button></div> -->
+ 
+    </div>  <!-- end of col-lg-6 -->
+  </div>  <!-- end of row -->
+</div>   <!-- end of container -->
