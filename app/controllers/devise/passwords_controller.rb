@@ -11,7 +11,6 @@ class Devise::PasswordsController < DeviseController
 
   # POST /resource/password
   def create
-    # binding.pry
     if User.find_by "email = ? " ,params[:user][:email]
       self.resource = resource_class.send_reset_password_instructions(resource_params)
       yield resource if block_given?
