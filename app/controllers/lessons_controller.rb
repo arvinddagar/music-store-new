@@ -2,7 +2,7 @@ class LessonsController < ApplicationController
   before_filter :authenticate_user!,
                 only: [:new, :create,:edit,:update,:new_schedule,:create_schedule]
  
-  layout 'application_new', :only => [:new_schedule,:show_profile,:show,:edit,:new,:create,:update]  
+  layout 'application_new', :only => [:edit_schedule,:new_schedule,:show_profile,:show,:edit,:new,:create,:update]  
   # layout 'application', :only => [:new_schedule]
   def new
     @lesson = Lesson.new
