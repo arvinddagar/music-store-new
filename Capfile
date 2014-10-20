@@ -5,8 +5,8 @@ require 'capistrano/setup'
 require 'capistrano/deploy'
 require 'capistrano/rvm'
 set :rvm_type, :user                     # Defaults to: :auto
-set :rvm_ruby_version, '2.1.2p95'      # Defaults to: 'default'
-set :rvm_custom_path, '/home/music-store/.rvm'
+set :rvm_ruby_version, '2.1.3p242'      # Defaults to: 'default'
+set :rvm_custom_path, '/home/music-store-new/.rvm'
 # only needed if not detected
 # Includes tasks from other gems included in your Gemfile
 #
@@ -27,3 +27,5 @@ set :rvm_custom_path, '/home/music-store/.rvm'
 
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
 Dir.glob('lib/capistrano/tasks/*.cap').each { |r| import r }
+
+

@@ -79,7 +79,7 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # Do not dump schema after migrations.
- config.active_record.dump_schema_after_migration = false
+config.active_record.dump_schema_after_migration = false
   ActionMailer::Base.smtp_settings   = {
       address:              'smtp.gmail.com',
       port:                 587,
@@ -90,5 +90,5 @@ Rails.application.configure do
       enable_starttls_auto: true  }
     ActionMailer::Base.delivery_method = :smtp
 
-      config.action_mailer.default_url_options = { host: "http://104.131.125.87/" }
+      config.action_mailer.default_url_options = { host: "http://66.228.49.198/" }
 end

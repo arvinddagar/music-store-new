@@ -2,13 +2,13 @@
 lock '3.2.1'
 
 set :application, 'music_store'
-set :repo_url, 'git@github.com:arvinddagar/music-store-new.git'
+set :repo_url, 'git@laptop1:prajai/yankee.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/home/music-store/var/www/my_apps'
+set :deploy_to, '/home/music-store-new/var/www/my_apps'
 set :linked_files, %w{config/database.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
