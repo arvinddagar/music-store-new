@@ -1,0 +1,162 @@
+br
+br
+br
+br
+
+.container
+  section
+    ul.breadcrumb.color_white
+      li
+        a href=""  Home
+        span.divider
+      li
+        a href=""  Search Results
+        span.divider
+      li.active
+        b Class Description
+
+  .row-fluid.class_show_page
+    .span8
+      h2 =@lesson.name.capitalize
+      h4 style="margin-left:3%"
+        |with         
+        =@lesson.tutor.first_name.capitalize+" "+@lesson.tutor.last_name.capitalize
+      h2 class Location
+      h4 style="margin-left:3%"
+        =@lesson.address.capitalize
+    .span2
+      br
+      b
+        =number_to_currency(@lesson.price)
+      br
+      =@lesson.created_at.strftime("%d-%b-%y")
+      br
+      =@lesson.created_at.strftime("%H : %M")
+      br
+      b
+    .span2
+      br
+      .readmore style=("text-align: center; padding: 5px 0 0 0;") 
+        = link_to "Book Now",book_class_path(@lesson), {:style=>'color: #fff; font-size: 14px; margin: 0; padding: 0; display: inline-block; vertical-align: top; background: #c81e28; border-radius: 7px; height: 40px; line-height: 40px; margin-left: -44%;padding: 0 15px;', :class => "css_class"}
+  hr
+  .row-fluid.class_show_page
+    .span10
+      ul.nav.nav-pills
+        li.active
+          a.brand href=""  Class Description
+        li
+          a.brand href="" style="margin-left:1px;"  Instructor
+        li
+          a.brand href="" style="margin-left:1px;"  Reviews
+        li
+          a.brand href="" style="margin-left:1px;"  Map
+        li
+          a.brand href="" style="margin-left:1px;"  Pictures
+      br
+        b Class Description :
+        br
+          p align="justify"
+          .lesson_description_show
+            =@lesson.description
+          br
+          b
+           | Level: All
+           br
+           | Ages: All
+           br
+           | Avg Class Size :
+           =@lesson.maximum_people
+           br
+           | Attire: Comfortable
+           br
+    .span2
+      b share this class
+      br
+      br
+      = social_share_button_tag(@lesson.name,desc: @lesson.description)
+      br
+      br
+      b like this class
+      .fb-like data-action="like" data-layout="standard" data-show-faces="true"
+  hr
+  .row-fluid.class_show_page
+    .span2
+      .ins_profile
+        b Instructor Profile :
+        -if @lesson.tutor.image.present?
+          /= image_tag @lesson.tutor.image.url,:style=>"width:102%"
+          = link_to image_tag(@lesson.tutor.image.url,:style=>"width:120%"),show_profile_path(:id=>@lesson.tutor)
+        - else
+          = image_tag "no-image.png",:style=>"width:102%"        
+    .span10
+      p align="justify"
+        .lesson_description_show
+          =@lesson.tutor.description
+      br
+      br
+      =link_to "View Complete Profile",show_profile_path(:id=>@lesson.tutor),:style=>"margin-left: 11%;"
+  hr
+  .row-fluid.class_show_page
+    - if @lesson.comments.empty?
+      .span12
+          | No Reviews are Present for this class
+    - else
+      - @lesson.comments.each do |review|
+        .span10
+          b Reviews total number of reviews  :
+          =@lesson.comments.count
+          .row-fluid
+            .span2
+              = image_tag "clip.jpg",:style=>"width:25%" 
+            .span10
+              = review.comment
+  hr
+  .row-fluid.class_show_page
+    .span6
+      h2
+        | Class Address
+      = image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@lesson.latitude}%2C#{@lesson.longitude}"
+    .span5.pull-right
+      h2
+        | Class Pictures 
+      #pic
+        - @lesson.pictures.each do |pic|
+          = image_tag pic.image.url,size: "450x300"
+      br
+      br
+      .nav
+        ul.pager
+          li.previous
+            a#prev2 href=""  &larr; Prevoius Image
+          li.next
+            a#next2 href=""  Next Image &rarr;
+
+br
+br
+br
+br
+br
+br
+br
+br
+br
+
+javascript:
+  $(document).ready(function()
+  {
+    $('#pic').cycle({
+      fx:     'fade',
+      speed:  'fast',
+      timeout: 0,
+      next:   '#next2',
+      prev:   '#prev2'
+    });
+  });
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=810351318994564&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+ 

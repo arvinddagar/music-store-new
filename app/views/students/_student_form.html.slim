@@ -1,0 +1,35 @@
+.container
+  .signup style="margin-top:10px;"
+    h3 Signup as student
+    = form_for @student do |f|
+      - if @student.errors.any?
+        .alert.alert-error
+          h4
+            = pluralize(@student.errors.count, "error")
+            | &nbsp&nbspprohibited
+            | &nbsp&nbspthis form from being saved:
+          ul
+            - @student.errors.full_messages.each do |msg|
+              li= msg
+      = f.fields_for :user do |user|
+        br/
+        = user.label :email
+        br/
+        = user.email_field :email, autofocus: true,style: "width: 30%; height: 36px; border: solid 2px #d7d7d7; border-radius: 0; padding: 5px 10px; margin: 0;"
+        br/
+        = user.label :password
+        br/
+        = user.password_field :password, autocomplete: "off",style: "width: 30%; height: 36px; border: solid 2px #d7d7d7; border-radius: 0; padding: 5px 10px; margin: 0;"
+        = user.hidden_field :user_type,:value=>"false"
+        br/
+        = f.label 'First Name'
+        br/
+        = f.text_field :first_name, autocomplete: "off",style: "width: 30%; height: 36px; border: solid 2px #d7d7d7; border-radius: 0; padding: 5px 10px; margin: 0;"
+        br/
+        = f.label 'Last Name'
+        br/
+        = f.text_field :last_name, autocomplete: "off",style: "width: 30%; height: 36px; border: solid 2px #d7d7d7; border-radius: 0; padding: 5px 10px; margin: 0;"
+        br/
+        br/
+      .content-box.last-one
+        = f.button class: "btn btn-success",:style=>"margin-bottom:20px;"

@@ -1,0 +1,19 @@
+  
+<div class="span5">
+  <h4>
+    <i class="fa fa-user"></i>&nbsp;&nbsp; Login Here
+  </h4>
+  <div class="error">
+    <div class="log_in">
+    </div>
+  </div>
+  <%= form_for resource , as: resource_name, url: session_path(resource_name), remote: true do |f|%>
+    <label>Email Address</label>
+    <%= f.email_field :email, autofocus: true,:class=>"input-block-level",  required: true%>
+    <label>Password</label>
+    <%= f.password_field :password, autocomplete: "off",:class=>"input-block-level",  required: true%>
+    <br>
+    <%= f.submit "Sign in",:class=>"btn" %>
+    <!-- <a href="#" class=" btn  ">Sign In&nbsp;&nbsp;&nbsp;<i class="fa fa-chevron-sign-right"></i></a> -->
+  <% end %>
+</div>

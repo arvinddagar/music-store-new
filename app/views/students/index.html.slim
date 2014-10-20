@@ -1,0 +1,28 @@
+= render 'application/student_dashboard_partial'
+br
+br
+br
+.tutor_dashboard
+  h4
+    | Welcome
+    =" "+current_student.first_name.capitalize+"  "+current_student.last_name.capitalize
+  table.table
+    tr
+      th
+        | Active Classes
+      th
+        | Date
+      th
+        | time
+      th
+        | Location
+      th
+        | Message trainer
+    - if @upcoming_reservations.present?
+      - @upcoming_reservations.each do |preservation|
+        tr
+          td =preservation.lesson.name
+          td =preservation.timing.day.date
+          td =preservation.timing.start_time.strftime("%I:%M %p").to_s
+          td =preservation.lesson.address
+          td =link_to "Message trainer",new_conversation_path(tutor: preservation.lesson.tutor)
