@@ -4,7 +4,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-12">
       <div class="well">
         <%= form_for @tutor , url: complete_path, :html => { :id => "tutor_profile_form", :class => "form-horizontal" } do |f|%>
           <fieldset>
@@ -14,88 +14,88 @@
               <legend>Tutor's Profile</legend>
             <% end %>
             <div class="form-group">
-              <label for="textArea" class="col-lg-2 control-label">Description</label>
-              <div class="col-lg-10">
+              <label for="textArea" class="col-lg-3 control-label" style="text-align: left;">Description</label>
+              <div class="col-lg-9">
                 <%= f.text_area :description,:class=>"form-control",:rows=>5 %>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="textArea" class="col-lg-2 control-label">About Me</label>
-              <div class="col-lg-10">
+              <label for="textArea" class="col-lg-3 control-label" style="text-align: left;" >About Me</label>
+              <div class="col-lg-9">
                 <%= f.text_area :about_me ,:class=>"form-control",:rows=>5%>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="textArea" class="col-lg-2 control-label">Duration</label>
-              <div class="col-lg-10">
+              <label for="textArea" class="col-lg-3 control-label" style="text-align: left;">Duration</label>
+              <div class="col-lg-9">
                 <%= f.text_area :duration ,:class=>"form-control",:rows=>1%>
               </div>
             </div>
 
             <div class="form-group">
-              <label  for="textarea" class="col-lg-2 control-label">Skills</label>
-              <div class="col-sm-10">
+              <label  for="textarea" class="col-lg-3 control-label" style="text-align: left;" >Skills</label>
+              <div class="col-lg-9">
                 <%= f.text_area :skills,:class=>"form-control",:rows=>3 %>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="textArea" class="col-lg-2 control-label">Technical Philoshphy</label>
-              <div class="col-lg-10">
+              <label for="textArea" class="col-lg-3 control-label" style="text-align: left;">Technical Philoshphy</label>
+              <div class="col-lg-9">
                 <%= f.text_area :teaching_philosophy,:class=>"form-control",:rows=>3 %>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="textArea" class="col-lg-2 control-label">Credentials and Affiliations</label>
-              <div class="col-lg-10">
+              <label for="textArea" class="col-lg-3 control-label" style="text-align: left;">Credentials and Affiliations</label>
+              <div class="col-lg-9">
                 <%= f.text_area :cre ,:class=>"form-control",:rows=>3%>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="textArea" class="col-lg-2 control-label">Age Groups</label>
-              <div class="col-lg-10">
-                <%= f.text_field :age_group,:class=>"form-control",:rows=>3, :style=>"height:35px;" %>
+              <label for="textArea" class="col-lg-3 control-label" style="text-align: left;">Age Groups</label>
+              <div class="col-lg-9">
+                <%= f.text_field :age_group,:class=>"form-control",:rows=>3, :style=>"height:35px;width:93.1%;" %>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="textArea" class="col-lg-2 control-label">Instuments        </label>
-              <div class="col-lg-10">
-                <%= f.text_field :instruments,:rows=>1,:class=>"form-control", :style=>"height:35px;" %>
+              <label for="textArea" class="col-lg-3 control-label" style="text-align: left;">Instuments</label>
+              <div class="col-lg-9">
+                <%= f.text_field :instruments,:rows=>1,:class=>"form-control", :style=>"height:35px;width:93.1%;" %>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="textArea" class="col-lg-2 control-label">Experience</label>
-              <div class="col-lg-10">
-                <%= f.text_field :experience,:class=>"form-control" %>
+              <label for="textArea" class="col-lg-3 control-label" style="text-align: left;">Experience</label>
+              <div class="col-lg-9">
+                <%= f.text_field :experience,:class=>"form-control", :style=>"height:35px;width:93.1%;" %>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="textArea" class="col-lg-2 control-label">Address</label>
-              <div class="col-lg-10">
-                <%= f.text_field :address,:class=>"form-control" %>
+              <label for="textArea" class="col-lg-3 control-label" style="text-align: left;">Address</label>
+              <div class="col-lg-9">
+                <%= f.text_field :address,:class=>"form-control", :style=>"height:35px;width:93.1%;" %>
               </div>
             </div>
             
             <% if @tutor.image_file_name? %>
               <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">Current Image</label>
-                <div class="col-sm-10">
+                <label for="inputEmail3" class="col-sm-3 control-label" style="text-align: left;">Current Image</label>
+                <div class="col-lg-9">
                   <%= image_tag @tutor.image.url,:style=>"width:30%" %>
                 </div>
               </div>
             <% end %>
 
             <div class="form-group">
-              <label for="exampleInputFile" class="col-lg-2 control-label">Choose Image</label>
-              <div class="col-lg-10">
-                <%= f.file_field :image %>
+              <label for="exampleInputFile" class="col-lg-3">Choose Image</label>
+              <div class="col-lg-9">
+                <%= f.file_field :image, :style=>"height:35px;width:93.1%;" %>
               </div>
             </div>
 
